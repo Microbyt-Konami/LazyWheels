@@ -1,0 +1,1038 @@
+fileFormatVersion: 2
+guid: 213bd33df7f68837780ea811b8af3517
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Camion_Frontal_1
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 1545
+        width: 118
+        height: 423
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07ceaf90d4047687cbb02646001ab793
+      internalID: -906764255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bus_Frontal
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 1566
+        width: 127
+        height: 354
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3335c37e1b20b15a586c451de4e03c53
+      internalID: -1292612319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moto_Frontal_1
+      rect:
+        serializedVersion: 2
+        x: 1039
+        y: 1806
+        width: 133
+        height: 78
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0663603934e01d40b1650a30c9a9971
+      internalID: -2038088041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moto_Frontal_2
+      rect:
+        serializedVersion: 2
+        x: 1247
+        y: 1810
+        width: 133
+        height: 78
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2ee1ec32a4fa16f0b30307e9b16e0d3
+      internalID: 2100250108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Camion_Lado
+      rect:
+        serializedVersion: 2
+        x: 1741
+        y: 1747
+        width: 245
+        height: 139
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5804dae061a133f238686d0d9463b9e9
+      internalID: -797897983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moto_Frontal_3
+      rect:
+        serializedVersion: 2
+        x: 1069
+        y: 1634
+        width: 132
+        height: 78
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 774e65af182b20d4cb1c2892bf39cee6
+      internalID: -170747939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moto_Frontal_4
+      rect:
+        serializedVersion: 2
+        x: 1260
+        y: 1630
+        width: 133
+        height: 78
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d07b4d32c4f9a1b72bc38a447dc01de4
+      internalID: 1172730272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Camion_Lado_Comida_1
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 1343
+        width: 276
+        height: 138
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd6bb38cb60b4776b9f5e326ff05f44a
+      internalID: 1483839896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Camion_Lado_Comida_2
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 1346
+        width: 279
+        height: 136
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e787d1be5e82e37eb7c2b3ef5bb4ad3
+      internalID: 415208268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Camion_Lado_Comida_3
+      rect:
+        serializedVersion: 2
+        x: 706
+        y: 1342
+        width: 272
+        height: 136
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bbe1403b9306b754a7ba42217e8c2a3
+      internalID: -1033771351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Camion_Lado_Comida_4
+      rect:
+        serializedVersion: 2
+        x: 1031
+        y: 1339
+        width: 280
+        height: 138
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f6ef0505179242eeafe6c59124a7cbc
+      internalID: -378165034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moto_Lado_1
+      rect:
+        serializedVersion: 2
+        x: 1350
+        y: 1323
+        width: 67
+        height: 146
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be3c581b1f0198741be3295ee4862831
+      internalID: -1390051963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moto_Lado_2
+      rect:
+        serializedVersion: 2
+        x: 1446
+        y: 1322
+        width: 67
+        height: 145
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4b678c87bce683808b2397f4ade357f
+      internalID: -1045462323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moto_Lado_3
+      rect:
+        serializedVersion: 2
+        x: 1533
+        y: 1323
+        width: 66
+        height: 146
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1539304ffa8e64f9947bca99649d92f
+      internalID: 203988236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moto_Lado_4
+      rect:
+        serializedVersion: 2
+        x: 1635
+        y: 1320
+        width: 67
+        height: 145
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc6f58b7132bc3bf3b8749a345d94b42
+      internalID: 1651992614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Camion_Frontal_2
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 877
+        width: 118
+        height: 423
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89c33d07985a06e669918a7fa8466777
+      internalID: 1803634021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tren
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 1158
+        width: 807
+        height: 131
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 001a8ae91b31f85ffb4c8524a4aaec68
+      internalID: -204680560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bus_Lado
+      rect:
+        serializedVersion: 2
+        x: 1347
+        y: 1126
+        width: 355
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23bb5bd5ea93a20d8a263d4520e0cb7a
+      internalID: 278072398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coche_Policia_Lado
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 884
+        width: 247
+        height: 139
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ced50275fe9f646dda30b491812d0ce5
+      internalID: 1061452554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coche_Frontal_1
+      rect:
+        serializedVersion: 2
+        x: 867
+        y: 891
+        width: 97
+        height: 159
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11b2a5b0412223ae496012baa715923f
+      internalID: -2033322281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coche_Frontal_2
+      rect:
+        serializedVersion: 2
+        x: 1038
+        y: 899
+        width: 97
+        height: 159
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: daee1f9250b48a252a6fa11fa3bc1084
+      internalID: -658930596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coche_Frontal_3
+      rect:
+        serializedVersion: 2
+        x: 1185
+        y: 894
+        width: 97
+        height: 158
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 110c32ee3be43ceffaa1848d742465e9
+      internalID: 1525842850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coche_Frontal_4
+      rect:
+        serializedVersion: 2
+        x: 1332
+        y: 895
+        width: 98
+        height: 159
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4da358e616757da86bfb4d211538cbe3
+      internalID: -1067855174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coche_Frontal_5
+      rect:
+        serializedVersion: 2
+        x: 1482
+        y: 895
+        width: 96
+        height: 159
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8cd48a973c174f9448a5e6ef358e2142
+      internalID: 1320848444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coche_Frontal_6
+      rect:
+        serializedVersion: 2
+        x: 1639
+        y: 895
+        width: 98
+        height: 153
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4172fef13473f75f29beb497854c8aac
+      internalID: -85834707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Camion_Frontal_3
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 466
+        width: 117
+        height: 268
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9d891ca17270d0a28c07e682c291ea0
+      internalID: 1503917879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Camion_Ambulacia
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 466
+        width: 118
+        height: 269
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7b94fa68af2499448fbfa7f1745ed1f
+      internalID: 1117377428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coche_Policia_Frontal
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 468
+        width: 117
+        height: 269
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4461f3f34679e37d89345ed59c9eb9e5
+      internalID: -1852278943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Camion_Frontal_4
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 468
+        width: 117
+        height: 270
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86951d99188777ab4971bfdc34a7fac4
+      internalID: 186773358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Camion_Frontal_5
+      rect:
+        serializedVersion: 2
+        x: 883
+        y: 467
+        width: 118
+        height: 270
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a076af52a8b41e5383464b4a055c0c7
+      internalID: 212666308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Camion_Frontal_Comida_1
+      rect:
+        serializedVersion: 2
+        x: 1104
+        y: 471
+        width: 156
+        height: 288
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4613340166a496be3905c429553e6fc8
+      internalID: 241364816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Camion_Frontal_Comida_2
+      rect:
+        serializedVersion: 2
+        x: 1338
+        y: 481
+        width: 155
+        height: 285
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebb2735840b7ca42a8b7094d6c6c74fe
+      internalID: 398947382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Camion_Frontal_Comida_3
+      rect:
+        serializedVersion: 2
+        x: 1587
+        y: 482
+        width: 156
+        height: 282
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4a6113d67f5224939c2f33c4c3bf921
+      internalID: 363715002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Camion_Frontal_Comida_4
+      rect:
+        serializedVersion: 2
+        x: 1882
+        y: 491
+        width: 156
+        height: 297
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee0c48a472ffbdccb990ab6fb1584591
+      internalID: 1774142261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemigo
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 87
+        width: 83
+        height: 261
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f65bbb5783e5a8663a57a504eec5b9df
+      internalID: 809500066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PowerUp_Refresco
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 91
+        width: 118
+        height: 225
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffe93255df17c616e97e802fd99a355d
+      internalID: -247330283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PowerUp_Hamburguesa
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 93
+        width: 161
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea10ecc93586f2e9f9c5aab26370df36
+      internalID: 1105382256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PowerUp_Patatas
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 98
+        width: 112
+        height: 135
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 699b2df8fc53a5a6fb2dd631353a2289
+      internalID: -1930990359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PowerUp_Helado
+      rect:
+        serializedVersion: 2
+        x: 918
+        y: 72
+        width: 107
+        height: 175
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c7a6228e0e096936bbdce44340d959c
+      internalID: 97097275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PowerUp_Postre
+      rect:
+        serializedVersion: 2
+        x: 1090
+        y: 78
+        width: 147
+        height: 131
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74636fe79ee5e9f07850d8d2df3115a2
+      internalID: 1916838420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PowerUp_Sushi
+      rect:
+        serializedVersion: 2
+        x: 1367
+        y: 80
+        width: 127
+        height: 132
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efc5ad5eabf3e481982a8ad5afc94cff
+      internalID: 11329435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Camion_Frontal_Comida_2: 398947382
+      Coche_Frontal_5: 1320848444
+      Moto_Frontal_4: 1172730272
+      Moto_Lado_3: 203988236
+      PowerUp_Patatas: -1930990359
+      Tren: -204680560
+      PowerUp_Postre: 1916838420
+      Moto_Frontal_3: -170747939
+      Camion_Lado: -797897983
+      Bus_Frontal: -1292612319
+      Camion_Lado_Comida_2: 415208268
+      Camion_Lado_Comida_4: -378165034
+      PowerUp_Sushi: 11329435
+      Camion_Frontal_4: 186773358
+      Coche_Frontal_2: -658930596
+      Enemigo: 809500066
+      PowerUp_Refresco: -247330283
+      Moto_Frontal_2: 2100250108
+      Camion_Lado_Comida_3: -1033771351
+      Moto_Lado_1: -1390051963
+      Camion_Frontal_Comida_3: 363715002
+      Moto_Lado_4: 1651992614
+      Coche_Frontal_6: -85834707
+      PowerUp_Helado: 97097275
+      Camion_Frontal_Comida_1: 241364816
+      Coche_Frontal_1: -2033322281
+      Camion_Frontal_5: 212666308
+      Camion_Lado_Comida_1: 1483839896
+      Coche_Frontal_3: 1525842850
+      Camion_Frontal_Comida_4: 1774142261
+      Coche_Policia_Frontal: -1852278943
+      Coche_Frontal_4: -1067855174
+      Camion_Frontal_1: -906764255
+      Camion_Frontal_3: 1503917879
+      Camion_Frontal_2: 1803634021
+      PowerUp_Hamburguesa: 1105382256
+      Camion_Ambulacia: 1117377428
+      Bus_Lado: 278072398
+      Coche_Policia_Lado: 1061452554
+      Moto_Frontal_1: -2038088041
+      Moto_Lado_2: -1045462323
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
