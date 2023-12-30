@@ -2,27 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+namespace MicrobytKonami.LazyWheels
 {
-    // Start is called before the first frame update
-    void Start()
+    public class PlayerController : MonoBehaviour
     {
-        // GetComponent<Rigidbody2D>().velocity = Vector2.right;
-    }
+        // Components
+        private Rigidbody2D rb;
 
-    // Update is called once per frame
-    void Update()
-    {
+        // Fields
+        [SerializeField] private float speed;
 
-    }
+        private void Awake()
+        {
+            rb = GetComponent<Rigidbody2D>();
+        }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        print($"OnTriggerEnter2D: {collision.gameObject.name}");
-    }
+        // Start is called before the first frame update
+        void Start()
+        {
+        }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        print($"OnCollisionEnter2D: {collision.gameObject.name}");
+        // Update is called once per frame
+        void Update()
+        {
+            rb.velocity = speed * Vector2.up;
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            print($"OnTriggerEnter2D: {collision.gameObject.name}");
+        }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            print($"OnCollisionEnter2D: {collision.gameObject.name}");
+        }
     }
 }
