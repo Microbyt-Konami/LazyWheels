@@ -41,3 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Calle
+    uniqueID: 4196417257
+    locked: 0
+  - name: Decoracion
+    uniqueID: 765667393
+    locked: 0
+  - name: Player
+    uniqueID: 1926413499
+    locked: 0
