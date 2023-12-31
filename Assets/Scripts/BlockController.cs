@@ -14,7 +14,7 @@ namespace MicrobytKonami.LazyWheels
 
         public float Height => height;
 
-        private void Awake()
+        public void CalcHeight()
         {
             transformBlock = GetComponent<Transform>();
 
@@ -24,19 +24,28 @@ namespace MicrobytKonami.LazyWheels
             foreach (var road in roads)
                 _height += road.Height;
 
-            height = _height;
+            height = _height;            
         }
+
+        //private void Awake()
+        //{
+
+        //}
 
         // Start is called before the first frame update
-        void Start()
-        {
-
-        }
+        //void Start()
+        //{
+        //}
 
         // Update is called once per frame
-        void Update()
-        {
+        //void Update()
+        //{
 
-        }
+        //}
+
+        //private void OnBecameInvisible()
+        //{
+        //    print($"{name} invisible");
+        //}
     }
 }

@@ -19,15 +19,19 @@ namespace MicrobytKonami.LazyWheels
         }
 
         // Start is called before the first frame update
-        void Start()
-        {
+        //void Start()
+        //{
             
-        }
+        //}
 
         // Update is called once per frame
-        void Update()
+        //void Update()
+        //{
+        //}
+
+        private void FixedUpdate()
         {
-            rb.velocity = speed * Vector2.up;
+            rb.velocity = speed * Vector2.up;            
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
