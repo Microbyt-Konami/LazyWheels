@@ -11,20 +11,29 @@ namespace MicrobytKonami.LazyWheels
 
         // Variables
         private float height;
+        private float yTop;
 
         public float Height => height;
+        public float YTop => yTop;
 
         public void CalcHeight()
         {
             transformBlock = GetComponent<Transform>();
 
             var roads = GetComponentsInChildren<RoadController>();
-            var _height = 0f;
+            float _height = 0, _yTop = transformBlock.position.y;
 
             foreach (var road in roads)
+            {
                 _height += road.Height;
+                if (road.GetComponent<Transform>().position.y > 0)
+                    _yTop += road.Height;
+                else
+                    _yTop += road.Height / 2f;
+            }
 
-            height = _height;            
+            height = _height;
+            yTop = _yTop;
         }
 
         //private void Awake()

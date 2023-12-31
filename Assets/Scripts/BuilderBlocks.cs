@@ -65,7 +65,7 @@ namespace MicrobytKonami.LazyWheels
             oldBlock = currentBlock;
             currentBlock = block;
             transformCurrentBlock = block.GetComponent<Transform>();
-            yBlockCurrent = transformCurrentBlock.position.y + block.Height - twiceCameraHeight;
+            yBlockCurrent = block.YTop - cameraController.Height;
         }
 
         private void BuildBlock()
