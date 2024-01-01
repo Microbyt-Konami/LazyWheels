@@ -6,17 +6,15 @@ namespace MicrobytKonami.LazyWheels
 {
     public class RoadController : MonoBehaviour
     {
-        // Components
-        private SpriteRenderer rb;
-
         // Variables
         private float height;
 
         public float Height => height;
 
-        private void Awake()
+        public void CalcHeight()
         {
-            rb = GetComponent<SpriteRenderer>();
+            var rb = GetComponent<SpriteRenderer>();
+
             height = rb.bounds.size.y;
         }
 
@@ -32,9 +30,9 @@ namespace MicrobytKonami.LazyWheels
 
         //}
 
-        private void OnBecameInvisible()
-        {
-            print($"{name} invisible");
-        }
+        //private void OnBecameInvisible()
+        //{
+        //    print($"{name} invisible");
+        //}
     }
 }

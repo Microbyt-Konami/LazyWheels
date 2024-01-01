@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,13 +13,13 @@ namespace MicrobytKonami.LazyWheels
         private Transform transformBuilderBlocks;
         private PlayerController playerController;
         private CameraController cameraController;
-        private BlockController currentBlock, oldBlock;
+        private BlockController currentBlock, oldBlock, newBlock;
         private Transform transformBlocks, transformCurrentBlock, transformPlayerController;
 
         // Variables
         private int countRoad;
         private float twiceCameraHeight;
-        private float yBlockCurrent;
+        private float yToCreateBlock;
         private float yOffOldCurrent = float.MaxValue;
 
         private void Awake()
@@ -40,7 +39,12 @@ namespace MicrobytKonami.LazyWheels
             transformPlayerController = playerController.GetComponent<Transform>();
             twiceCameraHeight = 2 * cameraController.Height;
             CalcBlocksHeights();
-            SetCurrentBlock(transformBlocks.GetChild(0).GetComponent<BlockController>());
+
+            var block = transformBlocks.GetChild(0).GetComponent<BlockController>();
+
+            block.CalcHeight();
+            SetYToCreateBlock(block);
+            SetCurrentBlock(block);
         }
 
         // Update is called once per frame
@@ -51,6 +55,7 @@ namespace MicrobytKonami.LazyWheels
         private void LateUpdate()
         {
             BuildBlock();
+            ChangeToNewBlock();
         }
 
         private void CalcBlocksHeights()
@@ -59,36 +64,47 @@ namespace MicrobytKonami.LazyWheels
                 block.CalcHeight();
         }
 
+        private void BuildBlock()
+        {
+            if (transformPlayerController.position.y >= yToCreateBlock)
+            {
+                CreateNewBlock();
+                SetYToCreateBlock(newBlock);
+            }
+        }
+
+        private void ChangeToNewBlock()
+        {
+            if (newBlock != null)
+                if (transformPlayerController.position.y >= newBlock.YBottom)
+                    SetCurrentBlock(newBlock);
+        }
+
         private void SetCurrentBlock(BlockController block)
         {
-            block.CalcHeight();
             oldBlock = currentBlock;
             currentBlock = block;
             transformCurrentBlock = block.GetComponent<Transform>();
-            yBlockCurrent = block.YTop - cameraController.Height;
         }
 
-        private void BuildBlock()
+        private void SetYToCreateBlock(BlockController block)
         {
-            if (transformPlayerController.position.y >= yBlockCurrent)
-                CreateNewBlock();
+            yToCreateBlock = block.YTop - 2 * cameraController.Height;
         }
 
         private void CreateNewBlock()
         {
-            var blockSelected = blocks[countRoad - 1];
-            var height = (currentBlock.Height + blockSelected.Height) / 2;
+            int i = Random.Range(0, blocks.Length);
+            BlockController blockSelected = blocks[i];
+            float height = currentBlock.HeightFromBlock0 + blockSelected.HeightBlock0;
 
-            BlockController blockNew = Instantiate<BlockController>(blockSelected, transformCurrentBlock.position + height * Vector3.up, Quaternion.identity);
+            BlockController _newBlock = Instantiate(blockSelected, transformCurrentBlock.position + height * Vector3.up, Quaternion.identity);
 
             countRoad++;
-            blockNew.name = $"Block{countRoad}";
-            blockNew.transform.parent = transformBlocks;
-            SetCurrentBlock(blockNew);
-            if (countRoad > blocks.Length)
-                countRoad = 1;
+            _newBlock.name = $"Block{countRoad}";
+            _newBlock.transform.parent = transformBlocks;
+            _newBlock.CalcHeight();
+            newBlock = _newBlock;
         }
-
-
     }
 }
