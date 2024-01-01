@@ -22,7 +22,6 @@ namespace MicrobytKonami.LazyWheels
         {
             theCamera = GetComponent<Camera>();
             transformCamera = GetComponent<Transform>();
-            //height = theCamera.ScreenToWorldPoint(new Vector3(0, theCamera.pixelHeight / 2f, 0)).y - 0.5f;
             height = theCamera.orthographicSize;
         }
 

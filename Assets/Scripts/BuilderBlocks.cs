@@ -20,7 +20,7 @@ namespace MicrobytKonami.LazyWheels
         private int countRoad;
         private float twiceCameraHeight;
         private float yToCreateBlock;
-        private float yOffOldCurrent = float.MaxValue;
+        private float yOffOld = float.MaxValue;
 
         private void Awake()
         {
@@ -56,6 +56,7 @@ namespace MicrobytKonami.LazyWheels
         {
             BuildBlock();
             ChangeToNewBlock();
+            DestroyOldBlock();
         }
 
         private void CalcBlocksHeights()
@@ -77,7 +78,20 @@ namespace MicrobytKonami.LazyWheels
         {
             if (newBlock != null)
                 if (transformPlayerController.position.y >= newBlock.YBottom)
+                {
                     SetCurrentBlock(newBlock);
+                    newBlock = null;
+                }
+        }
+
+        private void DestroyOldBlock()
+        {
+            if (oldBlock != null)
+                if (transformPlayerController.position.y > yOffOld)
+                {
+                    Destroy(oldBlock.gameObject);
+                    oldBlock = null;
+                }
         }
 
         private void SetCurrentBlock(BlockController block)
@@ -85,6 +99,8 @@ namespace MicrobytKonami.LazyWheels
             oldBlock = currentBlock;
             currentBlock = block;
             transformCurrentBlock = block.GetComponent<Transform>();
+            if (oldBlock != null)
+                yOffOld = oldBlock.YTop + 2 * cameraController.Height;
         }
 
         private void SetYToCreateBlock(BlockController block)
