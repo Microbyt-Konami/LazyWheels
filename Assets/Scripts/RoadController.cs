@@ -6,30 +6,33 @@ namespace MicrobytKonami.LazyWheels
 {
     public class RoadController : MonoBehaviour
     {
-        // Components
-        private SpriteRenderer rb;
-
         // Variables
         private float height;
 
         public float Height => height;
 
-        private void Awake()
+        public void CalcHeight()
         {
-            rb = GetComponent<SpriteRenderer>();
+            var rb = GetComponent<SpriteRenderer>();
+
             height = rb.bounds.size.y;
         }
 
         // Start is called before the first frame update
-        void Start()
-        {
+        //void Start()
+        //{
 
-        }
+        //}
 
         // Update is called once per frame
-        void Update()
-        {
+        //void Update()
+        //{
 
-        }
+        //}
+
+        //private void OnBecameInvisible()
+        //{
+        //    print($"{name} invisible");
+        //}
     }
 }
