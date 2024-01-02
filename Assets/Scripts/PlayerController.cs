@@ -19,6 +19,16 @@ namespace MicrobytKonami.LazyWheels
             //inputActions.Player.Move.performed += ctx => carController.Mover(ctx.ReadValue<float>());
         }
 
+        private void OnEnable()
+        {
+            inputActions.Enable();
+        }
+
+        private void OnDisable()
+        {
+            inputActions.Disable();
+        }
+
         // Start is called before the first frame update
         //void Start()
         //{
@@ -29,6 +39,7 @@ namespace MicrobytKonami.LazyWheels
         void Update()
         {
             carController.Mover(inputActions.Player.Move.ReadValue<float>());
+            carController.Acceleration(inputActions.Player.Acceleration.ReadValue<float>());
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
