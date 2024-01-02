@@ -259,7 +259,7 @@ namespace MicrobytKonami.LazyWheels.Input
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Joystick"",
+                    ""name"": ""Gamepad"",
                     ""id"": ""d6101bb1-5862-4499-ac45-dc727a20ebd8"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
@@ -272,7 +272,7 @@ namespace MicrobytKonami.LazyWheels.Input
                 {
                     ""name"": ""negative"",
                     ""id"": ""91999f81-0b81-4ce4-b46a-2240d4e0566c"",
-                    ""path"": ""<Joystick>/stick/up"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Default"",
@@ -283,6 +283,39 @@ namespace MicrobytKonami.LazyWheels.Input
                 {
                     ""name"": ""positive"",
                     ""id"": ""140de461-4535-4657-af83-4a570eb22014"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Default"",
+                    ""action"": ""Acceleration"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Joystick"",
+                    ""id"": ""98a1722c-2feb-47d2-babc-39e0352c01a8"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Acceleration"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""afba4da4-608f-4d8a-bbe7-d1bea78a2685"",
+                    ""path"": ""<Joystick>/stick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Default"",
+                    ""action"": ""Acceleration"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""8c35f971-6024-4db8-9e08-22d9aca1f434"",
                     ""path"": ""<Joystick>/stick/down"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -290,6 +323,17 @@ namespace MicrobytKonami.LazyWheels.Input
                     ""action"": ""Acceleration"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad"",
+                    ""id"": ""3be0a8e7-2faf-44d6-84db-0824bb6d05a9"",
+                    ""path"": ""1DAxis(overrideModifiersNeedToBePressedFirst=true)"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Acceleration"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
                 },
                 {
                     ""name"": ""1D Axis"",
@@ -300,17 +344,6 @@ namespace MicrobytKonami.LazyWheels.Input
                     ""groups"": """",
                     ""action"": ""Acceleration"",
                     ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""664709c5-1285-472a-82fa-32bd9986f384"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": ""Hold"",
-                    ""processors"": """",
-                    ""groups"": ""Default"",
-                    ""action"": ""Acceleration"",
-                    ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
             ]
