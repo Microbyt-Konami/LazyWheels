@@ -2,36 +2,50 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using MicrobytKonami.LazyWheels.Input;
+
 namespace MicrobytKonami.LazyWheels
 {
     public class PlayerController : MonoBehaviour
     {
-        // Components
-        private Rigidbody2D rb;
-
         // Fields
-        [SerializeField] private float speed;
+        [SerializeField] private bool isIPedal;
+
+        // Components
+        private CarController carController;
+        private InputActions inputActions;
 
         private void Awake()
         {
-            rb = GetComponent<Rigidbody2D>();
-            
+            carController = GetComponent<CarController>();
+            inputActions = new InputActions();
+            //inputActions.Player.Move.performed += ctx => carController.Mover(ctx.ReadValue<float>());
+        }
+
+        private void OnEnable()
+        {
+            inputActions.Enable();
+        }
+
+        private void OnDisable()
+        {
+            inputActions.Disable();
         }
 
         // Start is called before the first frame update
         //void Start()
         //{
-            
+
         //}
 
         // Update is called once per frame
-        //void Update()
-        //{
-        //}
-
-        private void FixedUpdate()
+        void Update()
         {
-            rb.velocity = speed * Vector2.up;            
+            carController.Mover(inputActions.Player.Move.ReadValue<float>());
+            if (isIPedal)
+                carController.IAcceleration(inputActions.Player.iAcceleration.ReadValue<float>());
+            else
+                carController.Acceleration(inputActions.Player.Acceleration.ReadValue<float>());
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
