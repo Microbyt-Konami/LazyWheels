@@ -22,6 +22,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "iAcceleration",
+                    "type": "Value",
+                    "id": "298019c2-f791-4e9a-9237-b9523b6670ef",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -215,7 +224,7 @@
                 {
                     "name": "negative",
                     "id": "91999f81-0b81-4ce4-b46a-2240d4e0566c",
-                    "path": "<Gamepad>/leftTrigger",
+                    "path": "<Gamepad>/leftStick/down",
                     "interactions": "",
                     "processors": "",
                     "groups": "Default",
@@ -226,7 +235,7 @@
                 {
                     "name": "positive",
                     "id": "140de461-4535-4657-af83-4a570eb22014",
-                    "path": "<Gamepad>/rightTrigger",
+                    "path": "<Gamepad>/leftStick/up",
                     "interactions": "",
                     "processors": "",
                     "groups": "Default",
@@ -287,6 +296,17 @@
                     "groups": "",
                     "action": "Acceleration",
                     "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0d3f2836-d01e-4df2-baf7-08115771a2d5",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Default",
+                    "action": "iAcceleration",
+                    "isComposite": false,
                     "isPartOfComposite": false
                 }
             ]

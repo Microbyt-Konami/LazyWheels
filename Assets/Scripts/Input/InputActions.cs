@@ -46,6 +46,15 @@ namespace MicrobytKonami.LazyWheels.Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""iAcceleration"",
+                    ""type"": ""Value"",
+                    ""id"": ""298019c2-f791-4e9a-9237-b9523b6670ef"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -239,7 +248,7 @@ namespace MicrobytKonami.LazyWheels.Input
                 {
                     ""name"": ""negative"",
                     ""id"": ""91999f81-0b81-4ce4-b46a-2240d4e0566c"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Default"",
@@ -250,7 +259,7 @@ namespace MicrobytKonami.LazyWheels.Input
                 {
                     ""name"": ""positive"",
                     ""id"": ""140de461-4535-4657-af83-4a570eb22014"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Default"",
@@ -312,6 +321,17 @@ namespace MicrobytKonami.LazyWheels.Input
                     ""action"": ""Acceleration"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0d3f2836-d01e-4df2-baf7-08115771a2d5"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Default"",
+                    ""action"": ""iAcceleration"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -359,6 +379,7 @@ namespace MicrobytKonami.LazyWheels.Input
             m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
             m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
             m_Player_Acceleration = m_Player.FindAction("Acceleration", throwIfNotFound: true);
+            m_Player_iAcceleration = m_Player.FindAction("iAcceleration", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -422,12 +443,14 @@ namespace MicrobytKonami.LazyWheels.Input
         private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
         private readonly InputAction m_Player_Move;
         private readonly InputAction m_Player_Acceleration;
+        private readonly InputAction m_Player_iAcceleration;
         public struct PlayerActions
         {
             private @InputActions m_Wrapper;
             public PlayerActions(@InputActions wrapper) { m_Wrapper = wrapper; }
             public InputAction @Move => m_Wrapper.m_Player_Move;
             public InputAction @Acceleration => m_Wrapper.m_Player_Acceleration;
+            public InputAction @iAcceleration => m_Wrapper.m_Player_iAcceleration;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -443,6 +466,9 @@ namespace MicrobytKonami.LazyWheels.Input
                 @Acceleration.started += instance.OnAcceleration;
                 @Acceleration.performed += instance.OnAcceleration;
                 @Acceleration.canceled += instance.OnAcceleration;
+                @iAcceleration.started += instance.OnIAcceleration;
+                @iAcceleration.performed += instance.OnIAcceleration;
+                @iAcceleration.canceled += instance.OnIAcceleration;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -453,6 +479,9 @@ namespace MicrobytKonami.LazyWheels.Input
                 @Acceleration.started -= instance.OnAcceleration;
                 @Acceleration.performed -= instance.OnAcceleration;
                 @Acceleration.canceled -= instance.OnAcceleration;
+                @iAcceleration.started -= instance.OnIAcceleration;
+                @iAcceleration.performed -= instance.OnIAcceleration;
+                @iAcceleration.canceled -= instance.OnIAcceleration;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -483,6 +512,7 @@ namespace MicrobytKonami.LazyWheels.Input
         {
             void OnMove(InputAction.CallbackContext context);
             void OnAcceleration(InputAction.CallbackContext context);
+            void OnIAcceleration(InputAction.CallbackContext context);
         }
     }
 }
