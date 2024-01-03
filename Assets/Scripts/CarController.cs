@@ -3,20 +3,24 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
+using MicrobytKonami.LazyWheels.Helpers;
+
 namespace MicrobytKonami.LazyWheels
 {
     public class CarController : MonoBehaviour
     {
         // Fields
-        [SerializeField] private float speedMax = 200f * 1000 / (60f * 60f);
-        [SerializeField] private float speed;
-        [SerializeField] private float speedKm_h;
+        [SerializeField] private float speedMax = HelperUnitsConvertions.KmHToMS(200f);
 
         // Components
         private Rigidbody2D rb;
 
         // Variables
         private float inputX;
+        [SerializeField] private float speed;
+        [SerializeField] private float speedLow = HelperUnitsConvertions.KmHToMS(30);
+        [SerializeField] private float speedKm_h;
+        [SerializeField] private float speedMove;
 
         public void Mover(float inputX) => this.inputX = inputX;
 
@@ -24,14 +28,15 @@ namespace MicrobytKonami.LazyWheels
         public void Acceleration(float acceleration)
         {
             speedKm_h += acceleration;
-            speed += 1000 * acceleration / (60 * 60);
+            speed += HelperUnitsConvertions.KmHToMS(acceleration);
             if (speed < 0)
                 speedKm_h = speed = 0;
             if (speed > speedMax)
             {
                 speed = speedMax;
-                speedKm_h = speed * 60 * 60 / 1000;
+                speedKm_h = HelperUnitsConvertions.MSToKmH(speed);
             }
+            speedMove = speed <= speedLow ? speed : speed / speedLow;
         }
 
         private void Awake()
@@ -53,7 +58,8 @@ namespace MicrobytKonami.LazyWheels
 
         private void FixedUpdate()
         {
-            rb.velocity = speed * (Vector2.up + inputX * Vector2.right);
+            //rb.velocity = speed * (Vector2.up + inputX * Vector2.right);
+            rb.velocity = new Vector2(speedMove * inputX, speed);
         }
     }
 }
