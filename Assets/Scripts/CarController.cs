@@ -18,12 +18,12 @@ namespace MicrobytKonami.LazyWheels
         private Rigidbody2D rb;
 
         // Variables
-        private bool isInput;
+        private bool isInput, isLockAccelerate;
         private float inputX, inputY;
         [SerializeField] private float speed;
         [SerializeField] private float speedKm_h;
         [SerializeField] private float speedMove;
-
+        private float oldInputY;
         public void Mover(float inputX)
         {
             isInput = true;
@@ -32,7 +32,11 @@ namespace MicrobytKonami.LazyWheels
 
         public void Acceleration(float inputY)
         {
+            if (isLockAccelerate && inputY > 0)
+                return;
+
             isInput = true;
+            oldInputY = this.inputY;
             this.inputY = inputY;
             /*
             speedKm_h += acceleration;
@@ -50,8 +54,20 @@ namespace MicrobytKonami.LazyWheels
 
         public void IAcceleration(float inputY)
         {
+            if (isLockAccelerate && inputY > 0)
+                return;
+
+            var _oldInputY = oldInputY;
+
+            oldInputY = this.inputY;
             isInput = true;
-            this.inputY = inputY == 0 ? -1 : inputY;
+
+            this.inputY =
+                inputY == 0 && _oldInputY == 0
+                    ? -1
+                    : _oldInputY <= inputY
+                        ? inputY
+                        : inputY - 1;
         }
 
         private void Awake()
@@ -79,17 +95,43 @@ namespace MicrobytKonami.LazyWheels
             //rb.velocity = new Vector2(speedMove * inputX, speed);
             if (isInput)
             {
-                rb.AddForce(new Vector2(0, inputY * forceMotor));
-                speed = rb.velocity.y;
-                if (speed < 0)
+                if (speed <= 0 && inputY < 0)
+                {
+                    isLockAccelerate = false;
                     speed = 0;
-                else if (speed > speedMax)
-                    speed = speedMax;
+                    ResetInputY();
+                }
+                else
+                {
+                    rb.AddForce(new Vector2(0, inputY * forceMotor));
+                    speed = rb.velocity.y;
+                    if (speed < 0)
+                    {
+                        isLockAccelerate = false;
+                        speed = 0;
+                        ResetInputY();
+                    }
+                    else if (speed > speedMax)
+                    {
+                        isLockAccelerate = true;
+                        speed = speedMax;
+                        ResetInputY();
+                    }
+                    else
+                        isLockAccelerate = false;
+
+                }
                 speedMove = speed <= speedLow ? speed : speed / speedLow;
                 rb.velocity = new Vector2(speedMove * inputX, speed);
                 speedKm_h = HelperUnitsConvertions.MSToKmH(speed);
                 isInput = false;
             }
+        }
+
+        private void ResetInputY()
+        {
+            rb.AddForce(Vector2.zero);
+            oldInputY = inputY = 0;
         }
     }
 }

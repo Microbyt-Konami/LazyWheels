@@ -43,7 +43,7 @@ namespace MicrobytKonami.LazyWheels
         {
             carController.Mover(inputActions.Player.Move.ReadValue<float>());
             if (isIPedal)
-                carController.Acceleration(inputActions.Player.iAcceleration.ReadValue<float>());
+                carController.IAcceleration(inputActions.Player.iAcceleration.ReadValue<float>());
             else
                 carController.Acceleration(inputActions.Player.Acceleration.ReadValue<float>());
         }
