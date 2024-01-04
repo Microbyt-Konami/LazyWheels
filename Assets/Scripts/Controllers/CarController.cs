@@ -5,7 +5,7 @@ using UnityEngine;
 
 using MicrobytKonami.LazyWheels.Helpers;
 
-namespace MicrobytKonami.LazyWheels
+namespace MicrobytKonami.LazyWheels.Controllers
 {
     public class CarController : MonoBehaviour
     {
@@ -18,12 +18,16 @@ namespace MicrobytKonami.LazyWheels
         private Rigidbody2D rb;
 
         // Variables
-        private bool isInput, isLockAccelerate;
+        private bool isInput, isLockAccelerate, isInGrass;
         private float inputX, inputY;
         [SerializeField] private float speed;
         [SerializeField] private float speedKm_h;
         [SerializeField] private float speedMove;
         private float oldInputY;
+
+        // Ids
+        private int idGrassLayer;
+
         public void Mover(float inputX)
         {
             isInput = true;
@@ -73,6 +77,7 @@ namespace MicrobytKonami.LazyWheels
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
+            idGrassLayer = LayerMask.NameToLayer("Grass");
             isInput = false;
             speed = speedKm_h = speedMove = 0;
         }
@@ -93,6 +98,15 @@ namespace MicrobytKonami.LazyWheels
         {
             //rb.velocity = speed * (Vector2.up + inputX * Vector2.right);
             //rb.velocity = new Vector2(speedMove * inputX, speed);
+            if (isInGrass)
+            {
+                if (speed > speedLow)
+                {
+                    oldInputY = inputY;
+                    inputY = -0.1f;
+                    isInput = true;
+                }
+            }
             if (isInput)
             {
                 if (speed <= 0 && inputY < 0)
@@ -132,6 +146,18 @@ namespace MicrobytKonami.LazyWheels
         {
             rb.AddForce(Vector2.zero);
             oldInputY = inputY = 0;
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.layer == idGrassLayer)
+                isInGrass = true;
+        }
+
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            if (collision.gameObject.layer == idGrassLayer)
+                isInGrass = false;
         }
     }
 }
