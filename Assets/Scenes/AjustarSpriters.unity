@@ -261,6 +261,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 769aaf3141fe10f4c83e76f63ed9a75e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputYDeacelerateGrass: 1
+  inputXDeacelerateGrass: 0
 --- !u!4 &678258306
 Transform:
   m_ObjectHideFlags: 0

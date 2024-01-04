@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5919010217979637157}
   - component: {fileID: 4521581489495860530}
   - component: {fileID: 324230043243270712}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Arboles_Mediano
   m_TagString: Untagged
   m_Icon: {fileID: 0}

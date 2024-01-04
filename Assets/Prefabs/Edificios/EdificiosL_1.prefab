@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5490196562322883970}
   - component: {fileID: 451293514747937404}
   - component: {fileID: -1659708113998025818}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EdificiosL_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

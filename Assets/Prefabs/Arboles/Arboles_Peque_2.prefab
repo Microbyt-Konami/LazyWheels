@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1630617870870384590}
   - component: {fileID: 400210000584205060}
   - component: {fileID: 5859593240623411941}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Arboles_Peque_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
