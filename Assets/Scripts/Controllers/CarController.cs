@@ -7,6 +7,7 @@ using MicrobytKonami.LazyWheels.Helpers;
 
 namespace MicrobytKonami.LazyWheels.Controllers
 {
+    [RequireComponent(typeof(Rigidbody2D))]
     public class CarController : MonoBehaviour
     {
         // Fields
@@ -26,7 +27,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
         private float oldInputY;
 
         // Ids
-        private int idGrassLayer, idObstacle;
+        private int idGrassLayer, idObstacle, idPlayer;
 
         public void Mover(float inputX)
         {
@@ -79,6 +80,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
             rb = GetComponent<Rigidbody2D>();
             idGrassLayer = LayerMask.NameToLayer("Grass");
             idObstacle = LayerMask.NameToLayer("Obstacle");
+            idPlayer = LayerMask.NameToLayer("Player");
             isInput = false;
             speed = speedKm_h = speedMove = 0;
         }
@@ -101,6 +103,43 @@ namespace MicrobytKonami.LazyWheels.Controllers
             //rb.velocity = new Vector2(speedMove * inputX, speed);
             DeacelerateGrass();
             AccelerateAndMove();
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.layer == idGrassLayer)
+                isInGrass = true;
+            else if (collision.gameObject.layer == idObstacle)
+                Explode();
+        }
+
+        private void Explode()
+        {
+            print($"Explode {name}");
+            inputX = 0;
+            speed = speedMove = speedKm_h = 0;
+            rb.velocity = Vector2.zero;
+            ResetInputY();
+            // no forma no correcta es para chequear el choque
+            if (gameObject.name == "Player")
+                transform.position -= transform.position.x * Vector3.right;
+            else
+                Destroy(gameObject);
+        }
+
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            if (collision.gameObject.layer == idGrassLayer)
+                isInGrass = false;
+        }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.gameObject.layer == idPlayer)
+            {
+                collision.gameObject.GetComponent<CarController>().Explode();
+                Explode();
+            }
         }
 
         private void AccelerateAndMove()
@@ -160,27 +199,6 @@ namespace MicrobytKonami.LazyWheels.Controllers
         {
             rb.AddForce(Vector2.zero);
             oldInputY = inputY = 0;
-        }
-
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-            if (collision.gameObject.layer == idGrassLayer)
-                isInGrass = true;
-            else if (collision.gameObject.layer == idObstacle)
-            {
-                inputX = 0;
-                speed = speedMove = speedKm_h = 0;
-                rb.velocity = Vector2.zero;
-                ResetInputY();
-                // no forma no correcta es para chequear el choque
-                transform.position -= transform.position.x * Vector3.right;
-            }
-        }
-
-        private void OnTriggerExit2D(Collider2D collision)
-        {
-            if (collision.gameObject.layer == idGrassLayer)
-                isInGrass = false;
         }
     }
 }

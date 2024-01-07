@@ -6,6 +6,7 @@ using MicrobytKonami.LazyWheels.Input;
 
 namespace MicrobytKonami.LazyWheels.Controllers
 {
+    [RequireComponent(typeof(CarController))]
     public class PlayerController : MonoBehaviour
     {
         // Fields

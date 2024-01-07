@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace MicrobytKonami.LazyWheels.Controllers
 {
+    [RequireComponent(typeof(SpriteRenderer))]
     public class RoadController : MonoBehaviour
     {
         // Variables
