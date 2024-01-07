@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1783254372379184397}
   - component: {fileID: 4470155375080929552}
   - component: {fileID: -1835807350574558427}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Arboles_Grande
   m_TagString: Untagged
   m_Icon: {fileID: 0}

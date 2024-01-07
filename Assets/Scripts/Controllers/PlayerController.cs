@@ -4,7 +4,7 @@ using UnityEngine;
 
 using MicrobytKonami.LazyWheels.Input;
 
-namespace MicrobytKonami.LazyWheels
+namespace MicrobytKonami.LazyWheels.Controllers
 {
     public class PlayerController : MonoBehaviour
     {
@@ -48,14 +48,14 @@ namespace MicrobytKonami.LazyWheels
                 carController.Acceleration(inputActions.Player.Acceleration.ReadValue<float>());
         }
 
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-            print($"OnTriggerEnter2D: {collision.gameObject.name}");
-        }
+        //private void OnTriggerEnter2D(Collider2D collision)
+        //{
+        //    print($"OnTriggerEnter2D: {collision.gameObject.name}");
+        //}
 
-        private void OnCollisionEnter2D(Collision2D collision)
-        {
-            print($"OnCollisionEnter2D: {collision.gameObject.name}");
-        }
+        //private void OnCollisionEnter2D(Collision2D collision)
+        //{
+        //    print($"OnCollisionEnter2D: {collision.gameObject.name}");
+        //}
     }
 }

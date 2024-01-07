@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7527771135269829193}
   - component: {fileID: 4070490492215586203}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cesped
   m_TagString: Untagged
   m_Icon: {fileID: 0}

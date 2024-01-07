@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MicrobytKonami.LazyWheels
+namespace MicrobytKonami.LazyWheels.Controllers
 {
     public class CameraController : MonoBehaviour
     {

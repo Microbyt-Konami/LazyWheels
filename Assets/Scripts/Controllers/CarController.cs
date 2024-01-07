@@ -5,7 +5,7 @@ using UnityEngine;
 
 using MicrobytKonami.LazyWheels.Helpers;
 
-namespace MicrobytKonami.LazyWheels
+namespace MicrobytKonami.LazyWheels.Controllers
 {
     public class CarController : MonoBehaviour
     {
@@ -18,12 +18,16 @@ namespace MicrobytKonami.LazyWheels
         private Rigidbody2D rb;
 
         // Variables
-        private bool isInput, isLockAccelerate;
+        private bool isInput, isLockAccelerate, isInGrass;
         private float inputX, inputY;
         [SerializeField] private float speed;
         [SerializeField] private float speedKm_h;
         [SerializeField] private float speedMove;
         private float oldInputY;
+
+        // Ids
+        private int idGrassLayer, idObstacle;
+
         public void Mover(float inputX)
         {
             isInput = true;
@@ -73,6 +77,8 @@ namespace MicrobytKonami.LazyWheels
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
+            idGrassLayer = LayerMask.NameToLayer("Grass");
+            idObstacle = LayerMask.NameToLayer("Obstacle");
             isInput = false;
             speed = speedKm_h = speedMove = 0;
         }
@@ -93,6 +99,12 @@ namespace MicrobytKonami.LazyWheels
         {
             //rb.velocity = speed * (Vector2.up + inputX * Vector2.right);
             //rb.velocity = new Vector2(speedMove * inputX, speed);
+            DeacelerateGrass();
+            AccelerateAndMove();
+        }
+
+        private void AccelerateAndMove()
+        {
             if (isInput)
             {
                 if (speed <= 0 && inputY < 0)
@@ -128,10 +140,47 @@ namespace MicrobytKonami.LazyWheels
             }
         }
 
+        private void DeacelerateGrass()
+        {
+            if (isInGrass)
+            {
+                if (speed > speedLow)
+                {
+                    var gameController = GameController.Instance;
+
+                    oldInputY = inputY;
+                    inputX = -gameController.InputXDeacelerateGrass;
+                    inputY = -gameController.InputYDeacelerateGrass;
+                    isInput = true;
+                }
+            }
+        }
+
         private void ResetInputY()
         {
             rb.AddForce(Vector2.zero);
             oldInputY = inputY = 0;
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.layer == idGrassLayer)
+                isInGrass = true;
+            else if (collision.gameObject.layer == idObstacle)
+            {
+                inputX = 0;
+                speed = speedMove = speedKm_h = 0;
+                rb.velocity = Vector2.zero;
+                ResetInputY();
+                // no forma no correcta es para chequear el choque
+                transform.position -= transform.position.x * Vector3.right;
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            if (collision.gameObject.layer == idGrassLayer)
+                isInGrass = false;
         }
     }
 }
