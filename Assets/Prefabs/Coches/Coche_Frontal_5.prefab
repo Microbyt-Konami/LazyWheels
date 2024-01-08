@@ -172,12 +172,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bf448923bac9b4479e64f25d4e0bc47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedMax: 55.555557
-  speedLow: 8.333333
-  forceMotor: 15000
-  speed: 0
-  speedKm_h: 0
-  speedMove: 0
+  speedUp: 16
+  speedRotation: 18
+  angleRotation: 45
 --- !u!114 &-841557855839182847
 MonoBehaviour:
   m_ObjectHideFlags: 0

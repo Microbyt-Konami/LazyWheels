@@ -103,6 +103,9 @@ MonoBehaviour:
   speedMax: 55.555557
   speedLow: 8.333333
   forceMotor: 15000
+  speedUp: 15
+  speedRotation: 18
+  angleRotation: 45
   speed: 0
   speedKm_h: 0
   speedMove: 0

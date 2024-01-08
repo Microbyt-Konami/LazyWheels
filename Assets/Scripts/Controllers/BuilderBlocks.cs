@@ -14,7 +14,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
         private PlayerController playerController;
         private CameraController cameraController;
         private BlockController currentBlock, oldBlock, newBlock;
-        private Transform transformBlocks, transformCurrentBlock, transformPlayerController;
+        private Transform transformBlocks, transformCurrentBlock, transformPlayerController, transformCarIAs;
 
         // Variables
         private int countRoad;
@@ -33,6 +33,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
         void Start()
         {
             transformBlocks = GameObject.Find("Blocks").GetComponent<Transform>();
+            transformCarIAs = GameObject.Find("CarIAs").GetComponent<Transform>();
 
             playerController = FindAnyObjectByType<PlayerController>();
             cameraController = Camera.main.GetComponent<CameraController>();
@@ -48,11 +49,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
         }
 
         // Update is called once per frame
-        //void Update()
-        //{
-        //}
-
-        private void LateUpdate()
+        void Update()
         {
             BuildBlock();
             ChangeToNewBlock();
@@ -114,7 +111,8 @@ namespace MicrobytKonami.LazyWheels.Controllers
             BlockController blockSelected = blocks[i];
             float height = currentBlock.HeightFromBlock0 + blockSelected.HeightBlock0;
 
-            BlockController _newBlock = Instantiate(blockSelected, transformCurrentBlock.position + height * Vector3.up, Quaternion.identity);
+            BlockController _newBlock = Instantiate(blockSelected, transformCurrentBlock.position + height * Vector3.up,
+                Quaternion.identity);
 
             countRoad++;
             _newBlock.name = $"Block{countRoad}";

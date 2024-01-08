@@ -9,6 +9,9 @@ namespace MicrobytKonami.LazyWheels.Controllers
         // Fields
         [SerializeField] GameObject calles;
 
+        // Components
+        private Transform transformCarIAs;
+
         // Variables
         private float height;
         private float heightBlock0;
@@ -63,9 +66,10 @@ namespace MicrobytKonami.LazyWheels.Controllers
         //}
 
         // Start is called before the first frame update
-        //void Start()
-        //{
-        //}
+        void Start()
+        {
+            transformCarIAs = GameObject.Find("CarIAs").GetComponent<Transform>();
+        }
 
         // Update is called once per frame
         //void Update()

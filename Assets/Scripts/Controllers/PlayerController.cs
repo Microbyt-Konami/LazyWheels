@@ -9,9 +9,6 @@ namespace MicrobytKonami.LazyWheels.Controllers
     [RequireComponent(typeof(CarController))]
     public class PlayerController : MonoBehaviour
     {
-        // Fields
-        [SerializeField] private bool isIPedal;
-
         // Components
         private CarController carController;
         private InputActions inputActions;
@@ -43,10 +40,6 @@ namespace MicrobytKonami.LazyWheels.Controllers
         void Update()
         {
             carController.Mover(inputActions.Player.Move.ReadValue<float>());
-            if (isIPedal)
-                carController.IAcceleration(inputActions.Player.iAcceleration.ReadValue<float>());
-            else
-                carController.Acceleration(inputActions.Player.Acceleration.ReadValue<float>());
         }
 
         //private void OnTriggerEnter2D(Collider2D collision)
