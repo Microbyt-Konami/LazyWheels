@@ -10,6 +10,12 @@ namespace MicrobytKonami.LazyWheels.Controllers
     {
         private CarController carController;
 
+        public bool IsMoving
+        {
+            get => carController.IsMoving;
+            set => carController.IsMoving = value;
+        }
+
         private void Awake()
         {
             carController = GetComponent<CarController>();

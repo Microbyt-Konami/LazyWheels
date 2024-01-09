@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MicrobytKonami.Helpers;
+using UnityEngine.Serialization;
 
 namespace MicrobytKonami.LazyWheels.Controllers
 {
@@ -12,7 +13,6 @@ namespace MicrobytKonami.LazyWheels.Controllers
         // Fields
         [SerializeField] private float speedUp = 1;
         [SerializeField] private float speedRotation = 1;
-        [SerializeField] private float angleRotation = 1;
 
         // Components
         private Rigidbody2D rb;
@@ -20,10 +20,20 @@ namespace MicrobytKonami.LazyWheels.Controllers
 
         // Variables
         private bool isLockAccelerate, isInGrass;
-        private float inputX, inputXOld, rotationZEnd, rotationZ;
+
+        [FormerlySerializedAs("isStop")] [SerializeField]
+        private bool isMoving;
+
+        private float inputX;
 
         // Ids
         private int idGrassLayer, idObstacle, idPlayer;
+
+        public bool IsMoving
+        {
+            get => isMoving;
+            set => isMoving = value;
+        }
 
         public void Mover(float inputX)
         {
@@ -46,49 +56,34 @@ namespace MicrobytKonami.LazyWheels.Controllers
         //}
 
         // Update is called once per frame
-        void Update()
-        {
-            if (inputX != inputXOld)
-                rotationZEnd = inputX * -angleRotation;
-            if (rotationZEnd > 0)
-            {
-                rotationZ += angleRotation * Time.deltaTime;
-                if (rotationZ >= rotationZEnd)
-                    rotationZ = rotationZEnd;
-            }
-            else
-            {
-                rotationZ -= angleRotation * Time.deltaTime;
-                if (rotationZ <= rotationZEnd)
-                    rotationZ = rotationZEnd;
-            }
-
-            transformCar.rotation = Quaternion.Euler(0, 0, rotationZEnd);
-
-            inputXOld = inputX;
-        }
+        // void Update()
+        // {
+        // }
 
         private void FixedUpdate()
         {
-            //rb.velocity = speed * (Vector2.up + inputX * Vector2.right);
-            //rb.velocity = new Vector2(speedMove * inputX, speed);
-
-            float _speedRotation;
-            float _speedUp;
-
-            if (isInGrass)
+            if (isMoving)
             {
-                _speedUp = speedUp / 2f;
-                _speedRotation = speedRotation / 2f;
-                isInGrass = false;
-            }
-            else
-            {
-                _speedUp = speedUp;
-                _speedRotation = speedRotation;
-            }
+                //rb.velocity = speed * (Vector2.up + inputX * Vector2.right);
+                //rb.velocity = new Vector2(speedMove * inputX, speed);
 
-            rb.velocity = new Vector2(inputX * _speedRotation, _speedUp);
+                float _speedRotation;
+                float _speedUp;
+
+                if (isInGrass)
+                {
+                    _speedUp = speedUp / 2f;
+                    _speedRotation = speedRotation / 2f;
+                    isInGrass = false;
+                }
+                else
+                {
+                    _speedUp = speedUp;
+                    _speedRotation = speedRotation;
+                }
+
+                rb.velocity = new Vector2(inputX * _speedRotation, _speedUp);
+            }
         }
 
         private void OnTriggerEnter2D(Collider2D collision)

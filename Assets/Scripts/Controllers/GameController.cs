@@ -8,11 +8,6 @@ namespace MicrobytKonami.LazyWheels.Controllers
 {
     public class GameController : MonoBehaviourSingleton<GameController>
     {
-        [SerializeField] private float inputYDeacelerateGrass;
-        [SerializeField] private float inputXDeacelerateGrass;
-
-        public float InputYDeacelerateGrass => inputYDeacelerateGrass;
-        public float InputXDeacelerateGrass => inputXDeacelerateGrass;
         // Start is called before the first frame update
         //void Start()
         //{

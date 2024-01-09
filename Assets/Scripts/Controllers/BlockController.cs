@@ -11,6 +11,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
 
         // Components
         private Transform transformCarIAs;
+        private CarIAController[] carsIAs;
 
         // Variables
         private float height;
@@ -69,17 +70,27 @@ namespace MicrobytKonami.LazyWheels.Controllers
         void Start()
         {
             transformCarIAs = GameObject.Find("CarIAs").GetComponent<Transform>();
+            LoadCarsIAs();
+            DisableAllCarsIAs();
         }
 
         // Update is called once per frame
-        //void Update()
-        //{
-
-        //}
+        void Update()
+        {
+//if (Camera.main.ray)
+        }
 
         //private void OnBecameInvisible()
         //{
         //    print($"{name} invisible");
         //}
+
+        void LoadCarsIAs() => carsIAs = transformCarIAs.GetComponents<CarIAController>();
+
+        void DisableAllCarsIAs()
+        {
+            foreach (var carIA in carsIAs)
+                carIA.IsMoving = false;
+        }
     }
 }
