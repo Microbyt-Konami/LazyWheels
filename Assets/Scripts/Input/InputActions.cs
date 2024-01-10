@@ -46,6 +46,15 @@ namespace MicrobytKonami.LazyWheels.Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoveAcceleration"",
+                    ""type"": ""Value"",
+                    ""id"": ""1cd9d5ee-414c-42e1-82de-615ac24c148a"",
+                    ""expectedControlType"": ""Vector3"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -180,6 +189,17 @@ namespace MicrobytKonami.LazyWheels.Input
                     ""action"": ""Fire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""94a82fd5-7421-4e47-b5d0-4fc3c2406bea"",
+                    ""path"": ""<Accelerometer>/acceleration"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Default"",
+                    ""action"": ""MoveAcceleration"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -227,6 +247,7 @@ namespace MicrobytKonami.LazyWheels.Input
             m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
             m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
             m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
+            m_Player_MoveAcceleration = m_Player.FindAction("MoveAcceleration", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -290,12 +311,14 @@ namespace MicrobytKonami.LazyWheels.Input
         private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
         private readonly InputAction m_Player_Move;
         private readonly InputAction m_Player_Fire;
+        private readonly InputAction m_Player_MoveAcceleration;
         public struct PlayerActions
         {
             private @InputActions m_Wrapper;
             public PlayerActions(@InputActions wrapper) { m_Wrapper = wrapper; }
             public InputAction @Move => m_Wrapper.m_Player_Move;
             public InputAction @Fire => m_Wrapper.m_Player_Fire;
+            public InputAction @MoveAcceleration => m_Wrapper.m_Player_MoveAcceleration;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -311,6 +334,9 @@ namespace MicrobytKonami.LazyWheels.Input
                 @Fire.started += instance.OnFire;
                 @Fire.performed += instance.OnFire;
                 @Fire.canceled += instance.OnFire;
+                @MoveAcceleration.started += instance.OnMoveAcceleration;
+                @MoveAcceleration.performed += instance.OnMoveAcceleration;
+                @MoveAcceleration.canceled += instance.OnMoveAcceleration;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -321,6 +347,9 @@ namespace MicrobytKonami.LazyWheels.Input
                 @Fire.started -= instance.OnFire;
                 @Fire.performed -= instance.OnFire;
                 @Fire.canceled -= instance.OnFire;
+                @MoveAcceleration.started -= instance.OnMoveAcceleration;
+                @MoveAcceleration.performed -= instance.OnMoveAcceleration;
+                @MoveAcceleration.canceled -= instance.OnMoveAcceleration;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -351,6 +380,7 @@ namespace MicrobytKonami.LazyWheels.Input
         {
             void OnMove(InputAction.CallbackContext context);
             void OnFire(InputAction.CallbackContext context);
+            void OnMoveAcceleration(InputAction.CallbackContext context);
         }
     }
 }

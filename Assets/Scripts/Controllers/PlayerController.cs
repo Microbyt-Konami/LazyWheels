@@ -34,16 +34,25 @@ namespace MicrobytKonami.LazyWheels.Controllers
         void Start()
         {
             print($"supportsAccelerometer {SystemInfo.supportsAccelerometer}");
-            print($"Gamepad.current: {Gamepad.current?.enabled}");
+            print($"Gamepad.current: {Gamepad.current != null}");
+            print($"isMobilePlatform: {Application.isMobilePlatform}");
             //Gamepad.current
+#if UNITY_ANDROID
+            print("UNITY_ANDROID");
+#endif
         }
 
         // Update is called once per frame
         void Update()
         {
-            print(
-                $"acceleration: {Accelerometer.current?.acceleration?.x?.ReadValue()} {Accelerometer.current?.acceleration?.y.ReadValue()} {Accelerometer.current?.acceleration?.z.ReadValue()}");
-            carController.Mover(inputActions.Player.Move.ReadValue<float>());
+            //    print(
+            //        $"acceleration: {Accelerometer.current?.acceleration?.x?.ReadValue()} {Accelerometer.current?.acceleration?.y.ReadValue()} {Accelerometer.current?.acceleration?.z.ReadValue()}");
+            float inputX = inputActions.Player.Move.ReadValue<float>();
+
+            if (Gamepad.current == null)
+                if (inputX == 0 && ApplicationEx.supportsAccelerometer)
+                    inputX = inputActions.Player.MoveAcceleration.ReadValue<Vector3>().x;
+            carController.Mover(inputX);
         }
 
         //private void OnTriggerEnter2D(Collider2D collision)
