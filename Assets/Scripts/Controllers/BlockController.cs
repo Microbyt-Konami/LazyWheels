@@ -10,6 +10,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
         [SerializeField] GameObject calles;
 
         // Components
+        private Transform transformBlock;
         private Transform transformCarIAs;
         private CarIAController[] carsIAs;
 
@@ -25,6 +26,8 @@ namespace MicrobytKonami.LazyWheels.Controllers
         public float HeightFromBlock0 => heightFromBlock0;
         public float YTop => yTop;
         public float YBottom => yBottom;
+
+        public CarIAController[] CarsIAs => carsIAs;
 
         public void CalcHeight()
         {
@@ -61,15 +64,15 @@ namespace MicrobytKonami.LazyWheels.Controllers
             yBottom = _yBottom;
         }
 
-        //private void Awake()
-        //{
-
-        //}
+        private void Awake()
+        {
+            transformBlock = GetComponent<Transform>();
+            transformCarIAs = transformBlock.Find("CarIAs").GetComponent<Transform>();
+        }
 
         // Start is called before the first frame update
         void Start()
         {
-            transformCarIAs = GameObject.Find("CarIAs").GetComponent<Transform>();
             LoadCarsIAs();
             DisableAllCarsIAs();
         }
@@ -77,7 +80,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
         // Update is called once per frame
         void Update()
         {
-//if (Camera.main.ray)
+            //if (Camera.main.ray)
         }
 
         //private void OnBecameInvisible()
@@ -85,7 +88,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
         //    print($"{name} invisible");
         //}
 
-        void LoadCarsIAs() => carsIAs = transformCarIAs.GetComponents<CarIAController>();
+        void LoadCarsIAs() => carsIAs = transformCarIAs.GetComponentsInChildren<CarIAController>();
 
         void DisableAllCarsIAs()
         {

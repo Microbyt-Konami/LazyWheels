@@ -21,7 +21,8 @@ namespace MicrobytKonami.LazyWheels.Controllers
         // Variables
         private bool isLockAccelerate, isInGrass;
 
-        [FormerlySerializedAs("isStop")] [SerializeField]
+        [FormerlySerializedAs("isStop")]
+        [SerializeField]
         private bool isMoving;
 
         private float inputX;
@@ -39,6 +40,8 @@ namespace MicrobytKonami.LazyWheels.Controllers
         {
             this.inputX = inputX;
         }
+
+        public void SetParent(Transform parent) => transformCar.parent = parent;
 
         private void Awake()
         {

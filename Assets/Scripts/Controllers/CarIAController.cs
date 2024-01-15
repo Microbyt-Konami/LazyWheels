@@ -16,6 +16,8 @@ namespace MicrobytKonami.LazyWheels.Controllers
             set => carController.IsMoving = value;
         }
 
+        public void SetParent(Transform parent) => carController.SetParent(parent);
+
         private void Awake()
         {
             carController = GetComponent<CarController>();

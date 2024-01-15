@@ -98,6 +98,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
             transformCurrentBlock = block.GetComponent<Transform>();
             if (oldBlock != null)
                 yOffOld = oldBlock.YTop + 2 * cameraController.Height;
+            PutCarsIAs(block.CarsIAs);
         }
 
         private void SetYToCreateBlock(BlockController block)
@@ -119,6 +120,15 @@ namespace MicrobytKonami.LazyWheels.Controllers
             _newBlock.transform.parent = transformBlocks;
             _newBlock.CalcHeight();
             newBlock = _newBlock;
+        }
+
+        private void PutCarsIAs(ICollection<CarIAController> carIAs)
+        {
+            foreach (var carIA in carIAs)
+            {
+                carIA.SetParent(transformBlocks);
+                carIA.gameObject.SetActive(true);
+            }
         }
     }
 }
