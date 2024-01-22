@@ -13,6 +13,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
         // Fields
         [SerializeField] private float speedUp = 1;
         [SerializeField] private float speedRotation = 1;
+        [SerializeField] private GameObject lane;   // sera una variable
 
         // Components
         private Rigidbody2D rb;
@@ -28,7 +29,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
         private float inputX;
 
         // Ids
-        private int idGrassLayer, idObstacle, idPlayer;
+        private int idGrassLayer, idObstacle, idPlayer, idLane;
 
         public bool IsMoving
         {
@@ -50,6 +51,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
             idGrassLayer = LayerMask.NameToLayer("Grass");
             idObstacle = LayerMask.NameToLayer("Obstacle");
             idPlayer = LayerMask.NameToLayer("Player");
+            idLane = LayerMask.NameToLayer("Lane");
         }
 
         // Start is called before the first frame update
@@ -95,6 +97,8 @@ namespace MicrobytKonami.LazyWheels.Controllers
                 isInGrass = true;
             else if (collision.gameObject.layer == idObstacle)
                 Explode();
+            else if (collision.gameObject.layer == idLane)
+                lane = collision.gameObject;
         }
 
         private void Explode()
@@ -113,6 +117,9 @@ namespace MicrobytKonami.LazyWheels.Controllers
         {
             if (collision.gameObject.layer == idGrassLayer)
                 isInGrass = false;
+            else
+            if (collision.gameObject.layer == idLane)
+                lane = null;
         }
 
         private void OnCollisionEnter2D(Collision2D collision)

@@ -45,8 +45,10 @@ namespace MicrobytKonami.LazyWheels.Controllers
         // Update is called once per frame
         void Update()
         {
-            //    print(
-            //        $"acceleration: {Accelerometer.current?.acceleration?.x?.ReadValue()} {Accelerometer.current?.acceleration?.y.ReadValue()} {Accelerometer.current?.acceleration?.z.ReadValue()}");
+#if UNITY_WEBGL || UNITY_ANDROID || UNITY_IOS
+            //print($"acceleration: {Accelerometer.current?.acceleration?.x?.ReadValue()} {Accelerometer.current?.acceleration?.y.ReadValue()} {Accelerometer.current?.acceleration?.z.ReadValue()}");
+            //print($"acceleration: {UnityEngine.Input.acceleration.x} {UnityEngine.Input.acceleration.y} {UnityEngine.Input.acceleration.z}");
+#endif
             float inputX = inputActions.Player.Move.ReadValue<float>();
 
             if (Gamepad.current == null)

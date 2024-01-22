@@ -15,7 +15,7 @@ namespace UnityEngine
 #else
                 return false;
 #endif
-#elif UNITY_WEBGL
+#elif UNITY_WEBGL || UNITY_ANDROID || UNITY_IOS
                 return true;
 #else
                 return Application.supportsAccelerometer;
