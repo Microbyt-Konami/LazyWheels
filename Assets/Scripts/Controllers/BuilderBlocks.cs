@@ -135,11 +135,14 @@ namespace MicrobytKonami.LazyWheels.Controllers
 
         private void PutCarsIAs(ICollection<CarIAController> carIAs)
         {
-            foreach (var carIA in carIAs)
+            if (carIAs != null)
             {
-                carIA.SetParent(transformCarIAs);
-                carIA.IsMoving = true;
-                carIA.gameObject.SetActive(true);
+                foreach (var carIA in carIAs)
+                {
+                    carIA.SetParent(transformCarIAs);
+                    carIA.IsMoving = true;
+                    carIA.gameObject.SetActive(true);
+                }
             }
         }
     }

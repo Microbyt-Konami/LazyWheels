@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MicrobytKonami.Helpers;
-using UnityEngine.Serialization;
+//using UnityEngine.Serialization;
 
 namespace MicrobytKonami.LazyWheels.Controllers
 {
@@ -13,16 +13,17 @@ namespace MicrobytKonami.LazyWheels.Controllers
         // Fields
         [SerializeField] private float speedUp = 1;
         [SerializeField] private float speedRotation = 1;
-        [SerializeField] private GameObject lane;   // sera una variable
 
         // Components
         private Rigidbody2D rb;
+        private BoxCollider2D collide;
         private Transform transformCar;
+        [SerializeField] private LineController lane;
 
         // Variables
         private bool isLockAccelerate, isInGrass;
 
-        [FormerlySerializedAs("isStop")]
+        //[FormerlySerializedAs("isStop")]
         [SerializeField]
         private bool isMoving;
 
@@ -47,6 +48,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
+            collide = GetComponent<BoxCollider2D>();
             transformCar = GetComponent<Transform>();
             idGrassLayer = LayerMask.NameToLayer("Grass");
             idObstacle = LayerMask.NameToLayer("Obstacle");
@@ -98,19 +100,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
             else if (collision.gameObject.layer == idObstacle)
                 Explode();
             else if (collision.gameObject.layer == idLane)
-                lane = collision.gameObject;
-        }
-
-        private void Explode()
-        {
-            print($"Explode {name}");
-            inputX = 0;
-            rb.velocity = Vector2.zero;
-            // no forma no correcta es para chequear el choque
-            if (gameObject.name == "Player")
-                transform.position -= transform.position.x * Vector3.right;
-            else
-                Destroy(gameObject);
+                lane = collision.gameObject.GetComponent<LineController>();
         }
 
         private void OnTriggerExit2D(Collider2D collision)
@@ -129,6 +119,31 @@ namespace MicrobytKonami.LazyWheels.Controllers
                 collision.gameObject.GetComponent<CarController>().Explode();
                 Explode();
             }
+        }
+
+        private void OnDrawGizmos()
+        {
+            if (transformCar != null && collide != null)
+            {
+                var v1 = transformCar.position + (collide.bounds.size.y/2) * Vector3.up;
+                // calcular distancia segun velocidad
+                var v2 = v1 + 10 * Vector3.up;
+
+                Gizmos.color = Color.yellow;
+                Gizmos.DrawLine(v1, v2);
+            }
+        }
+
+        private void Explode()
+        {
+            print($"Explode {name}");
+            inputX = 0;
+            rb.velocity = Vector2.zero;
+            // no forma no correcta es para chequear el choque
+            if (gameObject.name == "Player")
+                transform.position -= transform.position.x * Vector3.right;
+            else
+                Destroy(gameObject);
         }
     }
 }

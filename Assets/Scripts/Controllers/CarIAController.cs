@@ -8,6 +8,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
     [RequireComponent(typeof(CarController))]
     public class CarIAController : MonoBehaviour
     {
+        [SerializeField] private bool canChangeLane;
         private CarController carController;
 
         public bool IsMoving
@@ -32,6 +33,23 @@ namespace MicrobytKonami.LazyWheels.Controllers
         // Update is called once per frame
         void Update()
         {
+            if (IsMoving)
+            {
+                Move();
+            }
+        }
+
+        private void Move()
+        {
+            if (canChangeLane)
+            {
+                ChangeLineForNoCrash();
+            }
+        }
+
+        private void ChangeLineForNoCrash()
+        {
+
         }
     }
 }
