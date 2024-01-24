@@ -8,11 +8,15 @@ namespace MicrobytKonami.LazyWheels.Controllers
 {
     public class GameController : MonoBehaviourSingleton<GameController>
     {
-        // Start is called before the first frame update
-        //void Start()
-        //{
+        private BuilderBlocks builderBlocks;
 
-        //}
+        public BlockController FindBlockInY(float y) => builderBlocks.FindBlockInY(y);
+
+        // Start is called before the first frame update
+        void Start()
+        {
+            builderBlocks = GameObject.FindObjectOfType<BuilderBlocks>();
+        }
 
         // Update is called once per frame
         //void Update()

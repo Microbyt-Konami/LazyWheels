@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2653063284879563147}
   - component: {fileID: 4021077178831575716}
   - component: {fileID: 8609190393165932673}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,6 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedUp: 15
   speedRotation: 18
+  lane: {fileID: 0}
   isMoving: 1
 --- !u!114 &2653063284879563147
 MonoBehaviour:

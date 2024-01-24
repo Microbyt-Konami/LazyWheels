@@ -1,5 +1,38 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3958904752781814838
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1895305102918900308}
+  m_Layer: 0
+  m_Name: Lines
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1895305102918900308
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3958904752781814838}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 907135574611229970}
+  - {fileID: 8749608549912638891}
+  m_Father: {fileID: 4125315706236818411}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4315993965371209292
 GameObject:
   m_ObjectHideFlags: 0
@@ -31,8 +64,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 907135574611229970}
-  - {fileID: 8749608549912638891}
+  - {fileID: 1895305102918900308}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4039028477911293467
@@ -105,12 +137,16 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 4125315706236818411}
+    m_TransformParent: {fileID: 1895305102918900308}
     m_Modifications:
     - target: {fileID: 3239943268625645658, guid: 5bda153e2ed4e3d4cb59ba002f7a7d3f, type: 3}
       propertyPath: m_Name
       value: CarrilDerecho
       objectReference: {fileID: 0}
+    - target: {fileID: 3497116522612408157, guid: 5bda153e2ed4e3d4cb59ba002f7a7d3f, type: 3}
+      propertyPath: lineLeft
+      value: 
+      objectReference: {fileID: 3853412811014880235}
     - target: {fileID: 8979765226506187037, guid: 5bda153e2ed4e3d4cb59ba002f7a7d3f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -129,15 +165,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8979765226506187037, guid: 5bda153e2ed4e3d4cb59ba002f7a7d3f, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8979765226506187037, guid: 5bda153e2ed4e3d4cb59ba002f7a7d3f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8979765226506187037, guid: 5bda153e2ed4e3d4cb59ba002f7a7d3f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8979765226506187037, guid: 5bda153e2ed4e3d4cb59ba002f7a7d3f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -161,13 +197,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8979765226506187037, guid: 5bda153e2ed4e3d4cb59ba002f7a7d3f, type: 3}
   m_PrefabInstance: {fileID: 8072775012498279439}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4647718014658687826 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3497116522612408157, guid: 5bda153e2ed4e3d4cb59ba002f7a7d3f, type: 3}
+  m_PrefabInstance: {fileID: 8072775012498279439}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ceb27bd069336649af22ebd82d0c416, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8813339378787521593
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 4125315706236818411}
+    m_TransformParent: {fileID: 1895305102918900308}
     m_Modifications:
     - target: {fileID: 226200217174991250, guid: 69bd79b8cabfc3340b2f9da22ce3cf38, type: 3}
       propertyPath: m_LocalPosition.x
@@ -187,15 +234,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 226200217174991250, guid: 69bd79b8cabfc3340b2f9da22ce3cf38, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 226200217174991250, guid: 69bd79b8cabfc3340b2f9da22ce3cf38, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 226200217174991250, guid: 69bd79b8cabfc3340b2f9da22ce3cf38, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 226200217174991250, guid: 69bd79b8cabfc3340b2f9da22ce3cf38, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -209,6 +256,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5707564796449959890, guid: 69bd79b8cabfc3340b2f9da22ce3cf38, type: 3}
+      propertyPath: lineRight
+      value: 
+      objectReference: {fileID: 4647718014658687826}
     - target: {fileID: 6002031936577671381, guid: 69bd79b8cabfc3340b2f9da22ce3cf38, type: 3}
       propertyPath: m_Name
       value: CarrilIzquierdo
@@ -218,6 +269,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69bd79b8cabfc3340b2f9da22ce3cf38, type: 3}
+--- !u!114 &3853412811014880235 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5707564796449959890, guid: 69bd79b8cabfc3340b2f9da22ce3cf38, type: 3}
+  m_PrefabInstance: {fileID: 8813339378787521593}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ceb27bd069336649af22ebd82d0c416, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8749608549912638891 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 226200217174991250, guid: 69bd79b8cabfc3340b2f9da22ce3cf38, type: 3}

@@ -9,26 +9,36 @@ namespace MicrobytKonami.LazyWheels.Controllers
         // Fields
         [SerializeField] private BlockController[] blocks;
         [SerializeField] private Transform transformBlocks;
-        [SerializeField] private Transform transformCarIAs;
         [SerializeField] private BlockController block0;
         [SerializeField] private BlockController block1;
 
         // Components
-        private Transform transformBuilderBlocks;
+        private Transform myTransform;
         private PlayerController playerController;
         private CameraController cameraController;
         private BlockController currentBlock, oldBlock, newBlock;
         private Transform transformCurrentBlock, transformPlayerController;
+        private List<BlockController> blocksRunning = new List<BlockController>();
 
         // Variables
         private int countRoad;
         private float twiceCameraHeight;
         private float yToCreateBlock;
-        private float yOffOld = float.MaxValue;
+
+        public BlockController FindBlockInY(float y)
+        {
+            foreach (var block in blocksRunning)
+                if (y >= block.YBottom && y <= block.YTop)
+                    return block;
+
+            return null;
+        }
 
         private void Awake()
         {
-            transformBuilderBlocks = GetComponent<Transform>();
+            if (block0 != null)
+                block0.StartMoveAllCarsIA = true;
+            myTransform = GetComponent<Transform>();
             countRoad = 1;
         }
 
@@ -39,19 +49,29 @@ namespace MicrobytKonami.LazyWheels.Controllers
             cameraController = Camera.main.GetComponent<CameraController>();
             transformPlayerController = playerController.GetComponent<Transform>();
             twiceCameraHeight = 2 * cameraController.Height;
-            CalcBlocksHeights();
+            SetUpBlocks();
+        }
+
+        private void SetUpBlocks()
+        {
+            foreach (var blockAux in blocks)
+                blockAux.CalcHeight();
 
             //var block = transformBlocks.GetChild(0).GetComponent<BlockController>();
             var block = block1;
-            block.CalcHeight();
+            block.SetUp();
             SetYToCreateBlock(block);
             SetCurrentBlock(block);
 
             block = block0;
 
-            block.CalcHeight();
+            block.SetUp();
             SetOldBlock(block);
-            PutCarsIAs(block.CarsIAs);
+            if (block0 != null)
+                blocksRunning.Add(block0);
+            if (block1 != null)
+                blocksRunning.Add(block1);
+            //block.ShowAndMoveAllCarsIAs();
         }
 
         // Update is called once per frame
@@ -59,13 +79,6 @@ namespace MicrobytKonami.LazyWheels.Controllers
         {
             BuildBlock();
             ChangeToNewBlock();
-            DestroyOldBlock();
-        }
-
-        private void CalcBlocksHeights()
-        {
-            foreach (var block in blocks)
-                block.CalcHeight();
         }
 
         private void BuildBlock()
@@ -87,16 +100,6 @@ namespace MicrobytKonami.LazyWheels.Controllers
                 }
         }
 
-        private void DestroyOldBlock()
-        {
-            if (oldBlock != null)
-                if (transformPlayerController.position.y > yOffOld)
-                {
-                    Destroy(oldBlock.gameObject);
-                    oldBlock = null;
-                }
-        }
-
         private void SetCurrentBlock(BlockController block)
         {
             if (currentBlock != null)
@@ -109,7 +112,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
         private void SetOldBlock(BlockController block)
         {
             oldBlock = block;
-            yOffOld = oldBlock.YTop + 2 * cameraController.Height;
+            block.YOld = block.YTop + 2 * cameraController.Height;
         }
 
         private void SetYToCreateBlock(BlockController block)
@@ -129,21 +132,8 @@ namespace MicrobytKonami.LazyWheels.Controllers
             countRoad++;
             _newBlock.name = $"Block{countRoad}";
             _newBlock.transform.parent = transformBlocks;
-            _newBlock.CalcHeight();
+            _newBlock.SetUp();
             newBlock = _newBlock;
-        }
-
-        private void PutCarsIAs(ICollection<CarIAController> carIAs)
-        {
-            if (carIAs != null)
-            {
-                foreach (var carIA in carIAs)
-                {
-                    carIA.SetParent(transformCarIAs);
-                    carIA.IsMoving = true;
-                    carIA.gameObject.SetActive(true);
-                }
-            }
         }
     }
 }

@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Permissions;
 using UnityEngine;
 
 namespace MicrobytKonami.LazyWheels.Controllers
@@ -7,27 +9,48 @@ namespace MicrobytKonami.LazyWheels.Controllers
     public class BlockController : MonoBehaviour
     {
         // Fields
-        [SerializeField] GameObject calles;
+        [SerializeField] private GameObject calles;
+        [SerializeField] private bool startMoveAllCarsIA;
 
         // Components
-        private Transform transformBlock;
+        private Transform myTransform;
         private Transform transformCarIAs;
-        private CarIAController[] carsIAs;
+        private List<CarIAController> carsIAs;
 
         // Variables
-        private float height;
-        private float heightBlock0;
-        private float heightFromBlock0;
-        private float yTop;
-        private float yBottom;
+        private float height, heightBlock0, heightFromBlock0;
+        [SerializeField] private float yTop;
+        [SerializeField] private float yBottom;
+        [SerializeField] private float yOld = float.MaxValue;
 
+        public bool StartMoveAllCarsIA { get => startMoveAllCarsIA; set => startMoveAllCarsIA = value; }
         public float Height => height;
         public float HeightBlock0 => heightBlock0;
         public float HeightFromBlock0 => heightFromBlock0;
         public float YTop => yTop;
         public float YBottom => yBottom;
+        public float YOld { get => yOld; set => yOld = value; }
 
-        public CarIAController[] CarsIAs => carsIAs;
+        public List<CarIAController> CarsIAs => carsIAs;
+
+        public void SetUp()
+        {
+            CalcHeight();
+            LoadCarsIAs();
+            MoveAllCarsIAs(startMoveAllCarsIA);
+            StartCoroutine(DestroyBlockIfYOldCoroutine());
+        }
+
+        public void MoveCarIA(CarIAController carIA, bool move = true) => carIA.IsMoving = move;
+
+        public void MoveAllCarsIAs(bool move = true)
+        {
+            print($"StopAllCarsIAs {gameObject.name}");
+            foreach (var carIA in carsIAs)
+                MoveCarIA(carIA, move);
+        }
+
+        public void ShowAndMoveAllCarsIAs() => ShowAndMoveCarsIAs(carsIAs);
 
         public void CalcHeight()
         {
@@ -64,23 +87,50 @@ namespace MicrobytKonami.LazyWheels.Controllers
             yBottom = _yBottom;
         }
 
+        private void ShowAndMoveCarsIAs(ICollection<CarIAController> carIAs)
+        {
+            if (carIAs != null)
+            {
+                foreach (var carIA in carIAs)
+                {
+                    carIA.IsMoving = true;
+                    carIA.gameObject.SetActive(true);
+                }
+            }
+        }
+        public bool RemoveCarIA(CarIAController carIA) => carsIAs.Remove(carIA);
+        public void AddCarIA(CarIAController carIA)
+        {
+            carIA.transform.parent = transformCarIAs;
+            carsIAs.Add(carIA);
+        }
+
         private void Awake()
         {
-            transformBlock = GetComponent<Transform>();
-            transformCarIAs = transformBlock.Find("CarIAs").GetComponent<Transform>();
+            myTransform = GetComponent<Transform>();
+            transformCarIAs = myTransform.Find("CarIAs").GetComponent<Transform>();
         }
 
         // Start is called before the first frame update
-        void Start()
-        {
-            LoadCarsIAs();
-            DisableAllCarsIAs();
-        }
+        //void Start()
+        //{
+
+        //}
 
         // Update is called once per frame
-        void Update()
+        //void Update()
+        //{
+        //    DestroyBlockIfYOld();
+        //}
+
+        private IEnumerator DestroyBlockIfYOldCoroutine()
         {
-            //if (Camera.main.ray)
+            for (; ; )
+            {
+                if (carsIAs.Count == 0 && Camera.main.transform.position.y > yOld)
+                    Destroy(gameObject);
+                yield return null;
+            }
         }
 
         //private void OnBecameInvisible()
@@ -88,12 +138,6 @@ namespace MicrobytKonami.LazyWheels.Controllers
         //    print($"{name} invisible");
         //}
 
-        void LoadCarsIAs() => carsIAs = transformCarIAs.GetComponentsInChildren<CarIAController>();
-
-        void DisableAllCarsIAs()
-        {
-            foreach (var carIA in carsIAs)
-                carIA.IsMoving = false;
-        }
+        void LoadCarsIAs() => carsIAs = transformCarIAs.GetComponentsInChildren<CarIAController>().ToList();
     }
 }

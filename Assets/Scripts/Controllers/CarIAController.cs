@@ -8,8 +8,13 @@ namespace MicrobytKonami.LazyWheels.Controllers
     [RequireComponent(typeof(CarController))]
     public class CarIAController : MonoBehaviour
     {
+        // Fields
         [SerializeField] private bool canChangeLane;
+
+        //Components
         private CarController carController;
+        private Transform myTransform;
+        [SerializeField] private BlockController blockController;
 
         public bool IsMoving
         {
@@ -22,12 +27,20 @@ namespace MicrobytKonami.LazyWheels.Controllers
         private void Awake()
         {
             carController = GetComponent<CarController>();
+            myTransform = GetComponent<Transform>();
+            IsMoving = false;
         }
 
         // Start is called before the first frame update
         void Start()
         {
+            blockController = GetComponentInParent<BlockController>();
             carController.Mover(0);
+        }
+
+        private void OnDestroy()
+        {
+            blockController?.RemoveCarIA(this);
         }
 
         // Update is called once per frame
@@ -35,7 +48,28 @@ namespace MicrobytKonami.LazyWheels.Controllers
         {
             if (IsMoving)
             {
+                ChangeBlockCurrent();
                 Move();
+            }
+        }
+
+        private void ChangeBlockCurrent()
+        {
+            if (blockController != null)
+            {
+                var y = myTransform.position.y;
+
+                if (y > blockController.YTop)
+                {
+                    var blockNext = GameController.Instance.FindBlockInY(y);
+
+                    if (blockNext != null)
+                    {
+                        blockController.RemoveCarIA(this);
+                        blockNext.AddCarIA(this);
+                        blockController = blockNext;
+                    }
+                }
             }
         }
 

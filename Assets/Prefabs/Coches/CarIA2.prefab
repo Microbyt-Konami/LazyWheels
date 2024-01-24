@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -8937452302806166737}
   m_Layer: 7
   m_Name: CarIA2
-  m_TagString: Untagged
+  m_TagString: CarIA
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -189,3 +189,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canChangeLane: 1
+  blockController: {fileID: 0}

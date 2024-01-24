@@ -17,7 +17,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
         // Components
         private Rigidbody2D rb;
         private BoxCollider2D collide;
-        private Transform transformCar;
+        private Transform myTransform;
         [SerializeField] private LineController lane;
 
         // Variables
@@ -30,7 +30,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
         private float inputX;
 
         // Ids
-        private int idGrassLayer, idObstacle, idPlayer, idLane;
+        private int idGrassLayer, idObstacle, idCar, idLane;
 
         public bool IsMoving
         {
@@ -43,16 +43,16 @@ namespace MicrobytKonami.LazyWheels.Controllers
             this.inputX = inputX;
         }
 
-        public void SetParent(Transform parent) => transformCar.parent = parent;
+        public void SetParent(Transform parent) => myTransform.parent = parent;
 
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
             collide = GetComponent<BoxCollider2D>();
-            transformCar = GetComponent<Transform>();
+            myTransform = GetComponent<Transform>();
             idGrassLayer = LayerMask.NameToLayer("Grass");
             idObstacle = LayerMask.NameToLayer("Obstacle");
-            idPlayer = LayerMask.NameToLayer("Player");
+            idCar = LayerMask.NameToLayer("Car");
             idLane = LayerMask.NameToLayer("Lane");
         }
 
@@ -114,18 +114,20 @@ namespace MicrobytKonami.LazyWheels.Controllers
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.gameObject.layer == idPlayer)
+            if (collision.gameObject.layer == idCar)
             {
-                collision.gameObject.GetComponent<CarController>().Explode();
-                Explode();
+                if (CompareTag("Player"))
+                    Explode();
+                else // Si no es el player de momento explota el otro coche. Una opción seria que explotase el más grande siempre que no sea el player (el otro coche)
+                    collision.gameObject.GetComponent<CarController>().Explode();
             }
         }
 
         private void OnDrawGizmos()
         {
-            if (transformCar != null && collide != null)
+            if (myTransform != null && collide != null)
             {
-                var v1 = transformCar.position + (collide.bounds.size.y/2) * Vector3.up;
+                var v1 = myTransform.position + (collide.bounds.size.y / 2) * Vector3.up;
                 // calcular distancia segun velocidad
                 var v2 = v1 + 10 * Vector3.up;
 
