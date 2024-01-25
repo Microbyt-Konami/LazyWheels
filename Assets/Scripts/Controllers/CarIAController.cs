@@ -15,6 +15,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
         private CarController carController;
         private Transform myTransform;
         [SerializeField] private BlockController blockController;
+        private Rays rays;
 
         public bool IsMoving
         {
@@ -28,6 +29,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
         {
             carController = GetComponent<CarController>();
             myTransform = GetComponent<Transform>();
+            rays = GetComponent<Rays>();
             IsMoving = false;
         }
 
@@ -75,6 +77,9 @@ namespace MicrobytKonami.LazyWheels.Controllers
 
         private void Move()
         {
+            var ray = carController.GetRay(3 * Time.deltaTime);
+
+            //Physics2D.Raycast
             if (canChangeLane)
             {
                 ChangeLineForNoCrash();

@@ -22,6 +22,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
 
         // Variables
         private bool isLockAccelerate, isInGrass;
+        private Vector2 raySpeed;
 
         //[FormerlySerializedAs("isStop")]
         [SerializeField]
@@ -44,6 +45,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
         }
 
         public void SetParent(Transform parent) => myTransform.parent = parent;
+        public Vector2 GetRay(float seconds) => seconds * raySpeed;
 
         private void Awake()
         {
@@ -54,6 +56,12 @@ namespace MicrobytKonami.LazyWheels.Controllers
             idObstacle = LayerMask.NameToLayer("Obstacle");
             idCar = LayerMask.NameToLayer("Car");
             idLane = LayerMask.NameToLayer("Lane");
+            CalcRaySpeed();
+        }
+
+        private void CalcRaySpeed()
+        {
+            raySpeed = new Vector2(speedRotation, speedUp);
         }
 
         // Start is called before the first frame update
@@ -63,9 +71,16 @@ namespace MicrobytKonami.LazyWheels.Controllers
         //}
 
         // Update is called once per frame
-        // void Update()
-        // {
-        // }
+        void Update()
+        {
+            CalcRaySpeedIfChangeValues();
+        }
+
+        private void CalcRaySpeedIfChangeValues()
+        {
+            if (raySpeed.x != speedRotation || raySpeed.y != speedUp)
+                CalcRaySpeed();
+        }
 
         private void FixedUpdate()
         {
@@ -82,6 +97,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
                     _speedUp = speedUp / 2f;
                     _speedRotation = speedRotation / 2f;
                     isInGrass = false;
+                    CalcRaySpeed();
                 }
                 else
                 {
