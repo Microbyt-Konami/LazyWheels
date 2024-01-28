@@ -15,7 +15,10 @@ namespace MicrobytKonami.LazyWheels.Controllers
         private CarController carController;
         private Transform myTransform;
         [SerializeField] private BlockController blockController;
-        private Rays rays;
+        private Rays rays; 
+        [SerializeField] private GameObject[] _capsuleObjs;
+
+        public GameObject[] CapsuleObjs { get => _capsuleObjs; }
 
         public bool IsMoving
         {

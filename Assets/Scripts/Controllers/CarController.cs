@@ -139,18 +139,18 @@ namespace MicrobytKonami.LazyWheels.Controllers
             }
         }
 
-        private void OnDrawGizmos()
-        {
-            if (myTransform != null && collide != null)
-            {
-                var v1 = myTransform.position + (collide.bounds.size.y / 2) * Vector3.up;
-                // calcular distancia segun velocidad
-                var v2 = v1 + 10 * Vector3.up;
+        //private void OnDrawGizmos()
+        //{
+        //    if (myTransform != null && collide != null)
+        //    {
+        //        var v1 = myTransform.position + (collide.bounds.size.y / 2) * Vector3.up;
+        //        // calcular distancia segun velocidad
+        //        var v2 = v1 + 10 * Vector3.up;
 
-                Gizmos.color = Color.yellow;
-                Gizmos.DrawLine(v1, v2);
-            }
-        }
+        //        Gizmos.color = Color.yellow;
+        //        Gizmos.DrawLine(v1, v2);
+        //    }
+        //}
 
         private void Explode()
         {
