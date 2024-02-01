@@ -39,10 +39,12 @@ namespace MicrobytKonami.LazyWheels
 
             //print($"ray : {ray.x} {ray.y}");
             //print($"DrawCapsule2D({rayUpPoint}, {new Vector3(0, -h / 2f)}, {ray}");
+            //Gizmos.color = Color.yellow;
+            //GizmosEx.DrawCapsule2D(rayUpPoint, new Vector3(0, -h), ray, CapsuleDirection2D.Horizontal);
+            //Gizmos.color = Color.red;
+            //GizmosEx.DrawCapsule2D(rayDownPoint, new Vector3(0, h), ray, CapsuleDirection2D.Horizontal);
             Gizmos.color = Color.yellow;
-            GizmosEx.DrawCapsule2D(rayUpPoint, new Vector3(0, -h), ray, CapsuleDirection2D.Vertical);
-            Gizmos.color = Color.red;
-            GizmosEx.DrawCapsule2D(rayDownPoint, new Vector3(0, h), ray, CapsuleDirection2D.Vertical);
+            GizmosEx.DrawCapsule2D(rayUpPoint, new Vector3(0, 0), ray, CapsuleDirection2D.Horizontal);
         }
 
         // Start is called before the first frame update
