@@ -1,6 +1,8 @@
 using MicrobytKonami.LazyWheels.Controllers;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 namespace MicrobytKonami.LazyWheels
@@ -21,6 +23,13 @@ namespace MicrobytKonami.LazyWheels
         private void Awake()
         {
             carController = GetComponentInParent<CarController>();
+            var capsules = GetComponents<CapsuleCollider2D>().Concat(GetComponentsInChildren<CapsuleCollider2D>());
+
+            foreach (var capsule in capsules)
+            {
+                if (capsule.enabled)
+                    capsule.enabled = false;
+            }
         }
 
         private void FixedUpdate()

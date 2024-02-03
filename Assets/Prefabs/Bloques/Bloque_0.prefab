@@ -86,6 +86,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   calles: {fileID: 3101797179013314129}
+  startMoveAllCarsIA: 0
+  yTop: 0
+  yBottom: 0
+  yOld: 3.4028235e+38
 --- !u!1 &3101797179013314129
 GameObject:
   m_ObjectHideFlags: 0
