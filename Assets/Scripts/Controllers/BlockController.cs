@@ -19,7 +19,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
 
         // Variables
         private float height, heightBlock0, heightFromBlock0;
-        [SerializeField] private float yTop;
+        [Header("Variables"), SerializeField] private float yTop;
         [SerializeField] private float yBottom;
         [SerializeField] private float yOld = float.MaxValue;
 

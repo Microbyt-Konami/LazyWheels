@@ -13,6 +13,11 @@ namespace MicrobytKonami.LazyWheels.Controllers
         private CarController carController;
         private InputActions inputActions;
 
+        public void Explode()
+        {
+
+        }
+
         private void Awake()
         {
             carController = GetComponent<CarController>();

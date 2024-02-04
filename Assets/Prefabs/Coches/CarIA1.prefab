@@ -223,6 +223,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canChangeLane: 1
   blockController: {fileID: 0}
+  myCar: {fileID: 421745897417169412}
   _capsuleObjs: []
 --- !u!1001 &3282631209375634837
 PrefabInstance:

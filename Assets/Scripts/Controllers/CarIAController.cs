@@ -14,8 +14,9 @@ namespace MicrobytKonami.LazyWheels.Controllers
         //Components
         private CarController carController;
         private Transform myTransform;
-        [SerializeField] private BlockController blockController;
+        [Header("Components"),SerializeField] private BlockController blockController;
         private Rays rays; 
+        [SerializeField] private GameObject myCar;
         [SerializeField] private GameObject[] _capsuleObjs;
 
         public GameObject[] CapsuleObjs { get => _capsuleObjs; }
@@ -25,6 +26,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
             get => carController.IsMoving;
             set => carController.IsMoving = value;
         }
+        public GameObject MyCar { get => myCar; set => myCar = value; }
 
         public void SetParent(Transform parent) => carController.SetParent(parent);
 

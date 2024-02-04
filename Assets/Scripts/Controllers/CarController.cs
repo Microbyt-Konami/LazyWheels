@@ -18,7 +18,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
         private Rigidbody2D rb;
         private BoxCollider2D collide;
         private Transform myTransform;
-        [SerializeField] private LineController lane;
+        [Header("Components"), SerializeField] private LineController lane;
 
         // Variables
         private bool isLockAccelerate, isInGrass;
@@ -158,8 +158,11 @@ namespace MicrobytKonami.LazyWheels.Controllers
             inputX = 0;
             rb.velocity = Vector2.zero;
             // no forma no correcta es para chequear el choque
-            if (gameObject.name == "Player")
+            if (gameObject.CompareTag("Player"))
+            {
                 transform.position -= transform.position.x * Vector3.right;
+                gameObject.GetComponent<PlayerController>().Explode();
+            }
             else
                 Destroy(gameObject);
         }

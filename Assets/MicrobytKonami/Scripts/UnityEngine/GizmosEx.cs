@@ -26,6 +26,14 @@ namespace UnityEngine
             }
         }
 
+        public static void DrawCapsule2D(Transform transform, CapsuleCollider2D capsuleCollider) => DrawCapsule2D(transform, capsuleCollider.offset, capsuleCollider.size, capsuleCollider.direction);
+
+        public static void DrawCapsule2D(Transform transform, CapsuleCollider2D capsuleCollider, Color color)
+        {
+            Gizmos.color = color;
+            DrawCapsule2D(transform, capsuleCollider);
+        }
+
         // https://forum.unity.com/threads/drawing-capsule-gizmo.354634/
         public static void DrawWireCapsule(Vector3 p1, Vector3 p2, float radius)
         {

@@ -322,6 +322,18 @@ MonoBehaviour:
   rayRightPoint: {fileID: 384758607127703327}
   rayLeftPoint: {fileID: 2709959401762299057}
   timeRay: 0.5
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  layerMaskRays:
+    serializedVersion: 2
+    m_Bits: 704
+  capsuleCollider: {fileID: 0}
+  capsuleColliderUp: {fileID: 0}
+  capsuleColliderDown: {fileID: 0}
+  capsuleColliderRight: {fileID: 0}
+  capsuleColliderLeft: {fileID: 0}
+  player: {fileID: 0}
 --- !u!70 &4278390055565629406
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
