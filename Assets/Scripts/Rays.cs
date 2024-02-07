@@ -9,7 +9,7 @@ namespace MicrobytKonami.LazyWheels
 {
     public class Rays : MonoBehaviour
     {
-        public const int countObjectsRay = 10;
+        public const int countMaxObjectsRay = 10;
         //Fields
         [SerializeField] private Transform rayUpPoint;
         [SerializeField] private Transform rayDownPoint;
@@ -31,8 +31,8 @@ namespace MicrobytKonami.LazyWheels
         [SerializeField] private GameObject player;
         [SerializeField] private Vector2 positionCollideRayDown;
         [SerializeField] private int countObjectsRayDomn;
-        [SerializeField] private Collider2D[] collidersRayDown = new Collider2D[countObjectsRay];
-        [SerializeField] private GameObject[] rayDown = new GameObject[countObjectsRay];
+        [SerializeField] private Collider2D[] collidersRayDown = new Collider2D[countMaxObjectsRay];
+        [SerializeField] private GameObject[] rayDown = new GameObject[countMaxObjectsRay];
 
         // Variables
         [Header("Variables"), SerializeField] private int myCarID;

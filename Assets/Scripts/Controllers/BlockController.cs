@@ -16,6 +16,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
         private Transform myTransform;
         private Transform transformCarIAs;
         private List<CarIAController> carsIAs;
+        private GameController gameController;
 
         // Variables
         private float height, heightBlock0, heightFromBlock0;
@@ -35,13 +36,21 @@ namespace MicrobytKonami.LazyWheels.Controllers
 
         public void SetUp()
         {
+            gameController = GameController.Instance;
             CalcHeight();
             LoadCarsIAs();
             MoveAllCarsIAs(startMoveAllCarsIA);
             StartCoroutine(DestroyBlockIfYOldCoroutine());
         }
 
-        public void MoveCarIA(CarIAController carIA, bool move = true) => carIA.IsMoving = move;
+        public void MoveCarIA(CarIAController carIA, bool move = true)
+        {
+            if (move == carIA.IsMoving)
+                return;
+
+            carIA.IsMoving = move;
+            gameController.MoveCarIA(carIA);
+        }
 
         public void MoveAllCarsIAs(bool move = true)
         {
@@ -138,6 +147,10 @@ namespace MicrobytKonami.LazyWheels.Controllers
         //    print($"{name} invisible");
         //}
 
-        void LoadCarsIAs() => carsIAs = transformCarIAs.GetComponentsInChildren<CarIAController>().ToList();
+        void LoadCarsIAs()
+        {
+            carsIAs = transformCarIAs.GetComponentsInChildren<CarIAController>().ToList();
+            gameController.LoadCarIAs(carsIAs);
+        }
     }
 }

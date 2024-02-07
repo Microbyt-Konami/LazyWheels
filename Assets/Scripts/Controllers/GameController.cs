@@ -12,6 +12,16 @@ namespace MicrobytKonami.LazyWheels.Controllers
 
         public BlockController FindBlockInY(float y) => builderBlocks.FindBlockInY(y);
 
+        public void LoadCarIAs(ICollection<CarIAController> carsIA)
+        {
+
+        }
+
+        public void MoveCarIA(CarIAController carIA)
+        {
+
+        }
+
         // Start is called before the first frame update
         void Start()
         {
