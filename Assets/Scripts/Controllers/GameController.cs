@@ -14,7 +14,6 @@ namespace MicrobytKonami.LazyWheels.Controllers
 
         public void LoadCarIAs(ICollection<CarIAController> carsIA)
         {
-
         }
 
         public void MoveCarIA(CarIAController carIA)
