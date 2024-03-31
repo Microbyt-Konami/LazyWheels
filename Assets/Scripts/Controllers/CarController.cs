@@ -22,13 +22,13 @@ namespace MicrobytKonami.LazyWheels.Controllers
 
         // Variables
         private bool isLockAccelerate, isInGrass;
-        private Vector2 raySpeed;
+        private Vector2 raySpeed, velocity;
 
         //[FormerlySerializedAs("isStop")]
         [SerializeField]
         private bool isMoving;
 
-        private float inputX;
+        private float inputX, inputOld;
 
         // Ids
         private int idGrassLayer, idObstacle, idCar, idLane;
@@ -62,6 +62,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
         private void CalcRaySpeed()
         {
             raySpeed = new Vector2(speedRotation, speedUp);
+            //velocity =
         }
 
         // Start is called before the first frame update

@@ -18,7 +18,7 @@ namespace MicrobytKonami.System
 
         public int Size => _size;
 
-        public int Count => Count;
+        public int Count => _count;
 
         public bool IsReadOnly => false;
 

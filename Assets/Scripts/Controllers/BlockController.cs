@@ -54,7 +54,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
 
         public void MoveAllCarsIAs(bool move = true)
         {
-            print($"StopAllCarsIAs {gameObject.name}");
+            print($"MoveAllCarsIAs {gameObject.name}");
             foreach (var carIA in carsIAs)
                 MoveCarIA(carIA, move);
         }

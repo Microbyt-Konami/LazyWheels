@@ -8,50 +8,6 @@ using UnityEngine;
 
 namespace MicrobytKonami.LazyWheels
 {
-    [Serializable]
-    public class RayInfo
-    {
-        private readonly int _maxObjectsRay;
-        [SerializeField] private Vector2 _positionCollider;
-        [SerializeField] private int _countObjects;
-        [SerializeField] private Collider2D[] _colliders;
-        [SerializeField] private GameObject[] _objects;
-
-        public RayInfo(int maxObjectsRay)
-        {
-            _maxObjectsRay = maxObjectsRay;
-            _colliders = new Collider2D[maxObjectsRay];
-            _objects = new GameObject[maxObjectsRay];
-        }
-
-        public int RayCast(int myCarID, Transform transform, CapsuleCollider2D capsule, int layerMaskRays)
-        {
-            _positionCollider.x = transform.position.x + capsule.offset.x;
-            _positionCollider.y = transform.position.y + capsule.offset.y;
-
-            int count = Physics2D.OverlapCapsuleNonAlloc(_positionCollider, capsule.size, capsule.direction, 0, _colliders, layerMaskRays);
-            int countNew = UpdateObjectsRay(myCarID, count);
-
-            _countObjects = countNew;
-
-            return countNew;
-        }
-
-        private int UpdateObjectsRay(int myCarID, int count)
-        {
-            int countObjects = 0;
-
-            for (int i = 0; i < count; i++)
-            {
-                GameObject obj = _colliders[i].gameObject;
-
-                if (obj.GetInstanceID() != myCarID)
-                    _objects[countObjects++] = obj;
-            }
-
-            return countObjects;
-        }
-    }
     public class Rays : MonoBehaviour
     {
         public const int countMaxObjectsRay = 10;
@@ -73,20 +29,26 @@ namespace MicrobytKonami.LazyWheels
         [SerializeField] private CapsuleCollider2D capsuleColliderDown;
         [SerializeField] private CapsuleCollider2D capsuleColliderRight;
         [SerializeField] private CapsuleCollider2D capsuleColliderLeft;
-        [SerializeField] private GameObject player;
-        [SerializeField] private RayInfo rayDownInfo;
-        //[SerializeField] private Vector2 positionCollideRayDown;
-        //[SerializeField] private int countObjectsRayDomn;
-        //[SerializeField] private Collider2D[] collidersRayDown = new Collider2D[countMaxObjectsRay];
-        //[SerializeField] private GameObject[] rayDown = new GameObject[countMaxObjectsRay];
 
         // Variables
         [Header("Variables"), SerializeField] private int myCarID;
 
-        public void OnRays()
+        public void OnRaysCast()
         {
-            player = Physics2D.OverlapCapsule(myTransform.position, capsuleCollider.size, capsuleCollider.direction, 0, layerMask)?.gameObject;
-            rayDownInfo.RayCast(myCarID, rayDownPoint, capsuleColliderDown, layerMaskRays);
+            carIAController.DistCarCastUp = RayCast(capsuleColliderUp);
+            carIAController.DistCarCastDown = RayCast(capsuleColliderDown);
+            carIAController.DistCarCastLeft = RayCast(capsuleColliderLeft);
+            carIAController.DistCarCastRight = RayCast(capsuleColliderRight);
+
+            float RayCast(CapsuleCollider2D collider)
+            {
+                var positionGO = myTransform.position;
+                var offset = collider.offset;
+                var position = new Vector2(positionGO.x + offset.x, positionGO.y + offset.y);
+                var colliderCast = Physics2D.OverlapCapsule(position, collider.size, collider.direction, 0, layerMaskRays);
+
+                return colliderCast != null ? Vector3.Distance(positionGO, colliderCast.transform.position) : -1;
+            }
         }
 
         private void Awake()
@@ -106,7 +68,6 @@ namespace MicrobytKonami.LazyWheels
             capsuleColliderDown.enabled = false;
             capsuleColliderLeft.enabled = false;
             capsuleColliderRight.enabled = false;
-            rayDownInfo = new RayInfo(countMaxObjectsRay);            
         }
 
         // Start is called before the first frame update
@@ -114,16 +75,6 @@ namespace MicrobytKonami.LazyWheels
         {
             RaysController.Instance.AddRay(this);
         }
-
-        //private void FixedUpdate()
-        //{
-        //    //int count;
-
-        //    player = Physics2D.OverlapCapsule(myTransform.position, capsuleCollider.size, capsuleCollider.direction, 0, layerMask)?.gameObject;
-        //    //count = Physics2D.OverlapCapsuleNonAlloc(rayDownPoint.position, capsuleColliderDown.size, capsuleColliderDown.direction, 0, collidersRayDown, layerMaskRays);
-        //    //countObjectsRayDomn =
-        //    countObjectsRayDomn = RayCast(rayDownPoint, capsuleColliderDown, ref positionCollideRayDown, rayDown, collidersRayDown);
-        //}
 
         private void OnDrawGizmos()
         {
@@ -140,37 +91,12 @@ namespace MicrobytKonami.LazyWheels
                 GizmosEx.DrawCapsule2D(rayRightPoint, capsuleColliderRight);
         }
 
+        private void OnDestroy() => RaysController.Instance.RemoveRay(this);
+
         // Update is called once per frame
         //void Update()
         //{
 
-        //}
-
-
-        //private int UpdateObjectsRay(GameObject[] objects, Collider2D[] colliders, int count)
-        //{
-        //    int countObjects = 0;
-
-        //    for (int i = 0; i < count; i++)
-        //    {
-        //        GameObject obj = colliders[i].gameObject;
-
-        //        if (obj.GetInstanceID() != myCarID)
-        //            objects[countObjects++] = obj;
-        //    }
-
-        //    return countObjects;
-        //}
-
-        //private int RayCast(Transform transform, CapsuleCollider2D capsule, ref Vector2 positionCollider, GameObject[] objects, Collider2D[] colliders)
-        //{
-        //    positionCollider.x = transform.position.x + capsuleCollider.offset.x;
-        //    positionCollider.y = transform.position.y + capsuleCollider.offset.y;
-
-        //    int count = Physics2D.OverlapCapsuleNonAlloc(positionCollider, capsule.size, capsule.direction, 0, colliders, layerMaskRays);
-        //    int countNew = UpdateObjectsRay(objects, colliders, count);
-
-        //    return countNew;
         //}
     }
 }

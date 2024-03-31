@@ -13,12 +13,17 @@ namespace MicrobytKonami.LazyWheels
         [SerializeField] private LimitedList<Rays> rays;
 
         public void AddRay(Rays ray) => rays.Add(ray);
+        public void RemoveRay(Rays ray) => rays.Remove(ray);
 
-        // Start is called before the first frame update
-        void Start()
+        protected override void Awake()
         {
             rays = new LimitedList<Rays>(countMaxRays);
         }
+
+        // Start is called before the first frame update
+        //void Start()
+        //{
+        //}
 
         // Update is called once per frame
         //void Update()
@@ -28,8 +33,13 @@ namespace MicrobytKonami.LazyWheels
 
         private void FixedUpdate()
         {
-            foreach (var ray in rays)
-                ray.OnRays();
+            for (var i = 0; i < rays.Count; i++)
+            {
+                Rays ray = rays[i];
+
+                if (ray.enabled)
+                    ray.OnRaysCast();
+            }
         }
     }
 }

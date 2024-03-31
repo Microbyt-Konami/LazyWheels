@@ -301,10 +301,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rays
       objectReference: {fileID: 0}
+    - target: {fileID: 7167515785870823080, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8712837635849785309, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
       propertyPath: myCar
       value: 
       objectReference: {fileID: 421745897417169412}
+    - target: {fileID: 8712837635849785309, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
+      propertyPath: distCarCastUp
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
