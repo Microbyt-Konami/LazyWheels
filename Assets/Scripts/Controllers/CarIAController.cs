@@ -9,35 +9,25 @@ namespace MicrobytKonami.LazyWheels.Controllers
     public class CarIAController : MonoBehaviour
     {
         // Fields
-        [SerializeField] private bool canMoveLeft = true;
-        [SerializeField] private bool canMoveRight = true;
+        [SerializeField] private bool alwaysLeft = true;
 
         //Components
         private CarController carController;
         private Transform myTransform;
         [Header("Components"), SerializeField] private BlockController blockController;
-        private Rays _rays;
+        [SerializeField]private Rays rays;
         [SerializeField] private GameObject myCar;
 
         [Header("Variables")]
-        [SerializeField, Tooltip("Distances Car Cast Up (<0 no cast)")] private float distCarCastUp = -1;
-        [SerializeField, Tooltip("Distances Car Cast Down (<0 no cast)")] private float distCarCastDown = -1;
-        [SerializeField, Tooltip("Distances Car Cast Left (<0 no cast)")] private float distCarCastLeft = -1;
-        [SerializeField, Tooltip("Distances Car Cast Right (<0 no cast)")] private float distCarCastRight = -1;
+        [SerializeField] private float direction = 0;
 
         public bool IsMoving
         {
             get => carController.IsMoving;
             set => carController.IsMoving = value;
         }
+
         public GameObject MyCar => myCar;
-
-        public Rays Rays => _rays;
-
-        public float DistCarCastUp { get => distCarCastUp; set => distCarCastUp = value; }
-        public float DistCarCastDown { get => distCarCastDown; set => distCarCastDown = value; }
-        public float DistCarCastLeft { get => distCarCastLeft; set => distCarCastLeft = value; }
-        public float DistCarCastRight { get => distCarCastRight; set => distCarCastRight = value; }
 
         public void SetParent(Transform parent) => carController.SetParent(parent);
 
@@ -45,7 +35,6 @@ namespace MicrobytKonami.LazyWheels.Controllers
         {
             carController = GetComponent<CarController>();
             myTransform = GetComponent<Transform>();
-            _rays = GetComponent<Rays>();
             IsMoving = false;
         }
 
@@ -69,6 +58,11 @@ namespace MicrobytKonami.LazyWheels.Controllers
                 ChangeBlockCurrent();
                 Move();
             }
+        }
+
+        void FixedUpdate()
+        {
+            
         }
 
         private void ChangeBlockCurrent()
@@ -95,40 +89,36 @@ namespace MicrobytKonami.LazyWheels.Controllers
         {
             var ray = carController.GetRay(3 * Time.deltaTime);
 
-            if (distCarCastUp < ray.y || distCarCastUp < ray.y)
-            {
-                if (distCarCastLeft < distCarCastRight)
-                    MoveRight();
-                else
-                    MoveLeft();
-            }
-            else if (distCarCastLeft < ray.x)
-            {
-                if (distCarCastLeft < DistCarCastRight)
-                    MoveRight();
-                else
-                    MoveLeft();
-            }
-            else if (distCarCastRight < ray.x)
-            {
-                if (distCarCastRight < distCarCastLeft)
-                    MoveLeft();
-                else
-                    MoveRight();
-            }
+            // if (distCarCastUp < ray.y || distCarCastUp < ray.y)
+            // {
+            //     if (distCarCastLeft < distCarCastRight)
+            //         MoveRight();
+            //     else
+            //         MoveLeft();
+            // }
+            // else if (distCarCastLeft < ray.x)
+            // {
+            //     if (distCarCastLeft < DistCarCastRight)
+            //         MoveRight();
+            //     else
+            //         MoveLeft();
+            // }
+            // else if (distCarCastRight < ray.x)
+            // {
+            //     if (distCarCastRight < distCarCastLeft)
+            //         MoveLeft();
+            //     else
+            //         MoveRight();
+            // }
 
             void MoveRight()
             {
                 carController.Mover(-ray.x);
-                distCarCastLeft -= ray.x;
-                distCarCastRight += ray.x;
             }
 
             void MoveLeft()
             {
                 carController.Mover(ray.x);
-                distCarCastLeft += ray.x;
-                distCarCastRight -= ray.x;
             }
         }
     }

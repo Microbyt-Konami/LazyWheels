@@ -18,11 +18,18 @@ namespace MicrobytKonami.LazyWheels
         [SerializeField] private Transform rayLeftPoint;
         [SerializeField] private LayerMask layerMask;
         [SerializeField] private LayerMask layerMaskRays;
+        [SerializeField] private LayerMask layerLineRays;
+
+        [SerializeField, Tooltip("Distances Car Cast Up (<0 no cast)")] private float distCarCastUp = -1;
+        [SerializeField, Tooltip("Distances Car Cast Down (<0 no cast)")] private float distCarCastDown = -1;
+        [SerializeField, Tooltip("Distances Car Cast Left (<0 no cast)")] private float distCarCastLeft = -1;
+        [SerializeField, Tooltip("Distances Car Cast Right (<0 no cast)")] private float distCarCastRight = -1;
+        [SerializeField, Tooltip("Distances Car Cast Left (<0 no cast)")] private float distLineLeft = -1;
+        [SerializeField, Tooltip("Distances Car Cast Right (<0 no cast)")] private float distLineRight = -1;
 
         // Component
         private Transform myTransform;
-        private CarController carController;
-        private CarIAController carIAController;
+
         [Header("Components"), SerializeField] private GameObject myCar;
         [SerializeField] private CapsuleCollider2D capsuleCollider;
         [SerializeField] private CapsuleCollider2D capsuleColliderUp;
@@ -35,28 +42,29 @@ namespace MicrobytKonami.LazyWheels
 
         public void OnRaysCast()
         {
-            carIAController.DistCarCastUp = RayCast(capsuleColliderUp);
-            carIAController.DistCarCastDown = RayCast(capsuleColliderDown);
-            carIAController.DistCarCastLeft = RayCast(capsuleColliderLeft);
-            carIAController.DistCarCastRight = RayCast(capsuleColliderRight);
+            distCarCastUp = RayCast(rayUpPoint, capsuleColliderUp, layerMaskRays);
+            distCarCastDown = RayCast(rayDownPoint, capsuleColliderDown, layerMaskRays);
+            distCarCastLeft = RayCast(rayLeftPoint, capsuleColliderLeft, layerMaskRays);
+            distCarCastRight = RayCast(rayRightPoint, capsuleColliderRight, layerMaskRays);
+            distLineLeft = RayCast(rayLeftPoint, capsuleColliderLeft, layerLineRays);
+            distLineRight = RayCast(rayRightPoint, capsuleColliderRight, layerLineRays);
 
-            float RayCast(CapsuleCollider2D collider)
+            float RayCast(Transform transform, CapsuleCollider2D collider, LayerMask layerMask)
             {
-                var positionGO = myTransform.position;
-                var offset = collider.offset;
-                var position = new Vector2(positionGO.x + offset.x, positionGO.y + offset.y);
-                var colliderCast = Physics2D.OverlapCapsule(position, collider.size, collider.direction, 0, layerMaskRays);
+                // var positionGO = myTransform.position;
+                // var offset = collider.offset;
+                // var position = new Vector2(positionGO.x + offset.x, positionGO.y + offset.y);
+                var position = transform.position;
+                var colliderCast = Physics2D.OverlapCapsule(position, collider.size, collider.direction, 0, layerMask);
+                var distance = colliderCast != null ? Vector3.Distance(position, colliderCast.transform.position) : -1;
 
-                return colliderCast != null ? Vector3.Distance(positionGO, colliderCast.transform.position) : -1;
+                return distance;
             }
         }
 
         private void Awake()
         {
             myTransform = GetComponent<Transform>();
-            carController = GetComponentInParent<CarController>();
-            carIAController = GetComponentInParent<CarIAController>();
-            myCar = carIAController.MyCar;
             myCarID = myCar.GetInstanceID();
             capsuleCollider = GetComponent<CapsuleCollider2D>();
             capsuleColliderUp = rayUpPoint.GetComponent<CapsuleCollider2D>();
@@ -70,10 +78,9 @@ namespace MicrobytKonami.LazyWheels
             capsuleColliderRight.enabled = false;
         }
 
-        // Start is called before the first frame update
-        void Start()
+        private void FixedUpdate()
         {
-            RaysController.Instance.AddRay(this);
+            OnRaysCast();
         }
 
         private void OnDrawGizmos()
@@ -90,8 +97,6 @@ namespace MicrobytKonami.LazyWheels
             if (rayRightPoint != null && capsuleColliderRight != null)
                 GizmosEx.DrawCapsule2D(rayRightPoint, capsuleColliderRight);
         }
-
-        private void OnDestroy() => RaysController.Instance.RemoveRay(this);
 
         // Update is called once per frame
         //void Update()

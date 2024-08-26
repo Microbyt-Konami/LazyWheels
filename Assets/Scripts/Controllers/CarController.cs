@@ -133,10 +133,10 @@ namespace MicrobytKonami.LazyWheels.Controllers
         {
             if (collision.gameObject.layer == idCar)
             {
-                if (CompareTag("Player"))
-                    Explode();
-                else // Si no es el player de momento explota el otro coche. Una opciÛn seria que explotase el m·s grande siempre que no sea el player (el otro coche)
-                    collision.gameObject.GetComponent<CarController>().Explode();
+                // De momento explotan los 2 coches.
+                // Lo que se quedr√° hacer es que explote el menos grande si hay un cami√≥n
+                Explode();
+                collision.gameObject.GetComponent<CarController>().Explode();
             }
         }
 
