@@ -36,27 +36,32 @@ namespace MicrobytKonami.LazyWheels
         [SerializeField] private CapsuleCollider2D capsuleColliderDown;
         [SerializeField] private CapsuleCollider2D capsuleColliderRight;
         [SerializeField] private CapsuleCollider2D capsuleColliderLeft;
+        [SerializeField] private Collider2D collider2dTmp;
 
         // Variables
         [Header("Variables"), SerializeField] private int myCarID;
 
         public void OnRaysCast()
         {
-            distCarCastUp = RayCast(rayUpPoint, capsuleColliderUp, layerMaskRays);
-            distCarCastDown = RayCast(rayDownPoint, capsuleColliderDown, layerMaskRays);
-            distCarCastLeft = RayCast(rayLeftPoint, capsuleColliderLeft, layerMaskRays);
-            distCarCastRight = RayCast(rayRightPoint, capsuleColliderRight, layerMaskRays);
-            distLineLeft = RayCast(rayLeftPoint, capsuleColliderLeft, layerLineRays);
-            distLineRight = RayCast(rayRightPoint, capsuleColliderRight, layerLineRays);
+            distCarCastUp = RayCast(new Vector3(rayUpPoint.position.x, rayUpPoint.position.y + capsuleColliderUp.size.y / 2, rayUpPoint.position.z), capsuleColliderUp, layerMaskRays);
+            distCarCastDown = RayCast(new Vector3(rayDownPoint.position.x, rayDownPoint.position.y - capsuleColliderDown.size.y / 2, rayDownPoint.position.z), capsuleColliderDown, layerMaskRays);
+            distCarCastLeft = RayCast(rayLeftPoint.position, capsuleColliderLeft, layerMaskRays);
+            distCarCastRight = RayCast(rayRightPoint.position, capsuleColliderRight, layerMaskRays);
+            distLineLeft = RayCast(rayLeftPoint.position, capsuleColliderLeft, layerLineRays);
+            distLineRight = RayCast(rayRightPoint.position, capsuleColliderRight, layerLineRays);
 
-            float RayCast(Transform transform, CapsuleCollider2D collider, LayerMask layerMask)
+            float RayCast(Vector3 position, CapsuleCollider2D collider, LayerMask layerMask)
             {
                 // var positionGO = myTransform.position;
                 // var offset = collider.offset;
                 // var position = new Vector2(positionGO.x + offset.x, positionGO.y + offset.y);
-                var position = transform.position;
-                var colliderCast = Physics2D.OverlapCapsule(position, collider.size, collider.direction, 0, layerMask);
+                // bug en la dirección en el scripts de Rays, método OnRaysCast
+                //var position = transform.position;
+                var colliderCast = Physics2D.OverlapCapsule(position, collider.size / 2, collider.direction, 0, layerMask);
                 var distance = colliderCast != null ? Vector3.Distance(position, colliderCast.transform.position) : -1;
+
+                if (distance > 0)
+                    collider2dTmp = colliderCast;
 
                 return distance;
             }
@@ -88,14 +93,34 @@ namespace MicrobytKonami.LazyWheels
             Gizmos.color = Color.yellow;
             if (myTransform != null && capsuleCollider != null)
                 GizmosEx.DrawCapsule2D(myTransform, capsuleCollider);
+
+            Gizmos.color = Color.red;
             if (rayUpPoint != null && capsuleColliderUp != null)
+            {
+                Gizmos.DrawSphere(new Vector3(rayUpPoint.position.x, rayUpPoint.position.y + capsuleColliderUp.size.y / 2, rayUpPoint.position.z), capsuleColliderUp.size.x / 4);
                 GizmosEx.DrawCapsule2D(rayUpPoint, capsuleColliderUp);
+            }
+
+            Gizmos.color = Color.gray;
             if (rayDownPoint != null && capsuleColliderDown != null)
+            {
+                Gizmos.DrawSphere(new Vector3(rayDownPoint.position.x, rayDownPoint.position.y - capsuleColliderDown.size.y / 2, rayDownPoint.position.z), capsuleColliderDown.size.x / 4);
                 GizmosEx.DrawCapsule2D(rayDownPoint, capsuleColliderDown);
+            }
+
+            Gizmos.color = Color.green;
             if (rayLeftPoint != null && capsuleColliderLeft != null)
+            {
+                Gizmos.DrawSphere(rayLeftPoint.position, capsuleColliderLeft.size.y / 4);
                 GizmosEx.DrawCapsule2D(rayLeftPoint, capsuleColliderLeft);
+            }
+
+            Gizmos.color = Color.yellow;
             if (rayRightPoint != null && capsuleColliderRight != null)
+            {
+                Gizmos.DrawSphere(rayRightPoint.position, capsuleColliderRight.size.y / 4);
                 GizmosEx.DrawCapsule2D(rayRightPoint, capsuleColliderRight);
+            }
         }
 
         // Update is called once per frame
