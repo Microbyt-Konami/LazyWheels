@@ -15,7 +15,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
         private CarController carController;
         private Transform myTransform;
         [Header("Components"), SerializeField] private BlockController blockController;
-        [SerializeField]private Rays rays;
+        [SerializeField] private Rays rays;
         [SerializeField] private GameObject myCar;
 
         [Header("Variables")]
@@ -60,10 +60,10 @@ namespace MicrobytKonami.LazyWheels.Controllers
             }
         }
 
-        void FixedUpdate()
-        {
-            
-        }
+        // void FixedUpdate()
+        // {
+
+        // }
 
         private void ChangeBlockCurrent()
         {

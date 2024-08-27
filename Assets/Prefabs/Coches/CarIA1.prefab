@@ -100,20 +100,20 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1019
   m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1019
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1019
   m_CallbackLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1019
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -188,7 +188,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -221,10 +221,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a3ad165aceca9c4fbaa1c0e1cdcd1ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canChangeLane: 1
+  alwaysLeft: 1
   blockController: {fileID: 0}
+  rays: {fileID: 0}
   myCar: {fileID: 421745897417169412}
-  _capsuleObjs: []
+  direction: 0
 --- !u!1001 &3282631209375634837
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -233,17 +234,37 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5680924611160995225}
     m_Modifications:
+    - target: {fileID: 384758607127703327, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.51
+      objectReference: {fileID: 0}
     - target: {fileID: 458946168539516486, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.73
+      value: -4.87
       objectReference: {fileID: 0}
     - target: {fileID: 576062089712888577, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.79
+      value: 4.86
       objectReference: {fileID: 0}
     - target: {fileID: 1070413859910056707, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
       propertyPath: m_Direction
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2709959401762299057, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 3011051115612290235, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3956612979294571147, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 704
+      objectReference: {fileID: 0}
+    - target: {fileID: 3956612979294571147, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
+      propertyPath: m_ContactCaptureLayers.m_Bits
+      value: 704
       objectReference: {fileID: 0}
     - target: {fileID: 4278390055565629406, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
       propertyPath: m_Size.x
@@ -256,6 +277,22 @@ PrefabInstance:
     - target: {fileID: 4278390055565629406, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
       propertyPath: m_Direction
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4440022978241202580, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4653699554902003972, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4819053257606889949, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 704
+      objectReference: {fileID: 0}
+    - target: {fileID: 4819053257606889949, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
+      propertyPath: m_ContactCaptureLayers.m_Bits
+      value: 704
       objectReference: {fileID: 0}
     - target: {fileID: 5063150265539281377, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
       propertyPath: m_LocalPosition.x
@@ -296,6 +333,22 @@ PrefabInstance:
     - target: {fileID: 5063150265539281377, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5165904036788029661, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 704
+      objectReference: {fileID: 0}
+    - target: {fileID: 5165904036788029661, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
+      propertyPath: m_ContactCaptureLayers.m_Bits
+      value: 704
+      objectReference: {fileID: 0}
+    - target: {fileID: 5745146139681748233, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 704
+      objectReference: {fileID: 0}
+    - target: {fileID: 5745146139681748233, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
+      propertyPath: m_ContactCaptureLayers.m_Bits
+      value: 704
       objectReference: {fileID: 0}
     - target: {fileID: 7167515785870823080, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
       propertyPath: m_Name
