@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 576062089712888577}
   - component: {fileID: 1070413859910056707}
   - component: {fileID: 4819053257606889949}
+  - component: {fileID: 6377037250718949963}
   m_Layer: 7
   m_Name: RayUpPoint
   m_TagString: Untagged
@@ -180,6 +181,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 8}
   m_EdgeRadius: 0
+--- !u!114 &6377037250718949963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3846214380980345774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3847a18638bcfa6d78e0a681283bb18e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <distance>k__BackingField: -1
 --- !u!1 &4440022978241202580
 GameObject:
   m_ObjectHideFlags: 0
