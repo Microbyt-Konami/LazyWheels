@@ -45,7 +45,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 704
+    m_Bits: 192
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -58,7 +58,7 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 704
+    m_Bits: 192
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -90,12 +90,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3847a18638bcfa6d78e0a681283bb18e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myTransform: {fileID: 458946168539516486}
+  raysTransform: {fileID: 5063150265539281377}
+  boxCollider2D: {fileID: 5745146139681748233}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 192
   boxCollideColor: {r: 0, g: 1, b: 0, a: 1}
   goCollision: {fileID: 0}
   positionCollision: {x: 0, y: 0}
   <distanceCollision>k__BackingField: -1
-  myTransform: {fileID: 458946168539516486}
-  boxCollider2D: {fileID: 5745146139681748233}
+  direction: {x: 0, y: -1}
+  midSize: 4
+  size: 8
 --- !u!1 &3846214380980345774
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,12 +193,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3847a18638bcfa6d78e0a681283bb18e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myTransform: {fileID: 576062089712888577}
+  raysTransform: {fileID: 5063150265539281377}
+  boxCollider2D: {fileID: 4819053257606889949}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 704
   boxCollideColor: {r: 1, g: 0, b: 0, a: 1}
   goCollision: {fileID: 0}
   positionCollision: {x: 0, y: 0}
   <distanceCollision>k__BackingField: -1
-  myTransform: {fileID: 576062089712888577}
-  boxCollider2D: {fileID: 4819053257606889949}
+  direction: {x: 0, y: 1}
+  midSize: 4
+  size: 8
 --- !u!1 &4440022978241202580
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,7 +251,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 704
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -250,7 +264,7 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 704
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -282,12 +296,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3847a18638bcfa6d78e0a681283bb18e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myTransform: {fileID: 384758607127703327}
+  raysTransform: {fileID: 5063150265539281377}
+  boxCollider2D: {fileID: 5165904036788029661}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 704
   boxCollideColor: {r: 0, g: 0, b: 1, a: 1}
   goCollision: {fileID: 0}
   positionCollision: {x: 0, y: 0}
   <distanceCollision>k__BackingField: -1
-  myTransform: {fileID: 384758607127703327}
-  boxCollider2D: {fileID: 5165904036788029661}
+  direction: {x: 1, y: 0}
+  midSize: 2
+  size: 4
 --- !u!1 &4653699554902003972
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,7 +354,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 704
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -346,7 +367,7 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 704
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -378,12 +399,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3847a18638bcfa6d78e0a681283bb18e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myTransform: {fileID: 2709959401762299057}
+  raysTransform: {fileID: 5063150265539281377}
+  boxCollider2D: {fileID: 3956612979294571147}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 704
   boxCollideColor: {r: 1, g: 1, b: 0, a: 1}
   goCollision: {fileID: 0}
   positionCollision: {x: 0, y: 0}
   <distanceCollision>k__BackingField: -1
-  myTransform: {fileID: 2709959401762299057}
-  boxCollider2D: {fileID: 3956612979294571147}
+  direction: {x: -1, y: 0}
+  midSize: 2
+  size: 4
 --- !u!1 &7167515785870823080
 GameObject:
   m_ObjectHideFlags: 0

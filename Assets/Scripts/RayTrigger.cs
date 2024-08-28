@@ -4,9 +4,14 @@ using UnityEngine;
 
 namespace MicrobytKonami.LazyWheels
 {
-    [RequireComponent(typeof(BoxCollider2D))]
     public class RayTrigger : MonoBehaviour
     {
+        [Header("Settings")]
+        [SerializeField] private Transform myTransform = null;
+        [SerializeField] private Transform raysTransform;
+        [SerializeField] private BoxCollider2D boxCollider2D;
+        [SerializeField] private LayerMask layerMask;
+
         //Debug
         [Header("Debug")]
         [SerializeField] private Color boxCollideColor;
@@ -16,10 +21,9 @@ namespace MicrobytKonami.LazyWheels
 
         //Components
         [Header("Components")]
-        [SerializeField] private Transform myTransform;
-        [SerializeField] private BoxCollider2D boxCollider2D;
-        [SerializeField] private Vector2 direction1;
-        [SerializeField] private Vector2 direction2;
+        [SerializeField] private Vector2 direction;
+        [SerializeField] private float midSize;
+        [SerializeField] private float size;
 
         void OnEnable()
         {
@@ -29,63 +33,73 @@ namespace MicrobytKonami.LazyWheels
         void Awake()
         {
             myTransform ??= GetComponent<Transform>();
+            raysTransform = myTransform.parent;
             boxCollider2D ??= GetComponent<BoxCollider2D>();
+            if (layerMask == default)
+                layerMask = boxCollider2D.includeLayers;
+            CalcDirection();
             boxCollider2D.enabled = false;
-            direction1 = boxCollider2D.size.x == 1 ? Vector2.up : Vector2.right;
-            direction2 = boxCollider2D.size.x == 1 ? Vector2.down : Vector2.left;
         }
 
         void FixedUpdate()
         {
-            Vector2 position = (Vector2)myTransform.position + boxCollider2D.offset;
-            Collider2D colliderCollision = Physics2D.OverlapBox(position, boxCollider2D.size, 0, boxCollider2D.includeLayers);
+            Vector2 origin = (Vector2)myTransform.position - direction * (midSize - 0.5f);
+            RaycastHit2D hit = Physics2D.BoxCast(origin, Vector2.one, 0, direction, size, boxCollider2D.includeLayers);
 
-            if (colliderCollision is not null)
+            if (hit.collider is not null)
             {
-                Bounds collisionBounds = colliderCollision.bounds;
-                Bounds playerBounds = boxCollider2D.bounds;
-                float x = Physics2DPhysics2DEx.CalculatePointCollisionXBetween2Bounds(collisionBounds, playerBounds);
-                float y = Physics2DPhysics2DEx.CalculatePointCollisionYBetween2Bounds(collisionBounds, playerBounds);
-                Vector2 positionCollision = new Vector2(x, y);
-                float distanceCollision = Vector2.Distance(myTransform.position, positionCollision);
-
-                if (this.distanceCollision < 0 || this.distanceCollision > distanceCollision)
+                if (this.distanceCollision < 0 || distanceCollision > hit.distance)
                 {
-                    goCollision = colliderCollision.gameObject;
-                    this.positionCollision = positionCollision;
-                    this.distanceCollision = distanceCollision;
-                    Debug.Log($"Collision: {goCollision.name} {positionCollision} {distanceCollision}", goCollision);
-                    //Debug.Break();
+                    GameObject go = myTransform.parent.transform.parent.gameObject;
+
+                    goCollision = hit.collider.gameObject;
+                    positionCollision = hit.point;
+                    this.distanceCollision = hit.distance;
+                    Debug.Log($"{go.name} Collision: {goCollision.name} {positionCollision} {distanceCollision}", goCollision);
+                    Debug.Break();
                 }
             }
         }
-
-        // void OnTriggerEnter2D(Collider2D other)
-        // {
-        //     Bounds collisionBounds = other.bounds;
-        //     Bounds playerBounds = boxCollider2D.bounds;
-        //     float x = Physics2DPhysics2DEx.CalculatePointCollisionXBetween2Bounds(collisionBounds, playerBounds);
-        //     float y = Physics2DPhysics2DEx.CalculatePointCollisionYBetween2Bounds(collisionBounds, playerBounds);
-        //     Vector2 positionCollision = new Vector2(x, y);
-        //     float distanceCollision = Vector2.Distance(myTransform.position, positionCollision);
-
-        //     if (this.distanceCollision < 0 || this.distanceCollision > distanceCollision)
-        //     {
-        //         goCollision = other.gameObject.transform.parent.gameObject;
-        //         this.positionCollision = positionCollision;
-        //         this.distanceCollision = distanceCollision;
-        //         Debug.Log($"Collision: {goCollision.name} {positionCollision} {distanceCollision}", goCollision);
-        //         Debug.Break();
-        //     }
-        // }
 
         private void OnDrawGizmos()
         {
             Gizmos.color = boxCollideColor;
             if (myTransform is not null && boxCollider2D is not null)
-                Gizmos.DrawWireCube((Vector2)myTransform.position + boxCollider2D.offset, boxCollider2D.size);
+            {
+                Vector2 position2 = (Vector2)myTransform.position;
+                Gizmos.DrawWireCube(position2 + boxCollider2D.offset, boxCollider2D.size);
+                Gizmos.DrawWireSphere(position2 - direction * midSize, midSize / 8);
+            }
             if (distanceCollision >= 0)
                 Gizmos.DrawSphere(positionCollision, 1);
+        }
+
+        void OnValidate()
+        {
+            if (boxCollider2D is not null)
+                if (layerMask == default)
+                    layerMask = boxCollider2D.includeLayers;
+
+            CalcDirection();
+        }
+
+        void CalcDirection()
+        {
+            if (boxCollider2D is null || raysTransform is null)
+                return;
+
+            //Vertical
+            if (boxCollider2D.size.x < boxCollider2D.size.y)
+            {
+                direction = raysTransform.position.y < myTransform.position.y ? Vector2.up : Vector2.down;
+                midSize = boxCollider2D.size.y / 2;
+            }
+            else // Horizontal
+            {
+                direction = raysTransform.position.x < myTransform.position.x ? Vector2.right : Vector2.left;
+                midSize = boxCollider2D.size.x / 2;
+            }
+            size = midSize * 2;
         }
     }
 }

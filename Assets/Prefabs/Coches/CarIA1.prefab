@@ -250,21 +250,13 @@ PrefabInstance:
       propertyPath: m_Direction
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1617067999971197335, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
+      propertyPath: boxCollideColor.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2709959401762299057, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.54
-      objectReference: {fileID: 0}
-    - target: {fileID: 3011051115612290235, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3956612979294571147, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
-      propertyPath: m_IncludeLayers.m_Bits
-      value: 704
-      objectReference: {fileID: 0}
-    - target: {fileID: 3956612979294571147, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
-      propertyPath: m_ContactCaptureLayers.m_Bits
-      value: 704
       objectReference: {fileID: 0}
     - target: {fileID: 4278390055565629406, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
       propertyPath: m_Size.x
@@ -281,18 +273,6 @@ PrefabInstance:
     - target: {fileID: 4440022978241202580, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4653699554902003972, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4819053257606889949, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
-      propertyPath: m_IncludeLayers.m_Bits
-      value: 704
-      objectReference: {fileID: 0}
-    - target: {fileID: 4819053257606889949, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
-      propertyPath: m_ContactCaptureLayers.m_Bits
-      value: 704
       objectReference: {fileID: 0}
     - target: {fileID: 5063150265539281377, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
       propertyPath: m_LocalPosition.x
@@ -333,22 +313,6 @@ PrefabInstance:
     - target: {fileID: 5063150265539281377, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5165904036788029661, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
-      propertyPath: m_IncludeLayers.m_Bits
-      value: 704
-      objectReference: {fileID: 0}
-    - target: {fileID: 5165904036788029661, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
-      propertyPath: m_ContactCaptureLayers.m_Bits
-      value: 704
-      objectReference: {fileID: 0}
-    - target: {fileID: 5745146139681748233, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
-      propertyPath: m_IncludeLayers.m_Bits
-      value: 704
-      objectReference: {fileID: 0}
-    - target: {fileID: 5745146139681748233, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
-      propertyPath: m_ContactCaptureLayers.m_Bits
-      value: 704
       objectReference: {fileID: 0}
     - target: {fileID: 7167515785870823080, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
       propertyPath: m_Name
