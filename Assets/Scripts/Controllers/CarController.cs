@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MicrobytKonami.Helpers;
+using System.Runtime.InteropServices;
 //using UnityEngine.Serialization;
 
 namespace MicrobytKonami.LazyWheels.Controllers
@@ -10,7 +11,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
     [RequireComponent(typeof(Rigidbody2D))]
     public class CarController : MonoBehaviour
     {
-        // Fields
+        [Header("Settings")]
         [SerializeField] private float speedUp = 1;
         [SerializeField] private float speedRotation = 1;
 
@@ -20,13 +21,16 @@ namespace MicrobytKonami.LazyWheels.Controllers
         private Transform myTransform;
         [Header("Components"), SerializeField] private LineController lane;
 
-        // Variables
+        // Variables        
         private bool isLockAccelerate, isInGrass;
         private Vector2 raySpeed, velocity;
+        [field: SerializeField, Header("Variables")] public float MetersLineRight { get; private set; }
+        [field: SerializeField] public float MetersLineLeft { get; private set; }
+        [SerializeField] private BoxCollider2D boxColliderMyCar;
+        [SerializeField] private Vector2 sizeCollideMyCar;
 
         //[FormerlySerializedAs("isStop")]
-        [SerializeField]
-        private bool isMoving;
+        [SerializeField] private bool isMoving;
 
         private float inputX, inputOld;
 
@@ -57,6 +61,10 @@ namespace MicrobytKonami.LazyWheels.Controllers
             idCar = LayerMask.NameToLayer("Car");
             idLane = LayerMask.NameToLayer("Lane");
             CalcRaySpeed();
+
+            boxColliderMyCar = GetComponent<BoxCollider2D>() ?? GetComponent<CarIAController>()?.MyCar?.GetComponent<BoxCollider2D>();
+            if (boxColliderMyCar is not null)
+                sizeCollideMyCar = boxColliderMyCar.size;
         }
 
         private void CalcRaySpeed()
@@ -117,15 +125,28 @@ namespace MicrobytKonami.LazyWheels.Controllers
             else if (collision.gameObject.layer == idObstacle)
                 Explode();
             else if (collision.gameObject.layer == idLane)
+            {
                 lane = collision.gameObject.GetComponent<LineController>();
+                MetersLineRight = lane.CalcMetersLinesRight(myTransform.position);
+                MetersLineLeft = lane.CalcMetersLinesLeft(myTransform.position);
+
+                if (boxColliderMyCar is not null)
+                {
+                    MetersLineRight -= sizeCollideMyCar.x / 2;
+                    if (MetersLineRight < 0)
+                        MetersLineRight = 0;
+                    MetersLineLeft -= sizeCollideMyCar.x / 2;
+                    if (MetersLineLeft < 0)
+                        MetersLineLeft = 0;
+                }
+            }
         }
 
         private void OnTriggerExit2D(Collider2D collision)
         {
             if (collision.gameObject.layer == idGrassLayer)
                 isInGrass = false;
-            else
-            if (collision.gameObject.layer == idLane)
+            else if (collision.gameObject.layer == idLane)
                 lane = null;
         }
 

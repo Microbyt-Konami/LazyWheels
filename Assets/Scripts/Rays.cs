@@ -11,7 +11,10 @@ namespace MicrobytKonami.LazyWheels
     public class Rays : MonoBehaviour
     {
         //Fields
-        [Header("Fields")]
+        [Header("Settings")]
         [SerializeField] private RayTrigger rayUp;
+        [SerializeField] private RayTrigger rayDown;
+        [SerializeField] private RayTrigger rayLeft;
+        [SerializeField] private RayTrigger rayRight;
     }
 }

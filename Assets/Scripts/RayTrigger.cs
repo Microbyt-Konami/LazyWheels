@@ -10,7 +10,7 @@ namespace MicrobytKonami.LazyWheels
         [SerializeField] private Transform myTransform = null;
         [SerializeField] private Transform raysTransform;
         [SerializeField] private BoxCollider2D boxCollider2D;
-        [SerializeField] private LayerMask layerMask;
+        [SerializeField] private LayerMask lineLayerMask;
 
         //Debug
         [Header("Debug")]
@@ -35,8 +35,6 @@ namespace MicrobytKonami.LazyWheels
             myTransform ??= GetComponent<Transform>();
             raysTransform = myTransform.parent;
             boxCollider2D ??= GetComponent<BoxCollider2D>();
-            if (layerMask == default)
-                layerMask = boxCollider2D.includeLayers;
             CalcDirection();
             boxCollider2D.enabled = false;
         }
@@ -48,16 +46,16 @@ namespace MicrobytKonami.LazyWheels
 
             if (hit.collider is not null)
             {
-                if (this.distanceCollision < 0 || distanceCollision > hit.distance)
-                {
-                    GameObject go = myTransform.parent.transform.parent.gameObject;
+                // if (distanceCollision < 0 || distanceCollision > hit.distance)
+                // {
+                GameObject go = myTransform.parent.transform.parent.gameObject;
 
-                    goCollision = hit.collider.gameObject;
-                    positionCollision = hit.point;
-                    this.distanceCollision = hit.distance;
-                    Debug.Log($"{go.name} Collision: {goCollision.name} {positionCollision} {distanceCollision}", goCollision);
-                    Debug.Break();
-                }
+                goCollision = hit.collider.gameObject;
+                positionCollision = hit.point;
+                this.distanceCollision = hit.distance;
+                Debug.Log($"{go.name} Collision: {goCollision.name} {positionCollision} {distanceCollision}", goCollision);
+                //Debug.Break();
+                // }
             }
         }
 
@@ -76,10 +74,6 @@ namespace MicrobytKonami.LazyWheels
 
         void OnValidate()
         {
-            if (boxCollider2D is not null)
-                if (layerMask == default)
-                    layerMask = boxCollider2D.includeLayers;
-
             CalcDirection();
         }
 
