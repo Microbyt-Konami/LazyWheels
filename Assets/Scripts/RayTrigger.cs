@@ -12,12 +12,14 @@ namespace MicrobytKonami.LazyWheels
         [SerializeField] private BoxCollider2D boxCollider2D;
         [SerializeField] private LayerMask lineLayerMask;
 
+        [field: SerializeField, Tooltip("Distances Car Cast Right (<0 no cast)"), Header("Result")] public float DistanceCollision { get; private set; } = -1f;
+
         //Debug
         [Header("Debug")]
         [SerializeField] private Color boxCollideColor;
         [SerializeField] private GameObject goCollision;
         [SerializeField] private Vector2 positionCollision;
-        [field: SerializeField, Tooltip("Distances Car Cast Right (<0 no cast)")] public float distanceCollision { get; private set; } = -1f;
+
 
         //Components
         [Header("Components")]
@@ -25,9 +27,17 @@ namespace MicrobytKonami.LazyWheels
         [SerializeField] private float midSize;
         [SerializeField] private float size;
 
+        public RaycastHit2D BoxCast(LayerMask lineLayerMask)
+        {
+            Vector2 origin = (Vector2)myTransform.position - direction * (midSize - 0.5f);
+            RaycastHit2D hit = Physics2D.BoxCast(origin, Vector2.one, 0, direction, size, lineLayerMask);
+
+            return hit;
+        }
+
         void OnEnable()
         {
-            distanceCollision = -1f;
+            DistanceCollision = -1f;
         }
 
         void Awake()
@@ -41,21 +51,17 @@ namespace MicrobytKonami.LazyWheels
 
         void FixedUpdate()
         {
-            Vector2 origin = (Vector2)myTransform.position - direction * (midSize - 0.5f);
-            RaycastHit2D hit = Physics2D.BoxCast(origin, Vector2.one, 0, direction, size, boxCollider2D.includeLayers);
+            RaycastHit2D hit = BoxCast(boxCollider2D.includeLayers);
 
             if (hit.collider is not null)
             {
-                // if (distanceCollision < 0 || distanceCollision > hit.distance)
-                // {
                 GameObject go = myTransform.parent.transform.parent.gameObject;
 
                 goCollision = hit.collider.gameObject;
                 positionCollision = hit.point;
-                this.distanceCollision = hit.distance;
-                Debug.Log($"{go.name} Collision: {goCollision.name} {positionCollision} {distanceCollision}", goCollision);
+                this.DistanceCollision = hit.distance;
+                Debug.Log($"{go.name} Collision: {goCollision.name} {positionCollision} {DistanceCollision}", goCollision);
                 //Debug.Break();
-                // }
             }
         }
 
@@ -68,7 +74,7 @@ namespace MicrobytKonami.LazyWheels
                 Gizmos.DrawWireCube(position2 + boxCollider2D.offset, boxCollider2D.size);
                 Gizmos.DrawWireSphere(position2 - direction * midSize, midSize / 8);
             }
-            if (distanceCollision >= 0)
+            if (DistanceCollision >= 0)
                 Gizmos.DrawSphere(positionCollision, 1);
         }
 

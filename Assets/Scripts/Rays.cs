@@ -16,5 +16,7 @@ namespace MicrobytKonami.LazyWheels
         [SerializeField] private RayTrigger rayDown;
         [SerializeField] private RayTrigger rayLeft;
         [SerializeField] private RayTrigger rayRight;
+        [SerializeField] private LineTrigger rayLineLeft;
+        [SerializeField] private LineTrigger rayLineRight;
     }
 }

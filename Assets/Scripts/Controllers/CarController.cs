@@ -12,6 +12,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
     public class CarController : MonoBehaviour
     {
         [Header("Settings")]
+        [SerializeField] private BoxCollider2D boxColliderMyCar;
         [SerializeField] private float speedUp = 1;
         [SerializeField] private float speedRotation = 1;
 
@@ -26,7 +27,6 @@ namespace MicrobytKonami.LazyWheels.Controllers
         private Vector2 raySpeed, velocity;
         [field: SerializeField, Header("Variables")] public float MetersLineRight { get; private set; }
         [field: SerializeField] public float MetersLineLeft { get; private set; }
-        [SerializeField] private BoxCollider2D boxColliderMyCar;
         [SerializeField] private Vector2 sizeCollideMyCar;
 
         //[FormerlySerializedAs("isStop")]
@@ -51,6 +51,11 @@ namespace MicrobytKonami.LazyWheels.Controllers
         public void SetParent(Transform parent) => myTransform.parent = parent;
         public Vector2 GetRay(float seconds) => seconds * raySpeed;
 
+        private void OnDisable()
+        {
+            Debug.Log($"{gameObject.name} disable", gameObject);
+        }
+
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
@@ -60,11 +65,8 @@ namespace MicrobytKonami.LazyWheels.Controllers
             idObstacle = LayerMask.NameToLayer("Obstacle");
             idCar = LayerMask.NameToLayer("Car");
             idLane = LayerMask.NameToLayer("Lane");
+            sizeCollideMyCar = boxColliderMyCar.size;
             CalcRaySpeed();
-
-            boxColliderMyCar = GetComponent<BoxCollider2D>() ?? GetComponent<CarIAController>()?.MyCar?.GetComponent<BoxCollider2D>();
-            if (boxColliderMyCar is not null)
-                sizeCollideMyCar = boxColliderMyCar.size;
         }
 
         private void CalcRaySpeed()
@@ -130,15 +132,13 @@ namespace MicrobytKonami.LazyWheels.Controllers
                 MetersLineRight = lane.CalcMetersLinesRight(myTransform.position);
                 MetersLineLeft = lane.CalcMetersLinesLeft(myTransform.position);
 
-                if (boxColliderMyCar is not null)
-                {
-                    MetersLineRight -= sizeCollideMyCar.x / 2;
-                    if (MetersLineRight < 0)
-                        MetersLineRight = 0;
-                    MetersLineLeft -= sizeCollideMyCar.x / 2;
-                    if (MetersLineLeft < 0)
-                        MetersLineLeft = 0;
-                }
+                MetersLineRight -= sizeCollideMyCar.x / 2;
+                if (MetersLineRight < 0)
+                    MetersLineRight = 0;
+                MetersLineLeft -= sizeCollideMyCar.x / 2;
+                if (MetersLineLeft < 0)
+                    MetersLineLeft = 0;
+                Debug.Log($"MetersLineRight: {MetersLineRight} MetersLineLeft: {MetersLineLeft}", gameObject);
             }
         }
 
@@ -147,7 +147,11 @@ namespace MicrobytKonami.LazyWheels.Controllers
             if (collision.gameObject.layer == idGrassLayer)
                 isInGrass = false;
             else if (collision.gameObject.layer == idLane)
+            {
                 lane = null;
+                MetersLineRight = 0;
+                MetersLineLeft = 0;
+            }
         }
 
         private void OnCollisionEnter2D(Collision2D collision)

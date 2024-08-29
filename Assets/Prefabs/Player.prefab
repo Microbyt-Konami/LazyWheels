@@ -103,6 +103,10 @@ MonoBehaviour:
   speedUp: 15
   speedRotation: 18
   lane: {fileID: 0}
+  <MetersLineRight>k__BackingField: 0
+  <MetersLineLeft>k__BackingField: 0
+  boxColliderMyCar: {fileID: 4021077178831575716}
+  sizeCollideMyCar: {x: 0, y: 0}
   isMoving: 1
 --- !u!114 &2653063284879563147
 MonoBehaviour:

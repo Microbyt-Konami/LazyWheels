@@ -93,10 +93,13 @@ MonoBehaviour:
   myTransform: {fileID: 458946168539516486}
   raysTransform: {fileID: 5063150265539281377}
   boxCollider2D: {fileID: 5745146139681748233}
+  lineLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  <DistanceCollision>k__BackingField: -1
   boxCollideColor: {r: 0, g: 1, b: 0, a: 1}
   goCollision: {fileID: 0}
   positionCollision: {x: 0, y: 0}
-  <distanceCollision>k__BackingField: -1
   direction: {x: 0, y: -1}
   midSize: 4
   size: 8
@@ -193,10 +196,13 @@ MonoBehaviour:
   myTransform: {fileID: 576062089712888577}
   raysTransform: {fileID: 5063150265539281377}
   boxCollider2D: {fileID: 4819053257606889949}
+  lineLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  <DistanceCollision>k__BackingField: -1
   boxCollideColor: {r: 1, g: 0, b: 0, a: 1}
   goCollision: {fileID: 0}
   positionCollision: {x: 0, y: 0}
-  <distanceCollision>k__BackingField: -1
   direction: {x: 0, y: 1}
   midSize: 4
   size: 8
@@ -211,6 +217,7 @@ GameObject:
   - component: {fileID: 384758607127703327}
   - component: {fileID: 5165904036788029661}
   - component: {fileID: 9047977616354302049}
+  - component: {fileID: 2308677827387935895}
   m_Layer: 2
   m_Name: RayRightPoint
   m_TagString: Untagged
@@ -293,13 +300,32 @@ MonoBehaviour:
   myTransform: {fileID: 384758607127703327}
   raysTransform: {fileID: 5063150265539281377}
   boxCollider2D: {fileID: 5165904036788029661}
+  lineLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  <DistanceCollision>k__BackingField: -1
   boxCollideColor: {r: 0, g: 0, b: 1, a: 1}
   goCollision: {fileID: 0}
   positionCollision: {x: 0, y: 0}
-  <distanceCollision>k__BackingField: -1
   direction: {x: 1, y: 0}
   midSize: 2
   size: 4
+--- !u!114 &2308677827387935895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4440022978241202580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b304d9fb03884d747af43d722e4f66f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  <MetersLine>k__BackingField: -1
 --- !u!1 &4653699554902003972
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,6 +337,7 @@ GameObject:
   - component: {fileID: 2709959401762299057}
   - component: {fileID: 3956612979294571147}
   - component: {fileID: 2354005518744810327}
+  - component: {fileID: 4126831937964105287}
   m_Layer: 2
   m_Name: RayLeftPoint
   m_TagString: Untagged
@@ -393,13 +420,32 @@ MonoBehaviour:
   myTransform: {fileID: 2709959401762299057}
   raysTransform: {fileID: 5063150265539281377}
   boxCollider2D: {fileID: 3956612979294571147}
+  lineLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  <DistanceCollision>k__BackingField: -1
   boxCollideColor: {r: 1, g: 1, b: 0, a: 1}
   goCollision: {fileID: 0}
   positionCollision: {x: 0, y: 0}
-  <distanceCollision>k__BackingField: -1
   direction: {x: -1, y: 0}
   midSize: 2
   size: 4
+--- !u!114 &4126831937964105287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4653699554902003972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b304d9fb03884d747af43d722e4f66f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  <MetersLine>k__BackingField: -1
 --- !u!1 &7167515785870823080
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,3 +498,5 @@ MonoBehaviour:
   rayDown: {fileID: 9047977616354302049}
   rayLeft: {fileID: 2354005518744810327}
   rayRight: {fileID: 1111415833290586869}
+  rayLineLeft: {fileID: 4126831937964105287}
+  rayLineRight: {fileID: 2308677827387935895}
