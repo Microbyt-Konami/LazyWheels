@@ -10,16 +10,18 @@ namespace MicrobytKonami.LazyWheels.Controllers
     public class PlayerController : MonoBehaviour
     {
         // Components
+        private Transform myTransform;
         private CarController carController;
         private InputActions inputActions;
 
-        public void Explode()
+        public void Die()
         {
-
+            myTransform.position -= myTransform.position.x * Vector3.right;
         }
 
         private void Awake()
         {
+            myTransform = GetComponent<Transform>();
             carController = GetComponent<CarController>();
             inputActions = new InputActions();
             //inputActions.Player.Move.performed += ctx => carController.Mover(ctx.ReadValue<float>());

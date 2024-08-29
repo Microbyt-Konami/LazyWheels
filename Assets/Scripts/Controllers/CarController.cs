@@ -15,11 +15,14 @@ namespace MicrobytKonami.LazyWheels.Controllers
         [SerializeField] private BoxCollider2D boxColliderMyCar;
         [SerializeField] private float speedUp = 1;
         [SerializeField] private float speedRotation = 1;
+        [field: SerializeField] public GameObject MyCar { get; private set; }
+        [SerializeField] private CarExplode carExplode;
 
         // Components
         private Rigidbody2D rb;
         private BoxCollider2D collide;
         private Transform myTransform;
+        private SpriteRenderer carSprite;
         [field: SerializeField, Header("Debug")] public LineController Line { get; private set; }
 
         // Variables        
@@ -41,15 +44,30 @@ namespace MicrobytKonami.LazyWheels.Controllers
             set => isMoving = value;
         }
 
+        public Vector2 Size => boxColliderMyCar.size;
+
         public void Mover(float inputX)
         {
             this.inputX = inputX;
         }
 
         public void SetParent(Transform parent) => myTransform.parent = parent;
+
         public Vector2 GetRay(float seconds) => seconds * raySpeed;
 
-        public Vector2 Size => boxColliderMyCar.size;
+        public void CarFade(float alpha)
+        {
+            var color = carSprite.color;
+
+            color.a = alpha;
+            carSprite.color = color;
+        }
+
+        public void StartCarFade(float time)
+        {
+            StartCoroutine(CarFadeCoroutine(time));
+        }
+
 
         private void OnDisable()
         {
@@ -65,6 +83,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
             idObstacle = LayerMask.NameToLayer("Obstacle");
             idCar = LayerMask.NameToLayer("Car");
             idLane = LayerMask.NameToLayer("Lane");
+            carSprite = MyCar.GetComponent<SpriteRenderer>();
             sizeCollideMyCar = boxColliderMyCar.size;
             CalcRaySpeed();
         }
@@ -167,6 +186,8 @@ namespace MicrobytKonami.LazyWheels.Controllers
             print($"Explode {name}");
             inputX = 0;
             rb.velocity = Vector2.zero;
+            carExplode.Explode(this);
+            /*
             // no forma no correcta es para chequear el choque
             if (gameObject.CompareTag("Player"))
             {
@@ -175,6 +196,21 @@ namespace MicrobytKonami.LazyWheels.Controllers
             }
             else
                 Destroy(gameObject);
+                */
+        }
+
+        private IEnumerator CarFadeCoroutine(float time)
+        {
+            var t = time;
+
+            while (t > 0)
+            {
+                t -= Time.deltaTime;
+
+                CarFade(t / time);
+
+                yield return null;
+            }
         }
     }
 }
