@@ -96,6 +96,11 @@ namespace MicrobytKonami.LazyWheels.Controllers
             yBottom = _yBottom;
         }
 
+        public void ChangeParentToThisBlockCarsIAs(CarController carIA)
+        {
+            carIA.SetParent(transformCarIAs);
+        }
+
         private void ShowAndMoveCarsIAs(ICollection<CarIAController> carIAs)
         {
             if (carIAs != null)
@@ -136,8 +141,13 @@ namespace MicrobytKonami.LazyWheels.Controllers
         {
             for (; ; )
             {
-                if (carsIAs.Count == 0 && Camera.main.transform.position.y > yOld)
+                if (Camera.main.transform.position.y > yOld)
+                {
                     Destroy(gameObject);
+                    
+                    yield break;
+                }
+
                 yield return null;
             }
         }

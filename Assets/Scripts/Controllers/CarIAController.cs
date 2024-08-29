@@ -79,6 +79,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
                     if (blockNext != null)
                     {
                         blockController.RemoveCarIA(this);
+                        blockNext.ChangeParentToThisBlockCarsIAs(carController);
                         blockNext.AddCarIA(this);
                         blockController = blockNext;
                     }

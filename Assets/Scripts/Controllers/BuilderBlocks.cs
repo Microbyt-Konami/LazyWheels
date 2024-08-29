@@ -59,14 +59,18 @@ namespace MicrobytKonami.LazyWheels.Controllers
 
             //var block = transformBlocks.GetChild(0).GetComponent<BlockController>();
             var block = block1;
+            
             block.SetUp();
             SetYToCreateBlock(block);
             SetCurrentBlock(block);
 
             block = block0;
 
-            block.SetUp();
-            SetOldBlock(block);
+            if (block is not null)
+            {
+                block.SetUp();
+                SetOldBlock(block);
+            }
             if (block0 != null)
                 blocksRunning.Add(block0);
             if (block1 != null)

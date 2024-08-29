@@ -74,7 +74,7 @@ namespace MicrobytKonami.LazyWheels
                 Gizmos.DrawWireSphere(position2 - direction * midSize, midSize / 8);
             }
             if (DistanceCollision >= 0)
-                Gizmos.DrawSphere(positionCollision, 1);
+                Gizmos.DrawSphere(positionCollision, 1f);
         }
 
         void OnValidate()
