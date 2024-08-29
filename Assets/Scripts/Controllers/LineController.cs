@@ -7,7 +7,8 @@ namespace MicrobytKonami.LazyWheels
     [RequireComponent(typeof(BoxCollider2D))]
     public class LineController : MonoBehaviour
     {
-        // Fields
+        [Header("Settings")]
+        [SerializeField] private bool isRight;
         [SerializeField] private LineController lineRight;
         [SerializeField] private LineController lineLeft;
 
