@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 2653063284879563147}
   - component: {fileID: 4021077178831575716}
   - component: {fileID: 8609190393165932673}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,12 +100,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bf448923bac9b4479e64f25d4e0bc47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedMax: 55.555557
-  speedLow: 8.333333
-  forceMotor: 15000
-  speed: 0
-  speedKm_h: 0
-  speedMove: 0
+  speedUp: 15
+  speedRotation: 18
+  lane: {fileID: 0}
+  <MetersLineRight>k__BackingField: 0
+  <MetersLineLeft>k__BackingField: 0
+  boxColliderMyCar: {fileID: 4021077178831575716}
+  sizeCollideMyCar: {x: 0, y: 0}
+  isMoving: 1
 --- !u!114 &2653063284879563147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,7 +120,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0d16f48c0898aa41b796460221d3fda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isIPedal: 0
 --- !u!61 &4021077178831575716
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -187,7 +188,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4

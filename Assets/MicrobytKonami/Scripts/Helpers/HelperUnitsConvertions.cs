@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using UnityEngine;
 
-namespace MicrobytKonami.LazyWheels.Helpers
+namespace MicrobytKonami.Helpers
 {
     public static class HelperUnitsConvertions
     {

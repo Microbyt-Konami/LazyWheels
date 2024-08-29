@@ -1,86 +1,78 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-
 using UnityEngine;
-
-using MicrobytKonami.LazyWheels.Helpers;
+using MicrobytKonami.Helpers;
+using System.Runtime.InteropServices;
+//using UnityEngine.Serialization;
 
 namespace MicrobytKonami.LazyWheels.Controllers
 {
+    [RequireComponent(typeof(Rigidbody2D))]
     public class CarController : MonoBehaviour
     {
-        // Fields
-        [SerializeField] private float speedMax = HelperUnitsConvertions.KmHToMS(200f);
-        [SerializeField] private float speedLow = HelperUnitsConvertions.KmHToMS(30);
-        [SerializeField] private float forceMotor = 1;
+        [Header("Settings")]
+        [SerializeField] private BoxCollider2D boxColliderMyCar;
+        [SerializeField] private float speedUp = 1;
+        [SerializeField] private float speedRotation = 1;
 
         // Components
         private Rigidbody2D rb;
+        private BoxCollider2D collide;
+        private Transform myTransform;
+        [field: SerializeField, Header("Debug")] public LineController Line { get; private set; }
 
-        // Variables
-        private bool isInput, isLockAccelerate, isInGrass;
-        private float inputX, inputY;
-        [SerializeField] private float speed;
-        [SerializeField] private float speedKm_h;
-        [SerializeField] private float speedMove;
-        private float oldInputY;
+        // Variables        
+        private bool isLockAccelerate, isInGrass;
+        private Vector2 raySpeed, velocity;
+        [SerializeField] private Vector2 sizeCollideMyCar;
+
+        //[FormerlySerializedAs("isStop")]
+        [SerializeField] private bool isMoving;
+
+        private float inputX, inputOld;
 
         // Ids
-        private int idGrassLayer, idObstacle;
+        private int idGrassLayer, idObstacle, idCar, idLane;
+
+        public bool IsMoving
+        {
+            get => isMoving;
+            set => isMoving = value;
+        }
 
         public void Mover(float inputX)
         {
-            isInput = true;
             this.inputX = inputX;
         }
 
-        public void Acceleration(float inputY)
+        public void SetParent(Transform parent) => myTransform.parent = parent;
+        public Vector2 GetRay(float seconds) => seconds * raySpeed;
+
+        public Vector2 Size => boxColliderMyCar.size;
+
+        private void OnDisable()
         {
-            if (isLockAccelerate && inputY > 0)
-                return;
-
-            isInput = true;
-            oldInputY = this.inputY;
-            this.inputY = inputY;
-            /*
-            speedKm_h += acceleration;
-            speed += HelperUnitsConvertions.KmHToMS(acceleration);
-            if (speed < 0)
-                speedKm_h = speed = 0;
-            if (speed > speedMax)
-            {
-                speed = speedMax;
-                speedKm_h = HelperUnitsConvertions.MSToKmH(speed);
-            }
-            speedMove = speed <= speedLow ? speed : speed / speedLow;
-            */
-        }
-
-        public void IAcceleration(float inputY)
-        {
-            if (isLockAccelerate && inputY > 0)
-                return;
-
-            var _oldInputY = oldInputY;
-
-            oldInputY = this.inputY;
-            isInput = true;
-
-            this.inputY =
-                inputY == 0 && _oldInputY == 0
-                    ? -1
-                    : _oldInputY <= inputY
-                        ? inputY
-                        : inputY - 1;
+            Debug.Log($"{gameObject.name} disable", gameObject);
         }
 
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
+            collide = GetComponent<BoxCollider2D>();
+            myTransform = GetComponent<Transform>();
             idGrassLayer = LayerMask.NameToLayer("Grass");
             idObstacle = LayerMask.NameToLayer("Obstacle");
-            isInput = false;
-            speed = speedKm_h = speedMove = 0;
+            idCar = LayerMask.NameToLayer("Car");
+            idLane = LayerMask.NameToLayer("Lane");
+            sizeCollideMyCar = boxColliderMyCar.size;
+            CalcRaySpeed();
+        }
+
+        private void CalcRaySpeed()
+        {
+            raySpeed = new Vector2(speedRotation, speedUp);
+            //velocity =
         }
 
         // Start is called before the first frame update
@@ -90,76 +82,42 @@ namespace MicrobytKonami.LazyWheels.Controllers
         //}
 
         // Update is called once per frame
-        //void Update()
-        //{
+        void Update()
+        {
+            CalcRaySpeedIfChangeValues();
+        }
 
-        //}
+        private void CalcRaySpeedIfChangeValues()
+        {
+            if (raySpeed.x != speedRotation || raySpeed.y != speedUp)
+                CalcRaySpeed();
+        }
 
         private void FixedUpdate()
         {
-            //rb.velocity = speed * (Vector2.up + inputX * Vector2.right);
-            //rb.velocity = new Vector2(speedMove * inputX, speed);
-            DeacelerateGrass();
-            AccelerateAndMove();
-        }
-
-        private void AccelerateAndMove()
-        {
-            if (isInput)
+            if (isMoving)
             {
-                if (speed <= 0 && inputY < 0)
+                //rb.velocity = speed * (Vector2.up + inputX * Vector2.right);
+                //rb.velocity = new Vector2(speedMove * inputX, speed);
+
+                float _speedRotation;
+                float _speedUp;
+
+                if (isInGrass)
                 {
-                    isLockAccelerate = false;
-                    speed = 0;
-                    ResetInputY();
+                    _speedUp = speedUp / 2f;
+                    _speedRotation = speedRotation / 2f;
+                    isInGrass = false;
+                    CalcRaySpeed();
                 }
                 else
                 {
-                    rb.AddForce(new Vector2(0, inputY * forceMotor));
-                    speed = rb.velocity.y;
-                    if (speed < 0)
-                    {
-                        isLockAccelerate = false;
-                        speed = 0;
-                        ResetInputY();
-                    }
-                    else if (speed > speedMax)
-                    {
-                        isLockAccelerate = true;
-                        speed = speedMax;
-                        ResetInputY();
-                    }
-                    else
-                        isLockAccelerate = false;
-
+                    _speedUp = speedUp;
+                    _speedRotation = speedRotation;
                 }
-                speedMove = speed <= speedLow ? speed : speed / speedLow;
-                rb.velocity = new Vector2(speedMove * inputX, speed);
-                speedKm_h = HelperUnitsConvertions.MSToKmH(speed);
-                isInput = false;
+
+                rb.velocity = new Vector2(inputX * _speedRotation, _speedUp);
             }
-        }
-
-        private void DeacelerateGrass()
-        {
-            if (isInGrass)
-            {
-                if (speed > speedLow)
-                {
-                    var gameController = GameController.Instance;
-
-                    oldInputY = inputY;
-                    inputX = -gameController.InputXDeacelerateGrass;
-                    inputY = -gameController.InputYDeacelerateGrass;
-                    isInput = true;
-                }
-            }
-        }
-
-        private void ResetInputY()
-        {
-            rb.AddForce(Vector2.zero);
-            oldInputY = inputY = 0;
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -167,20 +125,56 @@ namespace MicrobytKonami.LazyWheels.Controllers
             if (collision.gameObject.layer == idGrassLayer)
                 isInGrass = true;
             else if (collision.gameObject.layer == idObstacle)
-            {
-                inputX = 0;
-                speed = speedMove = speedKm_h = 0;
-                rb.velocity = Vector2.zero;
-                ResetInputY();
-                // no forma no correcta es para chequear el choque
-                transform.position -= transform.position.x * Vector3.right;
-            }
+                Explode();
+            else if (collision.gameObject.layer == idLane)
+                Line = collision.gameObject.GetComponent<LineController>();
         }
 
         private void OnTriggerExit2D(Collider2D collision)
         {
             if (collision.gameObject.layer == idGrassLayer)
                 isInGrass = false;
+            else if (collision.gameObject.layer == idLane)
+                Line = null;
+        }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.gameObject.layer == idCar)
+            {
+                // De momento explotan los 2 coches.
+                // Lo que se quedrá hacer es que explote el menos grande si hay un camión
+                Explode();
+                collision.gameObject.GetComponent<CarController>().Explode();
+            }
+        }
+
+        //private void OnDrawGizmos()
+        //{
+        //    if (myTransform != null && collide != null)
+        //    {
+        //        var v1 = myTransform.position + (collide.bounds.size.y / 2) * Vector3.up;
+        //        // calcular distancia segun velocidad
+        //        var v2 = v1 + 10 * Vector3.up;
+
+        //        Gizmos.color = Color.yellow;
+        //        Gizmos.DrawLine(v1, v2);
+        //    }
+        //}
+
+        private void Explode()
+        {
+            print($"Explode {name}");
+            inputX = 0;
+            rb.velocity = Vector2.zero;
+            // no forma no correcta es para chequear el choque
+            if (gameObject.CompareTag("Player"))
+            {
+                transform.position -= transform.position.x * Vector3.right;
+                gameObject.GetComponent<PlayerController>().Explode();
+            }
+            else
+                Destroy(gameObject);
         }
     }
 }

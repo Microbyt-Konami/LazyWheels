@@ -1,19 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 using MicrobytKonami.LazyWheels.Input;
 
 namespace MicrobytKonami.LazyWheels.Controllers
 {
+    [RequireComponent(typeof(CarController))]
     public class PlayerController : MonoBehaviour
     {
-        // Fields
-        [SerializeField] private bool isIPedal;
-
         // Components
         private CarController carController;
         private InputActions inputActions;
+
+        public void Explode()
+        {
+
+        }
 
         private void Awake()
         {
@@ -33,19 +36,30 @@ namespace MicrobytKonami.LazyWheels.Controllers
         }
 
         // Start is called before the first frame update
-        //void Start()
-        //{
-
-        //}
+        void Start()
+        {
+            print($"supportsAccelerometer {SystemInfo.supportsAccelerometer}");
+            print($"Gamepad.current: {Gamepad.current != null}");
+            print($"isMobilePlatform: {Application.isMobilePlatform}");
+            //Gamepad.current
+#if UNITY_ANDROID
+            print("UNITY_ANDROID");
+#endif
+        }
 
         // Update is called once per frame
         void Update()
         {
-            carController.Mover(inputActions.Player.Move.ReadValue<float>());
-            if (isIPedal)
-                carController.IAcceleration(inputActions.Player.iAcceleration.ReadValue<float>());
-            else
-                carController.Acceleration(inputActions.Player.Acceleration.ReadValue<float>());
+#if UNITY_WEBGL || UNITY_ANDROID || UNITY_IOS
+            //print($"acceleration: {Accelerometer.current?.acceleration?.x?.ReadValue()} {Accelerometer.current?.acceleration?.y.ReadValue()} {Accelerometer.current?.acceleration?.z.ReadValue()}");
+            //print($"acceleration: {UnityEngine.Input.acceleration.x} {UnityEngine.Input.acceleration.y} {UnityEngine.Input.acceleration.z}");
+#endif
+            float inputX = inputActions.Player.Move.ReadValue<float>();
+
+            if (Gamepad.current == null)
+                if (inputX == 0 && ApplicationEx.supportsAccelerometer)
+                    inputX = inputActions.Player.MoveAcceleration.ReadValue<Vector3>().x;
+            carController.Mover(inputX);
         }
 
         //private void OnTriggerEnter2D(Collider2D collision)

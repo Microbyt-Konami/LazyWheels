@@ -8,16 +8,24 @@ namespace MicrobytKonami.LazyWheels.Controllers
 {
     public class GameController : MonoBehaviourSingleton<GameController>
     {
-        [SerializeField] private float inputYDeacelerateGrass;
-        [SerializeField] private float inputXDeacelerateGrass;
+        private BuilderBlocks builderBlocks;
 
-        public float InputYDeacelerateGrass => inputYDeacelerateGrass;
-        public float InputXDeacelerateGrass => inputXDeacelerateGrass;
+        public BlockController FindBlockInY(float y) => builderBlocks.FindBlockInY(y);
+
+        public void LoadCarIAs(ICollection<CarIAController> carsIA)
+        {
+        }
+
+        public void MoveCarIA(CarIAController carIA)
+        {
+
+        }
+
         // Start is called before the first frame update
-        //void Start()
-        //{
-
-        //}
+        void Start()
+        {
+            builderBlocks = GameObject.FindObjectOfType<BuilderBlocks>();
+        }
 
         // Update is called once per frame
         //void Update()
