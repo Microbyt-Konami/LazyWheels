@@ -93,9 +93,6 @@ MonoBehaviour:
   myTransform: {fileID: 458946168539516486}
   raysTransform: {fileID: 5063150265539281377}
   boxCollider2D: {fileID: 5745146139681748233}
-  lineLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
   <DistanceCollision>k__BackingField: -1
   boxCollideColor: {r: 0, g: 1, b: 0, a: 1}
   goCollision: {fileID: 0}
@@ -196,9 +193,6 @@ MonoBehaviour:
   myTransform: {fileID: 576062089712888577}
   raysTransform: {fileID: 5063150265539281377}
   boxCollider2D: {fileID: 4819053257606889949}
-  lineLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
   <DistanceCollision>k__BackingField: -1
   boxCollideColor: {r: 1, g: 0, b: 0, a: 1}
   goCollision: {fileID: 0}
@@ -300,9 +294,6 @@ MonoBehaviour:
   myTransform: {fileID: 384758607127703327}
   raysTransform: {fileID: 5063150265539281377}
   boxCollider2D: {fileID: 5165904036788029661}
-  lineLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
   <DistanceCollision>k__BackingField: -1
   boxCollideColor: {r: 0, g: 0, b: 1, a: 1}
   goCollision: {fileID: 0}
@@ -322,6 +313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b304d9fb03884d747af43d722e4f66f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isRight: 1
   layerMask:
     serializedVersion: 2
     m_Bits: 256
@@ -420,9 +412,6 @@ MonoBehaviour:
   myTransform: {fileID: 2709959401762299057}
   raysTransform: {fileID: 5063150265539281377}
   boxCollider2D: {fileID: 3956612979294571147}
-  lineLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
   <DistanceCollision>k__BackingField: -1
   boxCollideColor: {r: 1, g: 1, b: 0, a: 1}
   goCollision: {fileID: 0}
@@ -442,6 +431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b304d9fb03884d747af43d722e4f66f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isRight: 0
   layerMask:
     serializedVersion: 2
     m_Bits: 256
@@ -494,9 +484,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef3fec2e09aa1c64aae42b7776d4ae73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rayUp: {fileID: 6377037250718949963}
-  rayDown: {fileID: 9047977616354302049}
-  rayLeft: {fileID: 2354005518744810327}
-  rayRight: {fileID: 1111415833290586869}
-  rayLineLeft: {fileID: 4126831937964105287}
-  rayLineRight: {fileID: 2308677827387935895}
+  <RayUp>k__BackingField: {fileID: 6377037250718949963}
+  <RayDown>k__BackingField: {fileID: 1111415833290586869}
+  <RayLeft>k__BackingField: {fileID: 2354005518744810327}
+  <RayRight>k__BackingField: {fileID: 9047977616354302049}
+  <RayLineLeft>k__BackingField: {fileID: 4126831937964105287}
+  <RayLineRight>k__BackingField: {fileID: 2308677827387935895}

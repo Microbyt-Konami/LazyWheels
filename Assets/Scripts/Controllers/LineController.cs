@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 
 namespace MicrobytKonami.LazyWheels
@@ -14,10 +15,44 @@ namespace MicrobytKonami.LazyWheels
 
         private BoxCollider2D boxCollider2D;
 
-        void Awake()
+        public float MetersWith { get; private set; }
+
+        public LineController GetLineLastRight()
         {
-            boxCollider2D = GetComponent<BoxCollider2D>();
+            var line = this;
+            LineController lineRet;
+
+            do
+            {
+                lineRet = line;
+                line = line.lineRight;
+            } while (line is not null);
+
+            return line;
         }
+
+        public LineController GetLineLastLeft()
+        {
+            var line = this;
+            LineController lineRet;
+
+            do
+            {
+                lineRet = line;
+                line = line.lineLeft;
+            } while (line is not null);
+
+            return line;
+        }
+
+        public float Distance(float x)
+        {
+            var bounds = boxCollider2D.bounds;
+
+            return (x >= bounds.min.x && x <= bounds.max.x) ? bounds.max.x - x : 0;
+        }
+
+        public float Center(float width) => (MetersWith - width) / 2f;
 
         public float CalcMetersRight()
         {
@@ -77,16 +112,10 @@ namespace MicrobytKonami.LazyWheels
             return meters;
         }
 
-        // Start is called before the first frame update
-        //void Start()
-        //{
-
-        //}
-
-        // Update is called once per frame
-        //void Update()
-        //{
-
-        //}
+        void Awake()
+        {
+            boxCollider2D = GetComponent<BoxCollider2D>();
+            MetersWith = boxCollider2D.size.x;
+        }
     }
 }

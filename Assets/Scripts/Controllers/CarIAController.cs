@@ -8,7 +8,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
     [RequireComponent(typeof(CarController))]
     public class CarIAController : MonoBehaviour
     {
-        // Fields
+        [Header("Settings")]
         [SerializeField] private bool alwaysLeft = true;
 
         //Components
@@ -56,14 +56,15 @@ namespace MicrobytKonami.LazyWheels.Controllers
             if (IsMoving)
             {
                 ChangeBlockCurrent();
-                Move();
+                //Move();
             }
         }
 
-        // void FixedUpdate()
-        // {
-
-        // }
+        void FixedUpdate()
+        {
+            if (IsMoving)
+                Move();
+        }
 
         private void ChangeBlockCurrent()
         {
@@ -87,38 +88,87 @@ namespace MicrobytKonami.LazyWheels.Controllers
 
         private void Move()
         {
-            var ray = carController.GetRay(3 * Time.deltaTime);
+            var ray = carController.GetRay(Time.deltaTime * 2);
+            var distanceLeft = rays.RayLeft.DistanceCollision;
+            var distanceRight = rays.RayRight.DistanceCollision;
 
-            // if (distCarCastUp < ray.y || distCarCastUp < ray.y)
-            // {
-            //     if (distCarCastLeft < distCarCastRight)
-            //         MoveRight();
-            //     else
-            //         MoveLeft();
-            // }
-            // else if (distCarCastLeft < ray.x)
-            // {
-            //     if (distCarCastLeft < DistCarCastRight)
-            //         MoveRight();
-            //     else
-            //         MoveLeft();
-            // }
-            // else if (distCarCastRight < ray.x)
-            // {
-            //     if (distCarCastRight < distCarCastLeft)
-            //         MoveLeft();
-            //     else
-            //         MoveRight();
-            // }
+            if (distanceLeft >= 0 && rays.RayLineLeft.MetersLine >= 0 && rays.RayLineLeft.MetersLine < distanceLeft)
+                distanceLeft = rays.RayLineLeft.MetersLine;
+            if (distanceRight >= 0 && rays.RayLineRight.MetersLine >= 0 && rays.RayLineRight.MetersLine < distanceRight)
+                distanceRight = rays.RayLineRight.MetersLine;
+
+            var canMoveLeft = distanceLeft >= 0 && distanceLeft >= ray.x;
+            var canMoveRight = distanceRight >= 0 && distanceRight >= ray.x;
+            var distLeftBig = distanceLeft >= 0 && (distanceRight < 0 || distanceLeft >= distanceRight);
+
+            if (rays.RayUp.DistanceCollision >= 0 && rays.RayUp.DistanceCollision <= ray.y)
+            {
+                if (distLeftBig && canMoveLeft)
+                {
+                    MoveLeft();
+
+                    return;
+                }
+                else if (canMoveRight)
+                {
+                    MoveRight();
+
+                    return;
+                }
+                else if (canMoveLeft)
+                {
+                    MoveLeft();
+
+                    return;
+                }
+
+                if (distanceLeft >= 0 && distanceLeft < ray.x)
+                {
+                    if (canMoveRight)
+                    {
+                        MoveRight();
+
+                        return;
+                    }
+                }
+
+                if (distanceRight >= 0 && distanceRight < ray.x)
+                {
+                    if (canMoveLeft)
+                    {
+                        MoveLeft();
+
+                        return;
+                    }
+                }
+
+                if (alwaysLeft)
+                {
+                    if (canMoveRight)
+                    {
+                        if (carController.Line != null)
+                        {
+                            if (rays.RayLineRight.MetersLine > carController.Line.GetLineLastRight().Center(carController.Size.x))
+                            {
+                                MoveRight();
+
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+
+            carController.Mover(0);
 
             void MoveRight()
             {
-                carController.Mover(-ray.x);
+                carController.Mover(ray.x);
             }
 
             void MoveLeft()
             {
-                carController.Mover(ray.x);
+                carController.Mover(-ray.x);
             }
         }
     }

@@ -205,12 +205,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bf448923bac9b4479e64f25d4e0bc47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedUp: 16
-  speedRotation: 18
+  boxColliderMyCar: {fileID: 6907739478566971432}
+  speedUp: 12
+  speedRotation: 14
   lane: {fileID: 0}
   <MetersLineRight>k__BackingField: 0
   <MetersLineLeft>k__BackingField: 0
-  boxColliderMyCar: {fileID: 6907739478566971432}
   sizeCollideMyCar: {x: 0, y: 0}
   isMoving: 0
 --- !u!114 &5811631631958142135
@@ -227,7 +227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alwaysLeft: 1
   blockController: {fileID: 0}
-  rays: {fileID: 0}
+  rays: {fileID: 6153051905452481096}
   myCar: {fileID: 421745897417169412}
   direction: 0
 --- !u!1001 &3282631209375634837
@@ -339,6 +339,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
+--- !u!114 &6153051905452481096 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8712837635849785309, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
+  m_PrefabInstance: {fileID: 3282631209375634837}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef3fec2e09aa1c64aae42b7776d4ae73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7768097918801073268 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5063150265539281377, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}

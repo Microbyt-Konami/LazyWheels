@@ -11,6 +11,7 @@ namespace MicrobytKonami.LazyWheels
         private RayTrigger rayTrigger;
 
         [Header("Settings")]
+        [SerializeField] private bool isRight;
         [SerializeField] private LayerMask layerMask;
         [field: SerializeField, Header("Result")] public float MetersLine { get; private set; } = -1f;
 
@@ -28,7 +29,7 @@ namespace MicrobytKonami.LazyWheels
                 var line = hit.collider.gameObject.GetComponent<LineController>();
 
                 if (line is not null)
-                    MetersLine = line.CalcMetersLinesLeft(hit.point);
+                    MetersLine = isRight ? line.CalcMetersLinesRight(hit.point) : line.CalcMetersLinesLeft(hit.point);
             }
             else
                 MetersLine = -1f;

@@ -20,13 +20,11 @@ namespace MicrobytKonami.LazyWheels.Controllers
         private Rigidbody2D rb;
         private BoxCollider2D collide;
         private Transform myTransform;
-        [Header("Components"), SerializeField] private LineController lane;
+        [field: SerializeField, Header("Debug")] public LineController Line { get; private set; }
 
         // Variables        
         private bool isLockAccelerate, isInGrass;
         private Vector2 raySpeed, velocity;
-        [field: SerializeField, Header("Variables")] public float MetersLineRight { get; private set; }
-        [field: SerializeField] public float MetersLineLeft { get; private set; }
         [SerializeField] private Vector2 sizeCollideMyCar;
 
         //[FormerlySerializedAs("isStop")]
@@ -50,6 +48,8 @@ namespace MicrobytKonami.LazyWheels.Controllers
 
         public void SetParent(Transform parent) => myTransform.parent = parent;
         public Vector2 GetRay(float seconds) => seconds * raySpeed;
+
+        public Vector2 Size => boxColliderMyCar.size;
 
         private void OnDisable()
         {
@@ -127,19 +127,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
             else if (collision.gameObject.layer == idObstacle)
                 Explode();
             else if (collision.gameObject.layer == idLane)
-            {
-                lane = collision.gameObject.GetComponent<LineController>();
-                MetersLineRight = lane.CalcMetersLinesRight(myTransform.position);
-                MetersLineLeft = lane.CalcMetersLinesLeft(myTransform.position);
-
-                MetersLineRight -= sizeCollideMyCar.x / 2;
-                if (MetersLineRight < 0)
-                    MetersLineRight = 0;
-                MetersLineLeft -= sizeCollideMyCar.x / 2;
-                if (MetersLineLeft < 0)
-                    MetersLineLeft = 0;
-                Debug.Log($"MetersLineRight: {MetersLineRight} MetersLineLeft: {MetersLineLeft}", gameObject);
-            }
+                Line = collision.gameObject.GetComponent<LineController>();
         }
 
         private void OnTriggerExit2D(Collider2D collision)
@@ -147,11 +135,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
             if (collision.gameObject.layer == idGrassLayer)
                 isInGrass = false;
             else if (collision.gameObject.layer == idLane)
-            {
-                lane = null;
-                MetersLineRight = 0;
-                MetersLineLeft = 0;
-            }
+                Line = null;
         }
 
         private void OnCollisionEnter2D(Collision2D collision)

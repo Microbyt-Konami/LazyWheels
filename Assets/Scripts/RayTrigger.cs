@@ -10,7 +10,6 @@ namespace MicrobytKonami.LazyWheels
         [SerializeField] private Transform myTransform = null;
         [SerializeField] private Transform raysTransform;
         [SerializeField] private BoxCollider2D boxCollider2D;
-        [SerializeField] private LayerMask lineLayerMask;
 
         [field: SerializeField, Tooltip("Distances Car Cast Right (<0 no cast)"), Header("Result")] public float DistanceCollision { get; private set; } = -1f;
 
