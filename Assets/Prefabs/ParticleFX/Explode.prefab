@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4476757687616105864}
   - component: {fileID: 557541080350653116}
   m_Layer: 0
-  m_Name: CarExplode
+  m_Name: Explode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
