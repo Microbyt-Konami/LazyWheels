@@ -17,6 +17,8 @@ namespace MicrobytKonami.LazyWheels.Controllers
         public void Die()
         {
             myTransform.position -= myTransform.position.x * Vector3.right;
+            carController.IsMoving = true;
+            StartMode();
         }
 
         private void Awake()
@@ -47,6 +49,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
 #if UNITY_ANDROID
             print("UNITY_ANDROID");
 #endif
+            StartMode();
         }
 
         // Update is called once per frame
@@ -73,5 +76,28 @@ namespace MicrobytKonami.LazyWheels.Controllers
         //{
         //    print($"OnCollisionEnter2D: {collision.gameObject.name}");
         //}
+
+        void StartMode()
+        {
+            StartCoroutine(StartModeCourotine());
+        }
+
+        IEnumerator StartModeCourotine()
+        {
+            Debug.Log("Start Mode");
+
+            float time = 3;
+            carController.BoxColliderCar.enabled = false;
+
+            carController.CarFade(1 / 4f);
+
+            yield return new WaitForSecondsRealtime(time);
+
+            carController.CarFade(1);
+
+            carController.BoxColliderCar.enabled = true;
+
+            Debug.Log("End Mode");
+        }
     }
 }
