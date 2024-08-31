@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using MicrobytKonami.LazyWheels.Input;
+using UnityEngine.InputSystem.XR;
 
 namespace MicrobytKonami.LazyWheels.Controllers
 {
@@ -18,6 +19,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
         {
             myTransform.position -= myTransform.position.x * Vector3.right;
             carController.IsMoving = true;
+            carController.Mover(0);
             StartMode();
         }
 
@@ -54,6 +56,12 @@ namespace MicrobytKonami.LazyWheels.Controllers
 
         // Update is called once per frame
         void Update()
+        {
+            if (carController.IsMoving && !carController.IsExploding)
+                Move();
+        }
+
+        private void Move()
         {
 #if UNITY_WEBGL || UNITY_ANDROID || UNITY_IOS
             //print($"acceleration: {Accelerometer.current?.acceleration?.x?.ReadValue()} {Accelerometer.current?.acceleration?.y.ReadValue()} {Accelerometer.current?.acceleration?.z.ReadValue()}");

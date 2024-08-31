@@ -59,7 +59,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
 
         void FixedUpdate()
         {
-            if (IsMoving)
+            if (IsMoving && !carController.IsExploding)
                 Move();
         }
 

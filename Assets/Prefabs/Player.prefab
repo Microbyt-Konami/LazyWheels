@@ -183,6 +183,7 @@ MonoBehaviour:
   speedRotation: 18
   <MyCar>k__BackingField: {fileID: 2281546508819993510}
   carExplode: {fileID: 6062995164842070947, guid: 845c4496dbdef164f87b4a705d8a3bc9, type: 3}
+  carFlame: {fileID: 0}
   <Line>k__BackingField: {fileID: 0}
   sizeCollideMyCar: {x: 0, y: 0}
   isMoving: 1
@@ -210,7 +211,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 500
+  m_Mass: 15000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0

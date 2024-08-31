@@ -34,6 +34,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
 
         //[FormerlySerializedAs("isStop")]
         [SerializeField] private bool isMoving;
+        [field: SerializeField] public bool IsExploding { get; private set; }
 
         private float inputX, inputOld;
 
@@ -49,6 +50,8 @@ namespace MicrobytKonami.LazyWheels.Controllers
         public BoxCollider2D BoxColliderCar => boxColliderMyCar;
 
         public Vector2 Size => boxColliderMyCar.size;
+
+        public float Weight => rb.mass;
 
         public void Mover(float inputX)
         {
@@ -72,6 +75,56 @@ namespace MicrobytKonami.LazyWheels.Controllers
             StartCoroutine(CarFadeCoroutine(time));
         }
 
+        public void Explode()
+        {
+            if (IsExploding)
+                return;
+
+            IsExploding = true;
+            print($"Explode {name}");
+            //IsMoving = false;
+            //inputX = 0;
+            rb.velocity = Vector2.zero;
+
+            CarFade(0);
+
+            var goExplode = Instantiate(carExplode, myTransform.position, Quaternion.identity, myTransform);
+            var explode = goExplode.GetComponent<CarExplode>();
+
+            explode.OnExplodeEnd.AddListener(ExplodeEnd);
+
+            //StartCarFade(explode.Duration, explode.Duration / 4);
+
+            //Destroy(gameObject);
+
+            //carExplode.Explode(this);
+            /*
+            // no forma no correcta es para chequear el choque
+            if (gameObject.CompareTag("Player"))
+            {
+                transform.position -= transform.position.x * Vector3.right;
+                gameObject.GetComponent<PlayerController>().Explode();
+            }
+            else
+                Destroy(gameObject);
+                */
+
+            void ExplodeEnd()
+            {
+                Debug.Log("ExplodeEnd");
+                //Debug.Break();
+
+                IsMoving = false;
+                IsExploding = false;
+                if (TryGetComponent<PlayerController>(out var player))
+                    player.Die();
+                else
+                {
+                    Instantiate(carFlame, myTransform.position, Quaternion.Euler(-90, 0, 0), GetComponentInParent<BlockController>()?.GetComponent<Transform>());
+                    Destroy(gameObject);
+                }
+            }
+        }
 
         private void OnDisable()
         {
@@ -166,8 +219,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
             {
                 // De momento explotan los 2 coches.
                 // Lo que se quedrá hacer es que explote el menos grande si hay un camión
-                Explode();
-                collision.gameObject.GetComponent<CarController>().Explode();
+                ExplodeCars(this, collision.gameObject.GetComponent<CarController>());
             }
         }
 
@@ -184,43 +236,17 @@ namespace MicrobytKonami.LazyWheels.Controllers
         //    }
         //}
 
-        private void Explode()
+        private void ExplodeCars(CarController car1, CarController car2)
         {
-            print($"Explode {name}");
-            IsMoving = false;
-            inputX = 0;
-            rb.velocity = Vector2.zero;
-
-            var goExplode = Instantiate(carExplode, myTransform.position, Quaternion.identity, myTransform);
-            var explode = goExplode.GetComponent<CarExplode>();
-
-            explode.OnExplodeEnd.AddListener(ExplodeEnd);
-
-            StartCarFade(explode.Duration, explode.Duration / 4);
-
-            //Destroy(gameObject);
-
-            //carExplode.Explode(this);
-            /*
-            // no forma no correcta es para chequear el choque
-            if (gameObject.CompareTag("Player"))
-            {
-                transform.position -= transform.position.x * Vector3.right;
-                gameObject.GetComponent<PlayerController>().Explode();
-            }
+            // Lo que se quedrá hacer es que explote el menos grande si hay un camión
+            if (car1.Weight > car2.Weight && car1.Weight / car2.Weight > 10)
+                car2.Explode();
+            else if (car2.Weight > car1.Weight && car2.Weight / car1.Weight > 10)
+                car1.Explode();
             else
-                Destroy(gameObject);
-                */
-
-            void ExplodeEnd()
             {
-                Debug.Log("ExplodeEnd");
-                //Debug.Break();
-
-                if (TryGetComponent<PlayerController>(out var player))
-                    player.Die();
-                else
-                    Instantiate(carFlame, myTransform.position, Quaternion.identity, myTransform);
+                car1.Explode();
+                car2.Explode();
             }
         }
 
