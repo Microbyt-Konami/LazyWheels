@@ -296,6 +296,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2653063284879563147, guid: 68b24f66146cdd44596a101142cbc57c, type: 3}
+      propertyPath: <EnergyStart>k__BackingField
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7630652376604778688, guid: 68b24f66146cdd44596a101142cbc57c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -705,6 +709,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 439656467180079800, guid: acff8cc41c129e3458f75a1c3cacd57b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2889689523174244424, guid: acff8cc41c129e3458f75a1c3cacd57b, type: 3}
       propertyPath: m_Name
       value: UIController

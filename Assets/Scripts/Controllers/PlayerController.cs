@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using MicrobytKonami.LazyWheels.Input;
 using UnityEngine.InputSystem.XR;
+using UnityEngine.Events;
 
 namespace MicrobytKonami.LazyWheels.Controllers
 {
@@ -38,6 +39,24 @@ namespace MicrobytKonami.LazyWheels.Controllers
             Debug.Log("PlayerNoFuel");
 
             GameController.Instance.GameOver();
+        }
+
+        public void ConsumEnergy(float energy)
+        {
+            Energy -= energy;
+            if (Energy <= 0)
+            {
+                // GameOver
+                Debug.Log("No energy");
+
+                IsMoving = false;
+                GameController.Instance.GameOver();
+            }
+        }
+
+        public void PowerUpEnery(float energy)
+        {
+            Energy += energy;
         }
 
         private void Awake()
@@ -76,7 +95,9 @@ namespace MicrobytKonami.LazyWheels.Controllers
         void Update()
         {
             if (carController.IsMoving && !carController.IsExploding)
+            {
                 Move();
+            }
         }
 
         private void Move()
