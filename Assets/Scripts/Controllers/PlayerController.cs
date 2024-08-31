@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using MicrobytKonami.LazyWheels.Input;
+using UnityEngine.InputSystem.XR;
 
 namespace MicrobytKonami.LazyWheels.Controllers
 {
@@ -10,16 +11,21 @@ namespace MicrobytKonami.LazyWheels.Controllers
     public class PlayerController : MonoBehaviour
     {
         // Components
+        private Transform myTransform;
         private CarController carController;
         private InputActions inputActions;
 
-        public void Explode()
+        public void Die()
         {
-
+            myTransform.position -= myTransform.position.x * Vector3.right;
+            carController.IsMoving = true;
+            carController.Mover(0);
+            StartMode();
         }
 
         private void Awake()
         {
+            myTransform = GetComponent<Transform>();
             carController = GetComponent<CarController>();
             inputActions = new InputActions();
             //inputActions.Player.Move.performed += ctx => carController.Mover(ctx.ReadValue<float>());
@@ -45,10 +51,17 @@ namespace MicrobytKonami.LazyWheels.Controllers
 #if UNITY_ANDROID
             print("UNITY_ANDROID");
 #endif
+            StartMode();
         }
 
         // Update is called once per frame
         void Update()
+        {
+            if (carController.IsMoving && !carController.IsExploding)
+                Move();
+        }
+
+        private void Move()
         {
 #if UNITY_WEBGL || UNITY_ANDROID || UNITY_IOS
             //print($"acceleration: {Accelerometer.current?.acceleration?.x?.ReadValue()} {Accelerometer.current?.acceleration?.y.ReadValue()} {Accelerometer.current?.acceleration?.z.ReadValue()}");
@@ -71,5 +84,28 @@ namespace MicrobytKonami.LazyWheels.Controllers
         //{
         //    print($"OnCollisionEnter2D: {collision.gameObject.name}");
         //}
+
+        void StartMode()
+        {
+            StartCoroutine(StartModeCourotine());
+        }
+
+        IEnumerator StartModeCourotine()
+        {
+            Debug.Log("Start Mode");
+
+            float time = 3;
+            carController.BoxColliderCar.enabled = false;
+
+            carController.CarFade(1 / 4f);
+
+            yield return new WaitForSecondsRealtime(time);
+
+            carController.CarFade(1);
+
+            carController.BoxColliderCar.enabled = true;
+
+            Debug.Log("End Mode");
+        }
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using MicrobytKonami.Helpers;
 using System.Runtime.InteropServices;
+using UnityEngine.InputSystem.XR;
 //using UnityEngine.Serialization;
 
 namespace MicrobytKonami.LazyWheels.Controllers
@@ -15,11 +16,15 @@ namespace MicrobytKonami.LazyWheels.Controllers
         [SerializeField] private BoxCollider2D boxColliderMyCar;
         [SerializeField] private float speedUp = 1;
         [SerializeField] private float speedRotation = 1;
+        [field: SerializeField] public GameObject MyCar { get; private set; }
+        [SerializeField] private GameObject carExplode;
+        [SerializeField] private GameObject carFlame;
 
         // Components
         private Rigidbody2D rb;
         private BoxCollider2D collide;
         private Transform myTransform;
+        private SpriteRenderer carSprite;
         [field: SerializeField, Header("Debug")] public LineController Line { get; private set; }
 
         // Variables        
@@ -29,6 +34,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
 
         //[FormerlySerializedAs("isStop")]
         [SerializeField] private bool isMoving;
+        [field: SerializeField] public bool IsExploding { get; private set; }
 
         private float inputX, inputOld;
 
@@ -41,15 +47,84 @@ namespace MicrobytKonami.LazyWheels.Controllers
             set => isMoving = value;
         }
 
+        public BoxCollider2D BoxColliderCar => boxColliderMyCar;
+
+        public Vector2 Size => boxColliderMyCar.size;
+
+        public float Weight => rb.mass;
+
         public void Mover(float inputX)
         {
             this.inputX = inputX;
         }
 
         public void SetParent(Transform parent) => myTransform.parent = parent;
+
         public Vector2 GetRay(float seconds) => seconds * raySpeed;
 
-        public Vector2 Size => boxColliderMyCar.size;
+        public void CarFade(float alpha)
+        {
+            var color = carSprite.color;
+
+            color.a = alpha;
+            carSprite.color = color;
+        }
+
+        public void StartCarFade(float time, float untilTime = 0)
+        {
+            StartCoroutine(CarFadeCoroutine(time));
+        }
+
+        public void Explode()
+        {
+            if (IsExploding)
+                return;
+
+            IsExploding = true;
+            print($"Explode {name}");
+            //IsMoving = false;
+            //inputX = 0;
+            rb.velocity = Vector2.zero;
+
+            CarFade(0);
+
+            var goExplode = Instantiate(carExplode, myTransform.position, Quaternion.identity, myTransform);
+            var explode = goExplode.GetComponent<CarExplode>();
+
+            explode.OnExplodeEnd.AddListener(ExplodeEnd);
+
+            //StartCarFade(explode.Duration, explode.Duration / 4);
+
+            //Destroy(gameObject);
+
+            //carExplode.Explode(this);
+            /*
+            // no forma no correcta es para chequear el choque
+            if (gameObject.CompareTag("Player"))
+            {
+                transform.position -= transform.position.x * Vector3.right;
+                gameObject.GetComponent<PlayerController>().Explode();
+            }
+            else
+                Destroy(gameObject);
+                */
+
+            void ExplodeEnd()
+            {
+                Debug.Log("ExplodeEnd");
+                //Debug.Break();
+
+                IsMoving = false;
+                IsExploding = false;
+                if (TryGetComponent<PlayerController>(out var player))
+                    player.Die();
+                else
+                {
+                    Instantiate(carFlame, myTransform.position, Quaternion.Euler(-90, 0, 0), GetComponentInParent<BlockController>()?.GetComponent<Transform>());
+                    Destroy(gameObject);
+                }
+            }
+        }
 
         private void OnDisable()
         {
@@ -65,6 +140,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
             idObstacle = LayerMask.NameToLayer("Obstacle");
             idCar = LayerMask.NameToLayer("Car");
             idLane = LayerMask.NameToLayer("Lane");
+            carSprite = MyCar.GetComponent<SpriteRenderer>();
             sizeCollideMyCar = boxColliderMyCar.size;
             CalcRaySpeed();
         }
@@ -75,10 +151,9 @@ namespace MicrobytKonami.LazyWheels.Controllers
             //velocity =
         }
 
-        // Start is called before the first frame update
+        //Start is called before the first frame update
         //void Start()
         //{
-
         //}
 
         // Update is called once per frame
@@ -144,8 +219,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
             {
                 // De momento explotan los 2 coches.
                 // Lo que se quedrá hacer es que explote el menos grande si hay un camión
-                Explode();
-                collision.gameObject.GetComponent<CarController>().Explode();
+                ExplodeCars(this, collision.gameObject.GetComponent<CarController>());
             }
         }
 
@@ -162,19 +236,32 @@ namespace MicrobytKonami.LazyWheels.Controllers
         //    }
         //}
 
-        private void Explode()
+        private void ExplodeCars(CarController car1, CarController car2)
         {
-            print($"Explode {name}");
-            inputX = 0;
-            rb.velocity = Vector2.zero;
-            // no forma no correcta es para chequear el choque
-            if (gameObject.CompareTag("Player"))
-            {
-                transform.position -= transform.position.x * Vector3.right;
-                gameObject.GetComponent<PlayerController>().Explode();
-            }
+            // Lo que se quedrá hacer es que explote el menos grande si hay un camión
+            if (car1.Weight > car2.Weight && car1.Weight / car2.Weight > 10)
+                car2.Explode();
+            else if (car2.Weight > car1.Weight && car2.Weight / car1.Weight > 10)
+                car1.Explode();
             else
-                Destroy(gameObject);
+            {
+                car1.Explode();
+                car2.Explode();
+            }
+        }
+
+        private IEnumerator CarFadeCoroutine(float time, float untilTime = 0)
+        {
+            var t = time;
+
+            while (t > untilTime)
+            {
+                t -= Time.deltaTime;
+
+                CarFade(t / time);
+
+                yield return null;
+            }
         }
     }
 }

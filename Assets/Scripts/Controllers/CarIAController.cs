@@ -16,7 +16,6 @@ namespace MicrobytKonami.LazyWheels.Controllers
         private Transform myTransform;
         [Header("Components"), SerializeField] private BlockController blockController;
         [SerializeField] private Rays rays;
-        [SerializeField] private GameObject myCar;
 
         [Header("Variables")]
         [SerializeField] private float direction = 0;
@@ -26,8 +25,6 @@ namespace MicrobytKonami.LazyWheels.Controllers
             get => carController.IsMoving;
             set => carController.IsMoving = value;
         }
-
-        public GameObject MyCar => myCar;
 
         public void SetParent(Transform parent) => carController.SetParent(parent);
 
@@ -62,7 +59,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
 
         void FixedUpdate()
         {
-            if (IsMoving)
+            if (IsMoving && !carController.IsExploding)
                 Move();
         }
 

@@ -163,6 +163,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6032167997896319167}
+  - {fileID: 7297496173239227752}
   - {fileID: 7768097918801073268}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -208,9 +209,10 @@ MonoBehaviour:
   boxColliderMyCar: {fileID: 6907739478566971432}
   speedUp: 12
   speedRotation: 14
-  lane: {fileID: 0}
-  <MetersLineRight>k__BackingField: 0
-  <MetersLineLeft>k__BackingField: 0
+  <MyCar>k__BackingField: {fileID: 421745897417169412}
+  carExplode: {fileID: 6062995164842070947, guid: 845c4496dbdef164f87b4a705d8a3bc9, type: 3}
+  carFlame: {fileID: 8188727153923198139, guid: 693904694ba5ffd4bb80303cfcb30e8f, type: 3}
+  <Line>k__BackingField: {fileID: 0}
   sizeCollideMyCar: {x: 0, y: 0}
   isMoving: 0
 --- !u!114 &5811631631958142135
@@ -228,7 +230,6 @@ MonoBehaviour:
   alwaysLeft: 1
   blockController: {fileID: 0}
   rays: {fileID: 6153051905452481096}
-  myCar: {fileID: 421745897417169412}
   direction: 0
 --- !u!1001 &3282631209375634837
 PrefabInstance:
@@ -354,4 +355,70 @@ MonoBehaviour:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5063150265539281377, guid: b5b2fc405bb4b73418e6cd9b42cc6d32, type: 3}
   m_PrefabInstance: {fileID: 3282631209375634837}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7793251890388254754
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5680924611160995225}
+    m_Modifications:
+    - target: {fileID: 676344060097172810, guid: 845c4496dbdef164f87b4a705d8a3bc9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676344060097172810, guid: 845c4496dbdef164f87b4a705d8a3bc9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676344060097172810, guid: 845c4496dbdef164f87b4a705d8a3bc9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676344060097172810, guid: 845c4496dbdef164f87b4a705d8a3bc9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 676344060097172810, guid: 845c4496dbdef164f87b4a705d8a3bc9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676344060097172810, guid: 845c4496dbdef164f87b4a705d8a3bc9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676344060097172810, guid: 845c4496dbdef164f87b4a705d8a3bc9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676344060097172810, guid: 845c4496dbdef164f87b4a705d8a3bc9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676344060097172810, guid: 845c4496dbdef164f87b4a705d8a3bc9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676344060097172810, guid: 845c4496dbdef164f87b4a705d8a3bc9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6062995164842070947, guid: 845c4496dbdef164f87b4a705d8a3bc9, type: 3}
+      propertyPath: m_Name
+      value: CarExplode Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 6062995164842070947, guid: 845c4496dbdef164f87b4a705d8a3bc9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 845c4496dbdef164f87b4a705d8a3bc9, type: 3}
+--- !u!4 &7297496173239227752 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 676344060097172810, guid: 845c4496dbdef164f87b4a705d8a3bc9, type: 3}
+  m_PrefabInstance: {fileID: 7793251890388254754}
   m_PrefabAsset: {fileID: 0}
