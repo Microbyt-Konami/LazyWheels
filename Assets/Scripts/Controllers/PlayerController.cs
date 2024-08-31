@@ -10,10 +10,13 @@ namespace MicrobytKonami.LazyWheels.Controllers
     [RequireComponent(typeof(CarController))]
     public class PlayerController : MonoBehaviour
     {
+        [field: SerializeField, Header("Player")] public float EnergyStart { get; private set; }
+
         // Components
         private Transform myTransform;
         private CarController carController;
         private InputActions inputActions;
+        [field: SerializeField, Header("Debug")] public float Energy { get; private set; }
 
         public void Die()
         {
@@ -44,6 +47,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
         // Start is called before the first frame update
         void Start()
         {
+            Energy = EnergyStart;
             print($"supportsAccelerometer {SystemInfo.supportsAccelerometer}");
             print($"Gamepad.current: {Gamepad.current != null}");
             print($"isMobilePlatform: {Application.isMobilePlatform}");
@@ -95,15 +99,15 @@ namespace MicrobytKonami.LazyWheels.Controllers
             Debug.Log("Start Mode");
 
             float time = 3;
-            carController.BoxColliderCar.enabled = false;
+            carController.SetModoGhost();
 
-            carController.CarFade(1 / 4f);
+            //carController.CarFade(1 / 4f);
 
             yield return new WaitForSecondsRealtime(time);
 
-            carController.CarFade(1);
+            //carController.CarFade(1);
 
-            carController.BoxColliderCar.enabled = true;
+            carController.SetModoGhost(false);
 
             Debug.Log("End Mode");
         }

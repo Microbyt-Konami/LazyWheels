@@ -181,12 +181,18 @@ MonoBehaviour:
   boxColliderMyCar: {fileID: 1789002975472057326}
   speedUp: 15
   speedRotation: 18
+  <FuelDeposit>k__BackingField: 50
+  <FuelMeterSecond>k__BackingField: 0.1
+  fuelPowerUp: 5
   <MyCar>k__BackingField: {fileID: 2281546508819993510}
   carExplode: {fileID: 6062995164842070947, guid: 845c4496dbdef164f87b4a705d8a3bc9, type: 3}
   carFlame: {fileID: 0}
   <Line>k__BackingField: {fileID: 0}
+  <Player>k__BackingField: {fileID: 0}
   sizeCollideMyCar: {x: 0, y: 0}
+  <Fuel>k__BackingField: 0
   isMoving: 1
+  <IsExploding>k__BackingField: 0
 --- !u!114 &2653063284879563147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,6 +205,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0d16f48c0898aa41b796460221d3fda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <EnergyStart>k__BackingField: 0
+  <Energy>k__BackingField: 0
 --- !u!50 &8609190393165932673
 Rigidbody2D:
   serializedVersion: 4
