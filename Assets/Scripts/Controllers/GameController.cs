@@ -9,6 +9,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
     public class GameController : MonoBehaviourSingleton<GameController>
     {
         private BuilderBlocks builderBlocks;
+        private PlayerController player;
 
         public BlockController FindBlockInY(float y) => builderBlocks.FindBlockInY(y);
 
@@ -21,10 +22,16 @@ namespace MicrobytKonami.LazyWheels.Controllers
 
         }
 
+        public void GameOver()
+        {
+            UIController.Instance.ShowGameOver();
+        }
+
         // Start is called before the first frame update
         void Start()
         {
-            builderBlocks = GameObject.FindObjectOfType<BuilderBlocks>();
+            builderBlocks = FindObjectOfType<BuilderBlocks>();
+            player = FindObjectOfType<PlayerController>();
         }
 
         // Update is called once per frame

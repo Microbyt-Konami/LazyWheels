@@ -5,6 +5,7 @@ using UnityEngine;
 using MicrobytKonami.Helpers;
 using System.Runtime.InteropServices;
 using UnityEngine.InputSystem.XR;
+using UnityEngine.Events;
 //using UnityEngine.Serialization;
 
 namespace MicrobytKonami.LazyWheels.Controllers
@@ -47,6 +48,9 @@ namespace MicrobytKonami.LazyWheels.Controllers
 
         // Ids
         private int idGrassLayer, idObstacle, idCar, idLane, idFuel;
+
+        // Events
+        public UnityEvent onCarNoFuel;
 
         public bool IsMoving
         {
@@ -110,6 +114,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
                 Debug.Log("ExplodeEnd", myTransform.parent);
                 //Debug.Break();
 
+                explode.OnExplodeEnd.RemoveListener(ExplodeEnd);
                 IsMoving = false;
                 IsExploding = false;
                 if (Player is not null)
@@ -178,6 +183,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
                 rb.velocity = Vector2.zero;
                 IsMoving = false;
                 Fuel = 0;
+                onCarNoFuel.Invoke();   
                 // GameOver
             }
         }

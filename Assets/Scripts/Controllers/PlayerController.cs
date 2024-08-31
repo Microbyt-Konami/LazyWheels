@@ -18,12 +18,26 @@ namespace MicrobytKonami.LazyWheels.Controllers
         private InputActions inputActions;
         [field: SerializeField, Header("Debug")] public float Energy { get; private set; }
 
+        public bool IsMoving
+        {
+            get => carController.IsMoving;
+            set => carController.IsMoving = value;
+        }
+
         public void Die()
         {
             myTransform.position -= myTransform.position.x * Vector3.right;
             carController.IsMoving = true;
             carController.Mover(0);
             StartMode();
+        }
+
+        public void PlayerNoFuel()
+        {
+            // GameOver
+            Debug.Log("PlayerNoFuel");
+
+            GameController.Instance.GameOver();
         }
 
         private void Awake()

@@ -193,6 +193,22 @@ MonoBehaviour:
   <Fuel>k__BackingField: 0
   isMoving: 1
   <IsExploding>k__BackingField: 0
+  onCarNoFuel:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2653063284879563147}
+        m_TargetAssemblyTypeName: MicrobytKonami.LazyWheels.Controllers.PlayerController,
+          Assembly-CSharp
+        m_MethodName: PlayerNoFuel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2653063284879563147
 MonoBehaviour:
   m_ObjectHideFlags: 0
