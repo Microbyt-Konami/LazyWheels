@@ -10,6 +10,8 @@ namespace MicrobytKonami.LazyWheels.Controllers
     {
         private BuilderBlocks builderBlocks;
         private PlayerController player;
+        [Header("Debug")]
+        [SerializeField] private bool isGameOver = false;
 
         public BlockController FindBlockInY(float y) => builderBlocks.FindBlockInY(y);
 
@@ -24,6 +26,11 @@ namespace MicrobytKonami.LazyWheels.Controllers
 
         public void GameOver()
         {
+            if (isGameOver)
+                return;
+
+            isGameOver = true;
+            player.SetModoGhost(true);
             UIController.Instance.ShowGameOver();
         }
 

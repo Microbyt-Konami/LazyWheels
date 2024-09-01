@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using MicrobytKonami.LazyWheels.Input;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.Events;
+using System;
 
 namespace MicrobytKonami.LazyWheels.Controllers
 {
@@ -12,12 +13,15 @@ namespace MicrobytKonami.LazyWheels.Controllers
     public class PlayerController : MonoBehaviour
     {
         [field: SerializeField, Header("Player")] public float EnergyStart { get; private set; }
+        [SerializeField] private float energyWhenExplode;
 
         // Components
         private Transform myTransform;
         private CarController carController;
         private InputActions inputActions;
         [field: SerializeField, Header("Debug")] public float Energy { get; private set; }
+
+        private int idPowerUp;
 
         public bool IsMoving
         {
@@ -27,10 +31,16 @@ namespace MicrobytKonami.LazyWheels.Controllers
 
         public void Die()
         {
+            ConsumEnergy(energyWhenExplode);
             myTransform.position -= myTransform.position.x * Vector3.right;
             carController.IsMoving = true;
             carController.Mover(0);
             StartMode();
+        }
+
+        public void SetModoGhost(bool ghost = true)
+        {
+            carController.SetModoGhost(ghost);
         }
 
         public void PlayerNoFuel()
@@ -65,6 +75,9 @@ namespace MicrobytKonami.LazyWheels.Controllers
             carController = GetComponent<CarController>();
             inputActions = new InputActions();
             //inputActions.Player.Move.performed += ctx => carController.Mover(ctx.ReadValue<float>());
+
+            // ids
+            idPowerUp = LayerMask.NameToLayer("PowerUp");
         }
 
         private void OnEnable()
@@ -114,10 +127,27 @@ namespace MicrobytKonami.LazyWheels.Controllers
             carController.Mover(inputX);
         }
 
-        //private void OnTriggerEnter2D(Collider2D collision)
-        //{
-        //    print($"OnTriggerEnter2D: {collision.gameObject.name}");
-        //}
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.layer == idPowerUp)
+                CatchPowerUp(collision.gameObject);
+        }
+
+        private void CatchPowerUp(GameObject powerUp)
+        {
+            var powerUpData = powerUp.GetComponent<PowerUp>();
+
+            if (powerUpData is not null)
+            {
+                carController.CatchIt(powerUp);
+                if (powerUpData.PowerUpEnergy > 0)
+                {
+                    PowerUpEnery(powerUpData.PowerUpEnergy);
+                }
+                else if (powerUpData.PowerUpEnergy < 0)
+                    ConsumEnergy(-powerUpData.PowerUpEnergy);
+            }
+        }
 
         //private void OnCollisionEnter2D(Collision2D collision)
         //{

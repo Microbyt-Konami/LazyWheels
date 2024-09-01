@@ -127,6 +127,11 @@ namespace MicrobytKonami.LazyWheels.Controllers
             }
         }
 
+        public void CatchIt(GameObject powerUp)
+        {
+            StartCoroutine(CatchItCourotine(powerUp));
+        }
+
         private void OnDisable()
         {
             Debug.Log($"{gameObject.name} disable", gameObject);
@@ -183,7 +188,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
                 rb.velocity = Vector2.zero;
                 IsMoving = false;
                 Fuel = 0;
-                onCarNoFuel.Invoke();   
+                onCarNoFuel.Invoke();
                 // GameOver
             }
         }
@@ -294,11 +299,6 @@ namespace MicrobytKonami.LazyWheels.Controllers
             Debug.Log("Catch fuel", fuel);
             CatchIt(fuel);
             Fuel += fuelPowerUp;
-        }
-
-        private void CatchIt(GameObject powerUp)
-        {
-            StartCoroutine(CatchItCourotine(powerUp));
         }
 
         private IEnumerator CatchItCourotine(GameObject powerUp)
