@@ -10,8 +10,10 @@ namespace MicrobytKonami.LazyWheels.Controllers
 {
     public class GameController : MonoBehaviourSingleton<GameController>
     {
-        private BuilderBlocks builderBlocks;
-        private PlayerController player;
+        [Header("References")]
+        [SerializeField] private BuilderBlocks builderBlocks;
+        [SerializeField] private PlayerController player;
+
         [Header("Debug")]
         [SerializeField] private bool isGameOver = false;
 
@@ -31,22 +33,10 @@ namespace MicrobytKonami.LazyWheels.Controllers
             if (isGameOver)
                 return;
 
+            player.IsStopCounterMeter = true;
             isGameOver = true;
             player.SetModoGhost(true);
             UIController.Instance.ShowGameOver();
         }
-
-        // Start is called before the first frame update
-        void Start()
-        {
-            builderBlocks = FindObjectOfType<BuilderBlocks>();
-            player = FindObjectOfType<PlayerController>();
-        }
-
-        // Update is called once per frame
-        //void Update()
-        //{
-
-        //}
     }
 }
