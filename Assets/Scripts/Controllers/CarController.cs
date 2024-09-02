@@ -10,6 +10,8 @@ using UnityEngine.Events;
 
 namespace MicrobytKonami.LazyWheels.Controllers
 {
+    public delegate void OnCarFuelChangeHandler(float fuel, float fuelMax);
+
     [RequireComponent(typeof(Rigidbody2D))]
     public class CarController : MonoBehaviour
     {
@@ -50,6 +52,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
         private int idGrassLayer, idObstacle, idCar, idLane, idFuel;
 
         // Events
+        public event OnCarFuelChangeHandler OnCarFuelChange;
         public UnityEvent onCarNoFuel;
 
         public bool IsMoving
@@ -163,6 +166,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
         void Start()
         {
             Fuel = FuelDeposit;
+            OnFuelChange();
         }
 
         // Update is called once per frame
@@ -173,26 +177,6 @@ namespace MicrobytKonami.LazyWheels.Controllers
                 if (!IsExploding)
                     BurnFuel();
         }
-
-        private void CalcRaySpeedIfChangeValues()
-        {
-            if (raySpeed.x != speedRotation || raySpeed.y != speedUp)
-                CalcRaySpeed();
-        }
-
-        private void BurnFuel()
-        {
-            Fuel -= FuelMeterSecond * rb.velocity.y * Time.deltaTime;
-            if (Fuel <= 0)
-            {
-                rb.velocity = Vector2.zero;
-                IsMoving = false;
-                Fuel = 0;
-                onCarNoFuel.Invoke();
-                // GameOver
-            }
-        }
-
         private void FixedUpdate()
         {
             if (isMoving)
@@ -263,6 +247,31 @@ namespace MicrobytKonami.LazyWheels.Controllers
         //    }
         //}
 
+        private void CalcRaySpeedIfChangeValues()
+        {
+            if (raySpeed.x != speedRotation || raySpeed.y != speedUp)
+                CalcRaySpeed();
+        }
+
+        private void BurnFuel()
+        {
+            Fuel -= FuelMeterSecond * rb.velocity.y * Time.deltaTime;
+            if (Fuel <= 0)
+            {
+                rb.velocity = Vector2.zero;
+                IsMoving = false;
+                Fuel = 0;
+                onCarNoFuel.Invoke();
+                // GameOver
+            }
+            OnFuelChange();
+        }
+
+        private void OnFuelChange()
+        {
+            OnCarFuelChange?.Invoke(Fuel, FuelDeposit);
+        }
+
         private void ExplodeCars(CarController car1, CarController car2)
         {
             // Lo que se quedrá hacer es que explote el menos grande si hay un camión
@@ -299,6 +308,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
             Debug.Log("Catch fuel", fuel);
             CatchIt(fuel);
             Fuel += fuelPowerUp;
+            OnFuelChange();
         }
 
         private IEnumerator CatchItCourotine(GameObject powerUp)

@@ -9,6 +9,7 @@ using System;
 
 namespace MicrobytKonami.LazyWheels.Controllers
 {
+    public delegate void OnPlayerEnergyChangeHandler(float energy, float energyMax);
     [RequireComponent(typeof(CarController))]
     public class PlayerController : MonoBehaviour
     {
@@ -17,30 +18,29 @@ namespace MicrobytKonami.LazyWheels.Controllers
 
         // Components
         private Transform myTransform;
-        private CarController carController;
+        public CarController CarController { get; private set; }
         private InputActions inputActions;
         [field: SerializeField, Header("Debug")] public float Energy { get; private set; }
+        [field: SerializeField] public float Meters { get; private set; }
+        [field: SerializeField] public bool IsStopCounterMeter { get; set; } = false;
 
         private int idPowerUp;
 
-        public bool IsMoving
-        {
-            get => carController.IsMoving;
-            set => carController.IsMoving = value;
-        }
+        //Events
+        public event OnPlayerEnergyChangeHandler OnPlayerEnergyChange;
 
         public void Die()
         {
             ConsumEnergy(energyWhenExplode);
             myTransform.position -= myTransform.position.x * Vector3.right;
-            carController.IsMoving = true;
-            carController.Mover(0);
+            CarController.IsMoving = true;
+            CarController.Mover(0);
             StartMode();
         }
 
         public void SetModoGhost(bool ghost = true)
         {
-            carController.SetModoGhost(ghost);
+            CarController.SetModoGhost(ghost);
         }
 
         public void PlayerNoFuel()
@@ -59,20 +59,22 @@ namespace MicrobytKonami.LazyWheels.Controllers
                 // GameOver
                 Debug.Log("No energy");
 
-                IsMoving = false;
+                CarController.IsMoving = false;
                 GameController.Instance.GameOver();
             }
+            OnEnergyChange();
         }
 
         public void PowerUpEnery(float energy)
         {
             Energy += energy;
+            OnEnergyChange();
         }
 
         private void Awake()
         {
             myTransform = GetComponent<Transform>();
-            carController = GetComponent<CarController>();
+            CarController = GetComponent<CarController>();
             inputActions = new InputActions();
             //inputActions.Player.Move.performed += ctx => carController.Mover(ctx.ReadValue<float>());
 
@@ -102,15 +104,24 @@ namespace MicrobytKonami.LazyWheels.Controllers
             print("UNITY_ANDROID");
 #endif
             StartMode();
+            OnEnergyChange();
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (carController.IsMoving && !carController.IsExploding)
+            if (CarController.IsMoving)
             {
-                Move();
+                if (!CarController.IsExploding)
+                    Move();
+                if (!IsStopCounterMeter)
+                    Meters = myTransform.position.y;
             }
+        }
+
+        private void OnEnergyChange()
+        {
+            OnPlayerEnergyChange?.Invoke(Energy, EnergyStart);
         }
 
         private void Move()
@@ -124,7 +135,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
             if (Gamepad.current == null)
                 if (inputX == 0 && ApplicationEx.supportsAccelerometer)
                     inputX = inputActions.Player.MoveAcceleration.ReadValue<Vector3>().x;
-            carController.Mover(inputX);
+            CarController.Mover(inputX);
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -139,7 +150,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
 
             if (powerUpData is not null)
             {
-                carController.CatchIt(powerUp);
+                CarController.CatchIt(powerUp);
                 if (powerUpData.PowerUpEnergy > 0)
                 {
                     PowerUpEnery(powerUpData.PowerUpEnergy);
@@ -164,7 +175,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
             Debug.Log("Start Mode");
 
             float time = 3;
-            carController.SetModoGhost();
+            CarController.SetModoGhost();
 
             //carController.CarFade(1 / 4f);
 
@@ -172,7 +183,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
 
             //carController.CarFade(1);
 
-            carController.SetModoGhost(false);
+            CarController.SetModoGhost(false);
 
             Debug.Log("End Mode");
         }

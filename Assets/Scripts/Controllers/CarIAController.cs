@@ -17,8 +17,8 @@ namespace MicrobytKonami.LazyWheels.Controllers
         [Header("Components"), SerializeField] private BlockController blockController;
         [SerializeField] private Rays rays;
 
-        [Header("Variables")]
-        [SerializeField] private float direction = 0;
+        //[Header("Variables")]
+        //[SerializeField] private float direction = 0;
 
         public bool IsMoving
         {
@@ -73,12 +73,17 @@ namespace MicrobytKonami.LazyWheels.Controllers
                 {
                     var blockNext = GameController.Instance.FindBlockInY(y);
 
+                    blockController.RemoveCarIA(this);
                     if (blockNext != null)
                     {
-                        blockController.RemoveCarIA(this);
                         blockNext.ChangeParentToThisBlockCarsIAs(carController);
                         blockNext.AddCarIA(this);
                         blockController = blockNext;
+                    }
+                    else
+                    {
+                        blockController = null;
+                        Destroy(gameObject);
                     }
                 }
             }
