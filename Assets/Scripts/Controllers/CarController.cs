@@ -5,6 +5,7 @@ using UnityEngine;
 using MicrobytKonami.Helpers;
 using System.Runtime.InteropServices;
 using UnityEngine.InputSystem.XR;
+using UnityEngine.Events;
 //using UnityEngine.Serialization;
 
 namespace MicrobytKonami.LazyWheels.Controllers
@@ -16,6 +17,9 @@ namespace MicrobytKonami.LazyWheels.Controllers
         [SerializeField] private BoxCollider2D boxColliderMyCar;
         [SerializeField] private float speedUp = 1;
         [SerializeField] private float speedRotation = 1;
+        [field: SerializeField] public float FuelDeposit { get; private set; }
+        [field: SerializeField] public float FuelMeterSecond { get; private set; }
+        [SerializeField] private float fuelPowerUp;
         [field: SerializeField] public GameObject MyCar { get; private set; }
         [SerializeField] private GameObject carExplode;
         [SerializeField] private GameObject carFlame;
@@ -26,11 +30,15 @@ namespace MicrobytKonami.LazyWheels.Controllers
         private Transform myTransform;
         private SpriteRenderer carSprite;
         [field: SerializeField, Header("Debug")] public LineController Line { get; private set; }
+        [field: SerializeField] public PlayerController Player { get; private set; }
 
         // Variables        
         private bool isLockAccelerate, isInGrass;
         private Vector2 raySpeed, velocity;
         [SerializeField] private Vector2 sizeCollideMyCar;
+
+        [field: SerializeField] public float Fuel { get; private set; }
+
 
         //[FormerlySerializedAs("isStop")]
         [SerializeField] private bool isMoving;
@@ -39,7 +47,10 @@ namespace MicrobytKonami.LazyWheels.Controllers
         private float inputX, inputOld;
 
         // Ids
-        private int idGrassLayer, idObstacle, idCar, idLane;
+        private int idGrassLayer, idObstacle, idCar, idLane, idFuel;
+
+        // Events
+        public UnityEvent onCarNoFuel;
 
         public bool IsMoving
         {
@@ -62,6 +73,12 @@ namespace MicrobytKonami.LazyWheels.Controllers
 
         public Vector2 GetRay(float seconds) => seconds * raySpeed;
 
+        public void SetModoGhost(bool ghost = true)
+        {
+            BoxColliderCar.enabled = !ghost;
+            CarFade(ghost ? 1 / 4f : 1f);
+        }
+
         public void CarFade(float alpha)
         {
             var color = carSprite.color;
@@ -82,48 +99,37 @@ namespace MicrobytKonami.LazyWheels.Controllers
 
             IsExploding = true;
             print($"Explode {name}");
-            //IsMoving = false;
-            //inputX = 0;
+            SetModoGhost();
             rb.velocity = Vector2.zero;
 
-            CarFade(0);
+            //CarFade(0);
 
             var goExplode = Instantiate(carExplode, myTransform.position, Quaternion.identity, myTransform);
             var explode = goExplode.GetComponent<CarExplode>();
 
             explode.OnExplodeEnd.AddListener(ExplodeEnd);
 
-            //StartCarFade(explode.Duration, explode.Duration / 4);
-
-            //Destroy(gameObject);
-
-            //carExplode.Explode(this);
-            /*
-            // no forma no correcta es para chequear el choque
-            if (gameObject.CompareTag("Player"))
-            {
-                transform.position -= transform.position.x * Vector3.right;
-                gameObject.GetComponent<PlayerController>().Explode();
-            }
-            else
-                Destroy(gameObject);
-                */
-
             void ExplodeEnd()
             {
-                Debug.Log("ExplodeEnd");
+                Debug.Log("ExplodeEnd", myTransform.parent);
                 //Debug.Break();
 
+                explode.OnExplodeEnd.RemoveListener(ExplodeEnd);
                 IsMoving = false;
                 IsExploding = false;
-                if (TryGetComponent<PlayerController>(out var player))
-                    player.Die();
+                if (Player is not null)
+                    Player.Die();
                 else
                 {
                     Instantiate(carFlame, myTransform.position, Quaternion.Euler(-90, 0, 0), GetComponentInParent<BlockController>()?.GetComponent<Transform>());
                     Destroy(gameObject);
                 }
             }
+        }
+
+        public void CatchIt(GameObject powerUp)
+        {
+            StartCoroutine(CatchItCourotine(powerUp));
         }
 
         private void OnDisable()
@@ -136,10 +142,12 @@ namespace MicrobytKonami.LazyWheels.Controllers
             rb = GetComponent<Rigidbody2D>();
             collide = GetComponent<BoxCollider2D>();
             myTransform = GetComponent<Transform>();
+            Player = GetComponent<PlayerController>();
             idGrassLayer = LayerMask.NameToLayer("Grass");
             idObstacle = LayerMask.NameToLayer("Obstacle");
             idCar = LayerMask.NameToLayer("Car");
             idLane = LayerMask.NameToLayer("Lane");
+            idFuel = LayerMask.NameToLayer("Fuel");
             carSprite = MyCar.GetComponent<SpriteRenderer>();
             sizeCollideMyCar = boxColliderMyCar.size;
             CalcRaySpeed();
@@ -152,20 +160,37 @@ namespace MicrobytKonami.LazyWheels.Controllers
         }
 
         //Start is called before the first frame update
-        //void Start()
-        //{
-        //}
+        void Start()
+        {
+            Fuel = FuelDeposit;
+        }
 
         // Update is called once per frame
         void Update()
         {
             CalcRaySpeedIfChangeValues();
+            if (isMoving)
+                if (!IsExploding)
+                    BurnFuel();
         }
 
         private void CalcRaySpeedIfChangeValues()
         {
             if (raySpeed.x != speedRotation || raySpeed.y != speedUp)
                 CalcRaySpeed();
+        }
+
+        private void BurnFuel()
+        {
+            Fuel -= FuelMeterSecond * rb.velocity.y * Time.deltaTime;
+            if (Fuel <= 0)
+            {
+                rb.velocity = Vector2.zero;
+                IsMoving = false;
+                Fuel = 0;
+                onCarNoFuel.Invoke();
+                // GameOver
+            }
         }
 
         private void FixedUpdate()
@@ -201,6 +226,8 @@ namespace MicrobytKonami.LazyWheels.Controllers
                 isInGrass = true;
             else if (collision.gameObject.layer == idObstacle)
                 Explode();
+            else if (collision.gameObject.layer == idFuel)
+                CatchFuel(collision.gameObject);
             else if (collision.gameObject.layer == idLane)
                 Line = collision.gameObject.GetComponent<LineController>();
         }
@@ -259,6 +286,33 @@ namespace MicrobytKonami.LazyWheels.Controllers
                 t -= Time.deltaTime;
 
                 CarFade(t / time);
+
+                yield return null;
+            }
+        }
+
+        private void CatchFuel(GameObject fuel)
+        {
+            if (fuelPowerUp <= 0)
+                return;
+
+            Debug.Log("Catch fuel", fuel);
+            CatchIt(fuel);
+            Fuel += fuelPowerUp;
+        }
+
+        private IEnumerator CatchItCourotine(GameObject powerUp)
+        {
+            float t = 0.4f;
+            Color color;
+            var spriteRenderer = powerUp.GetComponent<SpriteRenderer>();
+
+            while (t > 0)
+            {
+                t -= Time.deltaTime;
+                color = spriteRenderer.color;
+                color.a = t;
+                spriteRenderer.color = color;
 
                 yield return null;
             }

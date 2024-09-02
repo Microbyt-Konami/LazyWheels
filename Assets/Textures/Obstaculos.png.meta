@@ -77,6 +77,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -89,6 +90,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -101,6 +103,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -113,6 +116,20 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -979,6 +996,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Fuel
+      rect:
+        serializedVersion: 2
+        x: 1554
+        y: 92
+        width: 156
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c6d0a93b03251247b56485746b09453
+      internalID: 786290347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -990,47 +1028,48 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Camion_Frontal_Comida_2: 398947382
-      Coche_Frontal_5: 1320848444
-      Moto_Frontal_4: 1172730272
-      Moto_Lado_3: 203988236
-      PowerUp_Patatas: -1930990359
-      Tren: -204680560
-      PowerUp_Postre: 1916838420
-      Moto_Frontal_3: -170747939
-      Camion_Lado: -797897983
       Bus_Frontal: -1292612319
-      Camion_Lado_Comida_2: 415208268
-      Camion_Lado_Comida_4: -378165034
-      PowerUp_Sushi: 11329435
-      Camion_Frontal_4: 186773358
-      Coche_Frontal_2: -658930596
-      Enemigo: 809500066
-      PowerUp_Refresco: -247330283
-      Moto_Frontal_2: 2100250108
-      Camion_Lado_Comida_3: -1033771351
-      Moto_Lado_1: -1390051963
-      Camion_Frontal_Comida_3: 363715002
-      Moto_Lado_4: 1651992614
-      Coche_Frontal_6: -85834707
-      PowerUp_Helado: 97097275
-      Camion_Frontal_Comida_1: 241364816
-      Coche_Frontal_1: -2033322281
-      Camion_Frontal_5: 212666308
-      Camion_Lado_Comida_1: 1483839896
-      Coche_Frontal_3: 1525842850
-      Camion_Frontal_Comida_4: 1774142261
-      Coche_Policia_Frontal: -1852278943
-      Coche_Frontal_4: -1067855174
-      Camion_Frontal_1: -906764255
-      Camion_Frontal_3: 1503917879
-      Camion_Frontal_2: 1803634021
-      PowerUp_Hamburguesa: 1105382256
-      Camion_Ambulacia: 1117377428
       Bus_Lado: 278072398
+      Camion_Ambulacia: 1117377428
+      Camion_Frontal_1: -906764255
+      Camion_Frontal_2: 1803634021
+      Camion_Frontal_3: 1503917879
+      Camion_Frontal_4: 186773358
+      Camion_Frontal_5: 212666308
+      Camion_Frontal_Comida_1: 241364816
+      Camion_Frontal_Comida_2: 398947382
+      Camion_Frontal_Comida_3: 363715002
+      Camion_Frontal_Comida_4: 1774142261
+      Camion_Lado: -797897983
+      Camion_Lado_Comida_1: 1483839896
+      Camion_Lado_Comida_2: 415208268
+      Camion_Lado_Comida_3: -1033771351
+      Camion_Lado_Comida_4: -378165034
+      Coche_Frontal_1: -2033322281
+      Coche_Frontal_2: -658930596
+      Coche_Frontal_3: 1525842850
+      Coche_Frontal_4: -1067855174
+      Coche_Frontal_5: 1320848444
+      Coche_Frontal_6: -85834707
+      Coche_Policia_Frontal: -1852278943
       Coche_Policia_Lado: 1061452554
+      Enemigo: 809500066
+      Fuel: 786290347
       Moto_Frontal_1: -2038088041
+      Moto_Frontal_2: 2100250108
+      Moto_Frontal_3: -170747939
+      Moto_Frontal_4: 1172730272
+      Moto_Lado_1: -1390051963
       Moto_Lado_2: -1045462323
+      Moto_Lado_3: 203988236
+      Moto_Lado_4: 1651992614
+      PowerUp_Hamburguesa: 1105382256
+      PowerUp_Helado: 97097275
+      PowerUp_Patatas: -1930990359
+      PowerUp_Postre: 1916838420
+      PowerUp_Refresco: -247330283
+      PowerUp_Sushi: 11329435
+      Tren: -204680560
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
