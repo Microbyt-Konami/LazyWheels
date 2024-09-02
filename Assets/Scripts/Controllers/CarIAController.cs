@@ -17,8 +17,8 @@ namespace MicrobytKonami.LazyWheels.Controllers
         [Header("Components"), SerializeField] private BlockController blockController;
         [SerializeField] private Rays rays;
 
-        [Header("Variables")]
-        [SerializeField] private float direction = 0;
+        //[Header("Variables")]
+        //[SerializeField] private float direction = 0;
 
         public bool IsMoving
         {

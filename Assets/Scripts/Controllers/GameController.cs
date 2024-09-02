@@ -4,6 +4,8 @@ using UnityEngine;
 
 using MicrobytKonami.System;
 
+using MicrobytKonami.LazyWheels.UI;
+
 namespace MicrobytKonami.LazyWheels.Controllers
 {
     public class GameController : MonoBehaviourSingleton<GameController>
