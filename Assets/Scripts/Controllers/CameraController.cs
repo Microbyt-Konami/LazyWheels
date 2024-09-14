@@ -65,8 +65,8 @@ namespace MicrobytKonami.LazyWheels.Controllers
         private IEnumerator SetCarAIMoving(CarIAController carIAController)
         {
             yield return new WaitForSeconds(timeCarAIMoving);
-            
-            carIAController.IsMoving = true;
+
+            carIAController.StartRunCar();
         }
     }
 }

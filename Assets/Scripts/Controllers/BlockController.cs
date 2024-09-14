@@ -4,6 +4,8 @@ using System.Linq;
 using System.Security.Permissions;
 using UnityEngine;
 
+using MicrobytKonami.LazyWheels.Managers;
+
 namespace MicrobytKonami.LazyWheels.Controllers
 {
     public class BlockController : MonoBehaviour
@@ -16,7 +18,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
         private Transform myTransform;
         private Transform transformCarIAs;
         private List<CarIAController> carsIAs;
-        private GameController gameController;
+        private GameManager gameManager;
 
         // Variables
         private float height, heightBlock0, heightFromBlock0;
@@ -36,7 +38,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
 
         public void SetUp()
         {
-            gameController = GameController.Instance;
+            gameManager = GameManager.Instance;
             CalcHeight();
             LoadCarsIAs();
             MoveAllCarsIAs(startMoveAllCarsIA);
@@ -49,7 +51,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
                 return;
 
             carIA.IsMoving = move;
-            gameController.MoveCarIA(carIA);
+            gameManager.MoveCarIA(carIA);
         }
 
         public void MoveAllCarsIAs(bool move = true)
@@ -107,8 +109,8 @@ namespace MicrobytKonami.LazyWheels.Controllers
             {
                 foreach (var carIA in carIAs)
                 {
-                    carIA.IsMoving = true;
                     carIA.gameObject.SetActive(true);
+                    carIA.StartRunCar();
                 }
             }
         }
@@ -160,7 +162,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
         void LoadCarsIAs()
         {
             carsIAs = transformCarIAs.GetComponentsInChildren<CarIAController>().ToList();
-            gameController.LoadCarIAs(carsIAs);
+            gameManager.LoadCarIAs(carsIAs);
         }
     }
 }

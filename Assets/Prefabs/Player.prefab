@@ -164,6 +164,8 @@ Transform:
   m_Children:
   - {fileID: 2177743322194727742}
   - {fileID: 4176424959039403392}
+  - {fileID: 3341028042023964257}
+  - {fileID: 7363281444318632671}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5342709219339744039
@@ -187,6 +189,8 @@ MonoBehaviour:
   <MyCar>k__BackingField: {fileID: 2281546508819993510}
   carExplode: {fileID: 6062995164842070947, guid: 845c4496dbdef164f87b4a705d8a3bc9, type: 3}
   carFlame: {fileID: 0}
+  startMotorSoundFX: {fileID: 2827838085355334739}
+  motorSoundFX: {fileID: 7634547690071382264}
   <Line>k__BackingField: {fileID: 0}
   <Player>k__BackingField: {fileID: 0}
   sizeCollideMyCar: {x: 0, y: 0}
@@ -222,7 +226,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <EnergyStart>k__BackingField: 0
+  energyWhenExplode: 0
   <Energy>k__BackingField: 0
+  <Meters>k__BackingField: 0
+  <IsStopCounterMeter>k__BackingField: 0
 --- !u!50 &8609190393165932673
 Rigidbody2D:
   serializedVersion: 4
@@ -250,6 +257,140 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!1001 &535046120598597777
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7630652376604778688}
+    m_Modifications:
+    - target: {fileID: 2968271078948863728, guid: bd928242f92a55b0f9fd846826fca4e5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2968271078948863728, guid: bd928242f92a55b0f9fd846826fca4e5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2968271078948863728, guid: bd928242f92a55b0f9fd846826fca4e5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2968271078948863728, guid: bd928242f92a55b0f9fd846826fca4e5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2968271078948863728, guid: bd928242f92a55b0f9fd846826fca4e5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2968271078948863728, guid: bd928242f92a55b0f9fd846826fca4e5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2968271078948863728, guid: bd928242f92a55b0f9fd846826fca4e5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2968271078948863728, guid: bd928242f92a55b0f9fd846826fca4e5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2968271078948863728, guid: bd928242f92a55b0f9fd846826fca4e5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2968271078948863728, guid: bd928242f92a55b0f9fd846826fca4e5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4798390396475141108, guid: bd928242f92a55b0f9fd846826fca4e5, type: 3}
+      propertyPath: m_Name
+      value: StartMotorSoundFX
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bd928242f92a55b0f9fd846826fca4e5, type: 3}
+--- !u!82 &2827838085355334739 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2329102478346689730, guid: bd928242f92a55b0f9fd846826fca4e5, type: 3}
+  m_PrefabInstance: {fileID: 535046120598597777}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3341028042023964257 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2968271078948863728, guid: bd928242f92a55b0f9fd846826fca4e5, type: 3}
+  m_PrefabInstance: {fileID: 535046120598597777}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2779353118085050918
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7630652376604778688}
+    m_Modifications:
+    - target: {fileID: 4665060270534764793, guid: cb2e161a83bfe1af4b3f549368b318aa, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4665060270534764793, guid: cb2e161a83bfe1af4b3f549368b318aa, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4665060270534764793, guid: cb2e161a83bfe1af4b3f549368b318aa, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4665060270534764793, guid: cb2e161a83bfe1af4b3f549368b318aa, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4665060270534764793, guid: cb2e161a83bfe1af4b3f549368b318aa, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4665060270534764793, guid: cb2e161a83bfe1af4b3f549368b318aa, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4665060270534764793, guid: cb2e161a83bfe1af4b3f549368b318aa, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4665060270534764793, guid: cb2e161a83bfe1af4b3f549368b318aa, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4665060270534764793, guid: cb2e161a83bfe1af4b3f549368b318aa, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4665060270534764793, guid: cb2e161a83bfe1af4b3f549368b318aa, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8916307461399664081, guid: cb2e161a83bfe1af4b3f549368b318aa, type: 3}
+      propertyPath: m_Name
+      value: MotorSoundFX
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cb2e161a83bfe1af4b3f549368b318aa, type: 3}
+--- !u!4 &7363281444318632671 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4665060270534764793, guid: cb2e161a83bfe1af4b3f549368b318aa, type: 3}
+  m_PrefabInstance: {fileID: 2779353118085050918}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &7634547690071382264 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5719961044922575582, guid: cb2e161a83bfe1af4b3f549368b318aa, type: 3}
+  m_PrefabInstance: {fileID: 2779353118085050918}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3501406915065798858
 PrefabInstance:
   m_ObjectHideFlags: 0

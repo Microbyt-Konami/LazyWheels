@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using MicrobytKonami.LazyWheels.Input;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.Events;
 using System;
 
+using MicrobytKonami.LazyWheels.Input;
+using MicrobytKonami.LazyWheels.Managers;
+
 namespace MicrobytKonami.LazyWheels.Controllers
 {
     public delegate void OnPlayerEnergyChangeHandler(float energy, float energyMax);
+
     [RequireComponent(typeof(CarController))]
     public class PlayerController : MonoBehaviour
     {
@@ -43,14 +46,6 @@ namespace MicrobytKonami.LazyWheels.Controllers
             CarController.SetModoGhost(ghost);
         }
 
-        public void PlayerNoFuel()
-        {
-            // GameOver
-            Debug.Log("PlayerNoFuel");
-
-            GameController.Instance.GameOver();
-        }
-
         public void ConsumEnergy(float energy)
         {
             Energy -= energy;
@@ -60,7 +55,6 @@ namespace MicrobytKonami.LazyWheels.Controllers
                 Debug.Log("No energy");
 
                 CarController.IsMoving = false;
-                GameController.Instance.GameOver();
             }
             OnEnergyChange();
         }
@@ -103,7 +97,8 @@ namespace MicrobytKonami.LazyWheels.Controllers
 #if UNITY_ANDROID
             print("UNITY_ANDROID");
 #endif
-            StartMode();
+            // CarController.PlayStartMotorSound();
+            // StartMode();
             OnEnergyChange();
         }
 
@@ -184,6 +179,8 @@ namespace MicrobytKonami.LazyWheels.Controllers
             //carController.CarFade(1);
 
             CarController.SetModoGhost(false);
+
+            CarController.PlayMotorSound();
 
             Debug.Log("End Mode");
         }

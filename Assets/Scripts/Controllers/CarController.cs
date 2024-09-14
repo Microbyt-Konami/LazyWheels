@@ -25,6 +25,8 @@ namespace MicrobytKonami.LazyWheels.Controllers
         [field: SerializeField] public GameObject MyCar { get; private set; }
         [SerializeField] private GameObject carExplode;
         [SerializeField] private GameObject carFlame;
+        [SerializeField] private AudioSource startMotorSoundFX;
+        [SerializeField] private AudioSource motorSoundFX;
 
         // Components
         private Rigidbody2D rb;
@@ -138,6 +140,26 @@ namespace MicrobytKonami.LazyWheels.Controllers
         private void OnDisable()
         {
             Debug.Log($"{gameObject.name} disable", gameObject);
+        }
+
+        public void PlayStartMotorSound()
+        {
+            startMotorSoundFX.Play();
+        }
+
+        public void StopStartMotorSound()
+        {
+            startMotorSoundFX.Stop();
+        }
+
+        public void PlayMotorSound()
+        {
+            motorSoundFX.Play();
+        }
+
+        public void StopMotorSound()
+        {
+            motorSoundFX.Stop();
         }
 
         private void Awake()

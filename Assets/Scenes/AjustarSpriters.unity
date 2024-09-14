@@ -304,6 +304,14 @@ PrefabInstance:
       propertyPath: <EnergyStart>k__BackingField
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 5342709219339744039, guid: 68b24f66146cdd44596a101142cbc57c, type: 3}
+      propertyPath: speedRotation
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5342709219339744039, guid: 68b24f66146cdd44596a101142cbc57c, type: 3}
+      propertyPath: onCarNoFuel.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7630652376604778688, guid: 68b24f66146cdd44596a101142cbc57c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -422,29 +430,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 678258306}
-  - component: {fileID: 678258305}
+  - component: {fileID: 678258307}
   m_Layer: 0
-  m_Name: GameController
+  m_Name: GameManager
   m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &678258305
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 678258304}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 769aaf3141fe10f4c83e76f63ed9a75e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  builderBlocks: {fileID: 669645791}
-  player: {fileID: 634582094}
-  isGameOver: 0
 --- !u!4 &678258306
 Transform:
   m_ObjectHideFlags: 0
@@ -460,6 +453,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &678258307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678258304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7be3a0fc3e3710dea2a3198f45bc42f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  builderBlocks: {fileID: 669645791}
+  player: {fileID: 634582094}
+  _isGameOver: 0
 --- !u!1 &1657082354
 GameObject:
   m_ObjectHideFlags: 0

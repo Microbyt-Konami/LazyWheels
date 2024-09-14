@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using MicrobytKonami.LazyWheels.Managers;
 using UnityEngine;
 
 namespace MicrobytKonami.LazyWheels.Controllers
@@ -27,6 +28,8 @@ namespace MicrobytKonami.LazyWheels.Controllers
         }
 
         public void SetParent(Transform parent) => carController.SetParent(parent);
+
+        public void StartRunCar() => StartCoroutine(StartRunCarCoroutine());
 
         private void Awake()
         {
@@ -71,7 +74,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
 
                 if (y > blockController.YTop)
                 {
-                    var blockNext = GameController.Instance.FindBlockInY(y);
+                    var blockNext = GameManager.Instance.FindBlockInY(y);
 
                     blockController.RemoveCarIA(this);
                     if (blockNext != null)
@@ -173,6 +176,15 @@ namespace MicrobytKonami.LazyWheels.Controllers
             {
                 carController.Mover(-ray.x);
             }
+        }
+
+        private IEnumerator StartRunCarCoroutine()
+        {
+            carController.PlayStartMotorSound();
+            yield return new WaitForSeconds(0.5f);
+            carController.StopStartMotorSound();
+            carController.PlayMotorSound();
+            IsMoving = true;
         }
     }
 }
