@@ -14,6 +14,7 @@ namespace MicrobytKonami.LazyWheels.UI
     {
         [Header("References")]
         [SerializeField] private PlayerController player;
+        [field: SerializeField] public UICounterInitial CounterInitial { get; private set; }
 
         [Header("UI")]
         [SerializeField] private GameObject panelGameOver;

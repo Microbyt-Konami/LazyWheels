@@ -61,7 +61,16 @@ namespace MicrobytKonami.LazyWheels.Managers
         {
             player.CarController.IsMoving = false;
             player.CarController.PlayStartMotorSound();
-            yield return new WaitForSeconds(3f);
+
+            var counter = UIController.Instance.CounterInitial;
+
+            counter.gameObject.SetActive(true);
+            //yield return counter.StartCounter();
+            yield return StartCoroutine(counter.StartCounterCoroutine());
+            counter.gameObject.SetActive(false);
+
+            yield return new WaitForSeconds(2f);
+
             player.CarController.StopStartMotorSound();
             player.CarController.PlayMotorSound();
             player.CarController.IsMoving = true;
