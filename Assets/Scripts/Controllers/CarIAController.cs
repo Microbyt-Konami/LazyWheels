@@ -29,7 +29,11 @@ namespace MicrobytKonami.LazyWheels.Controllers
 
         public void SetParent(Transform parent) => carController.SetParent(parent);
 
-        public void StartRunCar() => StartCoroutine(StartRunCarCoroutine());
+        public void StartRunCar()
+        {
+            carController.PlayMotorSound();
+            IsMoving = true;
+        }
 
         private void Awake()
         {
@@ -176,15 +180,6 @@ namespace MicrobytKonami.LazyWheels.Controllers
             {
                 carController.Mover(-ray.x);
             }
-        }
-
-        private IEnumerator StartRunCarCoroutine()
-        {
-            carController.PlayStartMotorSound();
-            yield return new WaitForSeconds(0.5f);
-            carController.StopStartMotorSound();
-            carController.PlayMotorSound();
-            IsMoving = true;
         }
     }
 }

@@ -14,6 +14,7 @@ namespace MicrobytKonami.LazyWheels.Managers
         [Header("References")]
         [SerializeField] private BuilderBlocks builderBlocks;
         [SerializeField] private PlayerController player;
+        [SerializeField] private AudioSource inicioFXSound;
 
         [Header("Debug")]
         // [SerializeField] private bool _hasLevelStarted;
@@ -29,15 +30,6 @@ namespace MicrobytKonami.LazyWheels.Managers
         public bool IsGameOver { get => _isGameOver; set => _isGameOver = value; }
 
         public BlockController FindBlockInY(float y) => builderBlocks.FindBlockInY(y);
-
-        public void LoadCarIAs(ICollection<CarIAController> carsIA)
-        {
-        }
-
-        public void MoveCarIA(CarIAController carIA)
-        {
-
-        }
 
         void OnEnable()
         {
@@ -61,18 +53,22 @@ namespace MicrobytKonami.LazyWheels.Managers
         {
             player.CarController.IsMoving = false;
             player.CarController.PlayStartMotorSound();
+            yield return new WaitForSeconds(2);
 
             var counter = UIController.Instance.CounterInitial;
 
             counter.gameObject.SetActive(true);
             //yield return counter.StartCounter();
             yield return StartCoroutine(counter.StartCounterCoroutine());
-            counter.gameObject.SetActive(false);
+
+            Debug.Log("Inicio FX");
+            inicioFXSound.Play();
+            player.CarController.PlayMotorSound();
 
             yield return new WaitForSeconds(2f);
+            counter.gameObject.SetActive(false);
 
-            player.CarController.StopStartMotorSound();
-            player.CarController.PlayMotorSound();
+            //player.CarController.StopStartMotorSound();
             player.CarController.IsMoving = true;
         }
 
@@ -90,6 +86,7 @@ namespace MicrobytKonami.LazyWheels.Managers
 
         private void Player_EnergyChangeHandler(float energy, float energyMax)
         {
+            UIController.Instance.Info.SetEnergy(energy, energyMax);
             if (energy < 0)
                 GameOver();
         }

@@ -59,7 +59,7 @@ namespace MicrobytKonami.LazyWheels
                 goCollision = hit.collider.gameObject;
                 positionCollision = hit.point;
                 this.DistanceCollision = hit.distance;
-                Debug.Log($"{go.name} Collision: {goCollision.name} {positionCollision} {DistanceCollision}", goCollision);
+                //Debug.Log($"{go.name} Collision: {goCollision.name} {positionCollision} {DistanceCollision}", goCollision);
                 //Debug.Break();
             }
         }

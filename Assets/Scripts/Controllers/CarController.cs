@@ -144,21 +144,25 @@ namespace MicrobytKonami.LazyWheels.Controllers
 
         public void PlayStartMotorSound()
         {
+            Debug.Log("PlayStartMotorSound");
             startMotorSoundFX.Play();
         }
 
         public void StopStartMotorSound()
         {
+            Debug.Log("StopStartMotorSound");
             startMotorSoundFX.Stop();
         }
 
         public void PlayMotorSound()
         {
+            Debug.Log("PlayMotorSound");
             motorSoundFX.Play();
         }
 
         public void StopMotorSound()
         {
+            Debug.Log("StopMotorSound");
             motorSoundFX.Stop();
         }
 

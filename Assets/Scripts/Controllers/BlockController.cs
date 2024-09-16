@@ -51,7 +51,6 @@ namespace MicrobytKonami.LazyWheels.Controllers
                 return;
 
             carIA.IsMoving = move;
-            gameManager.MoveCarIA(carIA);
         }
 
         public void MoveAllCarsIAs(bool move = true)
@@ -162,7 +161,6 @@ namespace MicrobytKonami.LazyWheels.Controllers
         void LoadCarsIAs()
         {
             carsIAs = transformCarIAs.GetComponentsInChildren<CarIAController>().ToList();
-            gameManager.LoadCarIAs(carsIAs);
         }
     }
 }

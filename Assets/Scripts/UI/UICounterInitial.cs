@@ -10,8 +10,6 @@ namespace MicrobytKonami.LazyWheels
         [SerializeField] private Image imageCounter;
         [SerializeField] private Sprite[] spritesCounters;
         [SerializeField] private AudioSource cuentaRegresivaSound;
-        [SerializeField] private AudioSource inicioFXSound;
-        [SerializeField] float time = 3;
 
         public Coroutine StartCounter()
         {
@@ -20,17 +18,17 @@ namespace MicrobytKonami.LazyWheels
 
         public IEnumerator StartCounterCoroutine()
         {
-            float t = time / spritesCounters.Length;
+            yield return new WaitForSeconds(2);
 
-            foreach (var sprite in spritesCounters)
-            {
-                imageCounter.sprite = sprite;
-                cuentaRegresivaSound.Play();
+            imageCounter.sprite = spritesCounters[1];
+            cuentaRegresivaSound.Play();
+            yield return new WaitForSeconds(1);
 
-                yield return new WaitForSeconds(t);
-            }
+            imageCounter.sprite = spritesCounters[2];
+            cuentaRegresivaSound.Play();
+            yield return new WaitForSeconds(1);
 
-            inicioFXSound.Play();
+            imageCounter.sprite = spritesCounters[3];
         }
     }
 }
