@@ -296,10 +296,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1779960019749960616, guid: 68b24f66146cdd44596a101142cbc57c, type: 3}
-      propertyPath: m_Name
-      value: CatchItSoundFX
-      objectReference: {fileID: 0}
     - target: {fileID: 7630652376604778688, guid: 68b24f66146cdd44596a101142cbc57c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

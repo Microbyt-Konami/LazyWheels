@@ -424,7 +424,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 154540643493028879, guid: a60de96796c03ea42af7baefc1ffc2fc, type: 3}
       propertyPath: m_Name
-      value: CatItSoundFX
+      value: CatchItSoundFX
       objectReference: {fileID: 0}
     - target: {fileID: 3367472134455046813, guid: a60de96796c03ea42af7baefc1ffc2fc, type: 3}
       propertyPath: m_LocalPosition.x
