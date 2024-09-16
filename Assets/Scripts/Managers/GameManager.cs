@@ -36,10 +36,24 @@ namespace MicrobytKonami.LazyWheels.Managers
         void OnEnable()
         {
             if (player.CarController is not null)
+                InternalEnable();
+            else
+                StartCoroutine(InternalEnableCourotine());
+
+            void InternalEnable()
             {
                 player.CarController.onCarNoFuel.AddListener(GameOver);
                 player.CarController.OnCarFuelChange += Player_CarFuelChange;
                 player.OnPlayerEnergyChange += Player_EnergyChangeHandler;
+            }
+
+            IEnumerator InternalEnableCourotine()
+            {
+                while (player.CarController is null)
+                {
+                    yield return null;
+                }
+                InternalEnable();
             }
         }
 
