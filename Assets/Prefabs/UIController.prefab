@@ -850,7 +850,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  <Info>k__BackingField: {fileID: 0}
+  <Info>k__BackingField: {fileID: 3130070931109002396}
   <CounterInitial>k__BackingField: {fileID: 6559654449157161290}
   panelGameOver: {fileID: 439656467180079800}
   distanceText: {fileID: 7675318304365608787}

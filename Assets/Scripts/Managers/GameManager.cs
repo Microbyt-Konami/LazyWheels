@@ -6,6 +6,8 @@ using MicrobytKonami.System;
 
 using MicrobytKonami.LazyWheels.Controllers;
 using MicrobytKonami.LazyWheels.UI;
+using System;
+using static UnityEngine.EventSystems.EventTrigger;
 
 namespace MicrobytKonami.LazyWheels.Managers
 {
@@ -36,6 +38,7 @@ namespace MicrobytKonami.LazyWheels.Managers
             if (player.CarController is not null)
             {
                 player.CarController.onCarNoFuel.AddListener(GameOver);
+                player.CarController.OnCarFuelChange += Player_CarFuelChange;
                 player.OnPlayerEnergyChange += Player_EnergyChangeHandler;
             }
         }
@@ -45,6 +48,7 @@ namespace MicrobytKonami.LazyWheels.Managers
             if (player.CarController is not null)
             {
                 player.CarController.onCarNoFuel.RemoveListener(GameOver);
+                player.CarController.OnCarFuelChange -= Player_CarFuelChange;
                 player.OnPlayerEnergyChange -= Player_EnergyChangeHandler;
             }
         }
@@ -82,6 +86,11 @@ namespace MicrobytKonami.LazyWheels.Managers
             _isGameOver = true;
             player.SetModoGhost(true);
             UIController.Instance.ShowGameOver();
+        }
+
+        private void Player_CarFuelChange(float fuel, float fuelMax)
+        {
+            UIController.Instance.Info.SetFuel(fuel, fuelMax);
         }
 
         private void Player_EnergyChangeHandler(float energy, float energyMax)
