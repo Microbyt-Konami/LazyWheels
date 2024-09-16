@@ -8,6 +8,7 @@ namespace MicrobytKonami.LazyWheels
     public class CarExplode : MonoBehaviour
     {
         private ParticleSystem _particleSystem;
+        private AudioSource audioSource;
 
         public UnityEvent OnExplodeEnd;
 
@@ -16,6 +17,13 @@ namespace MicrobytKonami.LazyWheels
         void Awake()
         {
             _particleSystem = GetComponent<ParticleSystem>();
+            audioSource = GetComponent<AudioSource>();
+        }
+
+        private void Start()
+        {
+            _particleSystem.Play();
+            audioSource.Play();
         }
 
         void OnParticleSystemStopped()

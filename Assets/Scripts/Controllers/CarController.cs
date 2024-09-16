@@ -11,6 +11,7 @@ using UnityEngine.Events;
 namespace MicrobytKonami.LazyWheels.Controllers
 {
     public delegate void OnCarFuelChangeHandler(float fuel, float fuelMax);
+    public delegate void OnCatchItHandler();
 
     [RequireComponent(typeof(Rigidbody2D))]
     public class CarController : MonoBehaviour
@@ -25,6 +26,8 @@ namespace MicrobytKonami.LazyWheels.Controllers
         [field: SerializeField] public GameObject MyCar { get; private set; }
         [SerializeField] private GameObject carExplode;
         [SerializeField] private GameObject carFlame;
+        [SerializeField] private AudioSource startMotorSoundFX;
+        [SerializeField] private AudioSource motorSoundFX;
 
         // Components
         private Rigidbody2D rb;
@@ -53,6 +56,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
 
         // Events
         public event OnCarFuelChangeHandler OnCarFuelChange;
+        public event OnCatchItHandler OnCatchIt;
         public UnityEvent onCarNoFuel;
 
         public bool IsMoving
@@ -132,12 +136,37 @@ namespace MicrobytKonami.LazyWheels.Controllers
 
         public void CatchIt(GameObject powerUp)
         {
+            OnCatchIt?.Invoke();
             StartCoroutine(CatchItCourotine(powerUp));
         }
 
         private void OnDisable()
         {
             Debug.Log($"{gameObject.name} disable", gameObject);
+        }
+
+        public void PlayStartMotorSound()
+        {
+            Debug.Log("PlayStartMotorSound");
+            startMotorSoundFX.Play();
+        }
+
+        public void StopStartMotorSound()
+        {
+            Debug.Log("StopStartMotorSound");
+            startMotorSoundFX.Stop();
+        }
+
+        public void PlayMotorSound()
+        {
+            Debug.Log("PlayMotorSound");
+            motorSoundFX.Play();
+        }
+
+        public void StopMotorSound()
+        {
+            Debug.Log("StopMotorSound");
+            motorSoundFX.Stop();
         }
 
         private void Awake()
