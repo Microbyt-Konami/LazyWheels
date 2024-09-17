@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fec657a8fb2655141928b6c869dbfafa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <PowerUpEnergy>k__BackingField: 3
+  <PowerUpEnergy>k__BackingField: 10
 --- !u!61 &8776915961544368340
 BoxCollider2D:
   m_ObjectHideFlags: 0
