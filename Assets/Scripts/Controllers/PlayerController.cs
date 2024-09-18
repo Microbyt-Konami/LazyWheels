@@ -18,8 +18,8 @@ namespace MicrobytKonami.LazyWheels.Controllers
     {
         [field: SerializeField, Header("Player")] public float EnergyStart { get; private set; }
         [SerializeField] private float energyWhenExplode;
-        [SerializeField] private AudioSource lostCarSoundFX;
-        [SerializeField] private AudioSource catchItSoundFX;
+        [SerializeField] private AudioSource enemySoundFX;
+        [SerializeField] private AudioSource powerUpSoundFX;
 
         // Components
         private Transform myTransform;
@@ -36,7 +36,6 @@ namespace MicrobytKonami.LazyWheels.Controllers
 
         public void Die()
         {
-            lostCarSoundFX.Play();
             ConsumEnergy(energyWhenExplode);
             myTransform.position -= myTransform.position.x * Vector3.right;
             CarController.IsMoving = true;
@@ -82,13 +81,13 @@ namespace MicrobytKonami.LazyWheels.Controllers
         private void OnEnable()
         {
             inputActions.Enable();
-            CarController.OnCatchIt += Player_OnCatchIt;
+            CarController.OnCatchFuel += Player_CatchFuel;
         }
 
         private void OnDisable()
         {
             inputActions.Disable();
-            CarController.OnCatchIt -= Player_OnCatchIt;
+            CarController.OnCatchFuel -= Player_CatchFuel;
         }
 
         // Start is called before the first frame update
@@ -124,8 +123,6 @@ namespace MicrobytKonami.LazyWheels.Controllers
             OnPlayerEnergyChange?.Invoke(Energy, EnergyStart);
         }
 
-        private void Player_OnCatchIt() => catchItSoundFX.Play();
-
         private void Move()
         {
 #if UNITY_WEBGL || UNITY_ANDROID || UNITY_IOS
@@ -146,6 +143,8 @@ namespace MicrobytKonami.LazyWheels.Controllers
                 CatchPowerUp(collision.gameObject);
         }
 
+        private void Player_CatchFuel() => powerUpSoundFX.Play();
+
         private void CatchPowerUp(GameObject powerUp)
         {
             var powerUpData = powerUp.GetComponent<PowerUp>();
@@ -155,10 +154,14 @@ namespace MicrobytKonami.LazyWheels.Controllers
                 CarController.CatchIt(powerUp);
                 if (powerUpData.PowerUpEnergy > 0)
                 {
+                    powerUpSoundFX.Play();
                     PowerUpEnery(powerUpData.PowerUpEnergy);
                 }
                 else if (powerUpData.PowerUpEnergy < 0)
+                {
+                    enemySoundFX.Play();
                     ConsumEnergy(-powerUpData.PowerUpEnergy);
+                }
             }
         }
 
