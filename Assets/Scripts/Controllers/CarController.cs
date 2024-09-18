@@ -302,11 +302,21 @@ namespace MicrobytKonami.LazyWheels.Controllers
 
         private void ExplodeCars(CarController car1, CarController car2)
         {
+            PlayerController player;
+
             // Lo que se quedrá hacer es que explote el menos grande si hay un camión
             if (car1.Weight > car2.Weight && car1.Weight / car2.Weight > 10)
+            {
                 car2.Explode();
+                if (car1.TryGetComponent(out player))
+                    player.ConsumEnergyWhenNoExplodeIfCarBigger();
+            }
             else if (car2.Weight > car1.Weight && car2.Weight / car1.Weight > 10)
+            {
                 car1.Explode();
+                if (car2.TryGetComponent(out player))
+                    player.ConsumEnergyWhenNoExplodeIfCarBigger();
+            }
             else
             {
                 car1.Explode();
