@@ -11,12 +11,13 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 namespace MicrobytKonami.LazyWheels.Managers
 {
-    public class GameManager : MonoBehaviourSingleton<GameManager>
+    public class GameManager : MonoBehaviourSingletonScene<GameManager>
     {
         [Header("References")]
         [SerializeField] private BuilderBlocks builderBlocks;
         [SerializeField] private PlayerController player;
         [SerializeField] private AudioSource inicioFXSound;
+        [SerializeField] private AudioSource gameOverFXSound;
 
         [Header("Debug")]
         // [SerializeField] private bool _hasLevelStarted;
@@ -96,6 +97,7 @@ namespace MicrobytKonami.LazyWheels.Managers
             if (_isGameOver)
                 return;
 
+            gameOverFXSound.Play();
             StopAllCarsMotors();
             player.IsStopCounterMeter = true;
             _isGameOver = true;

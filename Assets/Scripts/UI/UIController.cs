@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 using TMPro;
 
@@ -10,7 +11,7 @@ using MicrobytKonami.LazyWheels.Controllers;
 
 namespace MicrobytKonami.LazyWheels.UI
 {
-    public class UIController : MonoBehaviourSingleton<UIController>
+    public class UIController : MonoBehaviourSingletonScene<UIController>
     {
         [Header("References")]
         [SerializeField] private PlayerController player;
@@ -26,6 +27,11 @@ namespace MicrobytKonami.LazyWheels.UI
         public void ShowGameOver()
         {
             panelGameOver.SetActive(true);
+        }
+
+        public void PlayAgain()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
         // Start is called before the first frame update
