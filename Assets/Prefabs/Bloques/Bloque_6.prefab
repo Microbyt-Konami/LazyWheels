@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3212254490674964620}
+  - component: {fileID: -2196016983939883357}
   m_Layer: 0
   m_Name: Bloque_6
   m_TagString: Untagged
@@ -35,6 +36,23 @@ Transform:
   - {fileID: 2892612916228293762}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-2196016983939883357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2101270949342431240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 229b010b3018aa9418295b1053966ee1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  calles: {fileID: 0}
+  startMoveAllCarsIA: 0
+  yTop: 0
+  yBottom: 0
+  yOld: 3.4028235e+38
 --- !u!1 &2892612915736549845
 GameObject:
   m_ObjectHideFlags: 0
@@ -1851,6 +1869,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2892612916228293762}
     m_Modifications:
+    - target: {fileID: 1533584932406990893, guid: 8dbacc30d1d9f68419a9e062e6217c94, type: 3}
+      propertyPath: direction.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3755119550600851088, guid: 8dbacc30d1d9f68419a9e062e6217c94, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -1898,6 +1920,18 @@ PrefabInstance:
     - target: {fileID: 3755119550600851094, guid: 8dbacc30d1d9f68419a9e062e6217c94, type: 3}
       propertyPath: m_Name
       value: Camion_Frontal_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4219857582842630543, guid: 8dbacc30d1d9f68419a9e062e6217c94, type: 3}
+      propertyPath: direction.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4781450641883807891, guid: 8dbacc30d1d9f68419a9e062e6217c94, type: 3}
+      propertyPath: direction.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7472657214566496953, guid: 8dbacc30d1d9f68419a9e062e6217c94, type: 3}
+      propertyPath: direction.x
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
