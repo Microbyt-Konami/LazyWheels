@@ -11,7 +11,7 @@ using UnityEngine.Events;
 namespace MicrobytKonami.LazyWheels.Controllers
 {
     public delegate void OnCarFuelChangeHandler(float fuel, float fuelMax);
-    public delegate void OnCatchItHandler();
+    public delegate void OnCatchFuelHandler();
 
     [RequireComponent(typeof(Rigidbody2D))]
     public class CarController : MonoBehaviour
@@ -56,7 +56,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
 
         // Events
         public event OnCarFuelChangeHandler OnCarFuelChange;
-        public event OnCatchItHandler OnCatchIt;
+        public event OnCatchFuelHandler OnCatchFuel;
         public UnityEvent onCarNoFuel;
 
         public bool IsMoving
@@ -136,7 +136,6 @@ namespace MicrobytKonami.LazyWheels.Controllers
 
         public void CatchIt(GameObject powerUp)
         {
-            OnCatchIt?.Invoke();
             StartCoroutine(CatchItCourotine(powerUp));
         }
 
@@ -334,6 +333,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
             if (fuelPowerUp <= 0)
                 return;
 
+            OnCatchFuel?.Invoke();
             Debug.Log("Catch fuel", fuel);
             CatchIt(fuel);
             Fuel += fuelPowerUp;

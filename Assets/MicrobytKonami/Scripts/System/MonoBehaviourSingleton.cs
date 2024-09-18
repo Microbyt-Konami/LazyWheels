@@ -6,25 +6,25 @@ namespace MicrobytKonami.System
 {
     public abstract class MonoBehaviourSingleton<T> : MonoBehaviour where T : Component
     {
-        private static T instance;
+        private static T _instance;
         protected bool isInstanceAsigned = false;
 
         public static T Instance
         {
             get
             {
-                if (instance == null)
+                if (_instance == null)
                 {
-                    instance = FindObjectOfType<T>();
-                    if (instance == null)
+                    _instance = FindObjectOfType<T>();
+                    if (_instance == null)
                     {
                         GameObject obj = new GameObject();
                         obj.name = typeof(T).Name;
-                        instance = obj.AddComponent<T>();
+                        _instance = obj.AddComponent<T>();
                     }
                 }
 
-                return instance;
+                return _instance;
             }
         }
 
@@ -33,9 +33,9 @@ namespace MicrobytKonami.System
         /// </summary>
         protected virtual void Awake()
         {
-            if (instance == null)
+            if (_instance == null)
             {
-                instance = this as T;
+                _instance = this as T;
                 isInstanceAsigned = true;
 
                 if (Application.isPlaying)

@@ -248,8 +248,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <EnergyStart>k__BackingField: 10
   energyWhenExplode: 1
-  lostCarSoundFX: {fileID: 8564848654499092332}
-  catchItSoundFX: {fileID: 1838900945405101692}
+  enemySoundFX: {fileID: 8564848654499092332}
+  powerUpSoundFX: {fileID: 1838900945405101692}
   <Energy>k__BackingField: 0
   <Meters>k__BackingField: 0
   <IsStopCounterMeter>k__BackingField: 0
@@ -290,7 +290,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3072414262109558725, guid: 947f3b57928403140a923b69713fd238, type: 3}
       propertyPath: m_Name
-      value: LostCarSoundFX
+      value: EnemySoundFX
       objectReference: {fileID: 0}
     - target: {fileID: 6587614918177777329, guid: 947f3b57928403140a923b69713fd238, type: 3}
       propertyPath: m_LocalPosition.x
@@ -424,7 +424,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 154540643493028879, guid: a60de96796c03ea42af7baefc1ffc2fc, type: 3}
       propertyPath: m_Name
-      value: CatchItSoundFX
+      value: PowerUpSoundFX
       objectReference: {fileID: 0}
     - target: {fileID: 3367472134455046813, guid: a60de96796c03ea42af7baefc1ffc2fc, type: 3}
       propertyPath: m_LocalPosition.x
