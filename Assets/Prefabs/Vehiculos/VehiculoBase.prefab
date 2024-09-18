@@ -239,7 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a3ad165aceca9c4fbaa1c0e1cdcd1ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alwaysLeft: 1
+  alwaysLeft: 0
   blockController: {fileID: 0}
   rays: {fileID: 6153051905452481096}
 --- !u!1 &7529053044877167223

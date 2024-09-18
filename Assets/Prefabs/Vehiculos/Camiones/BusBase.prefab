@@ -1,72 +1,52 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1811557445175521011
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1811557445175521013}
-  m_Layer: 0
-  m_Name: Moto_Lado_1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1811557445175521013
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1811557445175521011}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 5209120012943845937}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &476310467596459944
+--- !u!1001 &7374751369043603105
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1811557445175521013}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1594601583873082639, guid: 4743ce40622546545aad71f66fd24cb2, type: 3}
+      propertyPath: speedUp
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -1594601583873082639, guid: 4743ce40622546545aad71f66fd24cb2, type: 3}
+      propertyPath: speedRotation
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -1594601583873082639, guid: 4743ce40622546545aad71f66fd24cb2, type: 3}
+      propertyPath: <FuelDeposit>k__BackingField
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: -1594601583873082639, guid: 4743ce40622546545aad71f66fd24cb2, type: 3}
+      propertyPath: <FuelMeterSecond>k__BackingField
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 421745897417169412, guid: 4743ce40622546545aad71f66fd24cb2, type: 3}
       propertyPath: m_Name
-      value: Moto
+      value: Camion
       objectReference: {fileID: 0}
-    - target: {fileID: 947203142173714114, guid: 4743ce40622546545aad71f66fd24cb2, type: 3}
-      propertyPath: direction.x
-      value: -1
+    - target: {fileID: 582523487650285860, guid: 4743ce40622546545aad71f66fd24cb2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.76
       objectReference: {fileID: 0}
-    - target: {fileID: 2513771097186742112, guid: 4743ce40622546545aad71f66fd24cb2, type: 3}
-      propertyPath: direction.y
-      value: -1
+    - target: {fileID: 2225084309208855446, guid: 4743ce40622546545aad71f66fd24cb2, type: 3}
+      propertyPath: m_Mass
+      value: 450000
       objectReference: {fileID: 0}
-    - target: {fileID: 4838698345453729688, guid: 4743ce40622546545aad71f66fd24cb2, type: 3}
-      propertyPath: m_Size.x
-      value: 0.67
+    - target: {fileID: 2943331447851514506, guid: 4743ce40622546545aad71f66fd24cb2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.69
       objectReference: {fileID: 0}
-    - target: {fileID: 4838698345453729688, guid: 4743ce40622546545aad71f66fd24cb2, type: 3}
-      propertyPath: m_Size.y
-      value: 1.46
+    - target: {fileID: 3058132002320809620, guid: 4743ce40622546545aad71f66fd24cb2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.59
       objectReference: {fileID: 0}
-    - target: {fileID: 4838698345453729688, guid: 4743ce40622546545aad71f66fd24cb2, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -1390051963, guid: 213bd33df7f68837780ea811b8af3517, type: 3}
-    - target: {fileID: 4838698345453729688, guid: 4743ce40622546545aad71f66fd24cb2, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
+    - target: {fileID: 3157232978449472467, guid: 4743ce40622546545aad71f66fd24cb2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -6.63
       objectReference: {fileID: 0}
     - target: {fileID: 5680924611160995225, guid: 4743ce40622546545aad71f66fd24cb2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -110,19 +90,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5680924611160995231, guid: 4743ce40622546545aad71f66fd24cb2, type: 3}
       propertyPath: m_Name
-      value: VehiculoBase
+      value: BusBase
       objectReference: {fileID: 0}
-    - target: {fileID: 5773298086378589684, guid: 4743ce40622546545aad71f66fd24cb2, type: 3}
-      propertyPath: direction.x
+    - target: {fileID: 5811631631958142135, guid: 4743ce40622546545aad71f66fd24cb2, type: 3}
+      propertyPath: alwaysLeft
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6907739478566971432, guid: 4743ce40622546545aad71f66fd24cb2, type: 3}
       propertyPath: m_Size.x
-      value: 0.67
+      value: 1.18
       objectReference: {fileID: 0}
     - target: {fileID: 6907739478566971432, guid: 4743ce40622546545aad71f66fd24cb2, type: 3}
       propertyPath: m_Size.y
-      value: 1.46
+      value: 4.23
       objectReference: {fileID: 0}
     - target: {fileID: 6907739478566971432, guid: 4743ce40622546545aad71f66fd24cb2, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
@@ -146,31 +126,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6907739478566971432, guid: 4743ce40622546545aad71f66fd24cb2, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.x
-      value: 0.67
+      value: 1.18
       objectReference: {fileID: 0}
     - target: {fileID: 6907739478566971432, guid: 4743ce40622546545aad71f66fd24cb2, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.y
-      value: 1.46
+      value: 4.23
       objectReference: {fileID: 0}
     - target: {fileID: 6907739478566971432, guid: 4743ce40622546545aad71f66fd24cb2, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.67
+      value: 1.18
       objectReference: {fileID: 0}
     - target: {fileID: 6907739478566971432, guid: 4743ce40622546545aad71f66fd24cb2, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1.46
-      objectReference: {fileID: 0}
-    - target: {fileID: 8498844618853152734, guid: 4743ce40622546545aad71f66fd24cb2, type: 3}
-      propertyPath: direction.y
-      value: 1
+      value: 4.23
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4743ce40622546545aad71f66fd24cb2, type: 3}
---- !u!4 &5209120012943845937 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5680924611160995225, guid: 4743ce40622546545aad71f66fd24cb2, type: 3}
-  m_PrefabInstance: {fileID: 476310467596459944}
-  m_PrefabAsset: {fileID: 0}
