@@ -39,15 +39,6 @@ namespace MicrobytKonami.LazyWheels.Input
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Fire"",
-                    ""type"": ""Button"",
-                    ""id"": ""18146e82-8bb7-48dc-80e4-2f974777ec6e"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""MoveAcceleration"",
                     ""type"": ""Value"",
                     ""id"": ""1cd9d5ee-414c-42e1-82de-615ac24c148a"",
@@ -86,7 +77,7 @@ namespace MicrobytKonami.LazyWheels.Input
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Default"",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -97,7 +88,7 @@ namespace MicrobytKonami.LazyWheels.Input
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Default"",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -119,7 +110,7 @@ namespace MicrobytKonami.LazyWheels.Input
                     ""path"": ""<Gamepad>/leftStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Default"",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -130,7 +121,7 @@ namespace MicrobytKonami.LazyWheels.Input
                     ""path"": ""<Gamepad>/leftStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Default"",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -152,7 +143,7 @@ namespace MicrobytKonami.LazyWheels.Input
                     ""path"": ""<Joystick>/stick/left"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Default"",
+                    ""groups"": ""Joystick"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -163,40 +154,18 @@ namespace MicrobytKonami.LazyWheels.Input
                     ""path"": ""<Joystick>/stick/right"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Default"",
+                    ""groups"": ""Joystick"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": """",
-                    ""id"": ""ec53ab5a-867b-4367-8a07-407a090bc449"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Default"",
-                    ""action"": ""Fire"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""9b74608b-7020-4939-b6d5-9e38145c227e"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Default"",
-                    ""action"": ""Fire"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""94a82fd5-7421-4e47-b5d0-4fc3c2406bea"",
                     ""path"": ""<Accelerometer>/acceleration"",
                     ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Default"",
+                    ""processors"": ""NormalizeVector3"",
+                    ""groups"": ""Accelerometer"",
                     ""action"": ""MoveAcceleration"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -240,13 +209,61 @@ namespace MicrobytKonami.LazyWheels.Input
                     ""isOR"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Keyboard&Mouse"",
+            ""bindingGroup"": ""Keyboard&Mouse"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Keyboard>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<Mouse>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Gamepad"",
+            ""bindingGroup"": ""Gamepad"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Gamepad>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Joystick"",
+            ""bindingGroup"": ""Joystick"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Joystick>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Accelerometer"",
+            ""bindingGroup"": ""Accelerometer"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Accelerometer>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
         }
     ]
 }");
             // Player
             m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
             m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
-            m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
             m_Player_MoveAcceleration = m_Player.FindAction("MoveAcceleration", throwIfNotFound: true);
         }
 
@@ -310,14 +327,12 @@ namespace MicrobytKonami.LazyWheels.Input
         private readonly InputActionMap m_Player;
         private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
         private readonly InputAction m_Player_Move;
-        private readonly InputAction m_Player_Fire;
         private readonly InputAction m_Player_MoveAcceleration;
         public struct PlayerActions
         {
             private @InputActions m_Wrapper;
             public PlayerActions(@InputActions wrapper) { m_Wrapper = wrapper; }
             public InputAction @Move => m_Wrapper.m_Player_Move;
-            public InputAction @Fire => m_Wrapper.m_Player_Fire;
             public InputAction @MoveAcceleration => m_Wrapper.m_Player_MoveAcceleration;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
@@ -331,9 +346,6 @@ namespace MicrobytKonami.LazyWheels.Input
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
-                @Fire.started += instance.OnFire;
-                @Fire.performed += instance.OnFire;
-                @Fire.canceled += instance.OnFire;
                 @MoveAcceleration.started += instance.OnMoveAcceleration;
                 @MoveAcceleration.performed += instance.OnMoveAcceleration;
                 @MoveAcceleration.canceled += instance.OnMoveAcceleration;
@@ -344,9 +356,6 @@ namespace MicrobytKonami.LazyWheels.Input
                 @Move.started -= instance.OnMove;
                 @Move.performed -= instance.OnMove;
                 @Move.canceled -= instance.OnMove;
-                @Fire.started -= instance.OnFire;
-                @Fire.performed -= instance.OnFire;
-                @Fire.canceled -= instance.OnFire;
                 @MoveAcceleration.started -= instance.OnMoveAcceleration;
                 @MoveAcceleration.performed -= instance.OnMoveAcceleration;
                 @MoveAcceleration.canceled -= instance.OnMoveAcceleration;
@@ -376,10 +385,45 @@ namespace MicrobytKonami.LazyWheels.Input
                 return asset.controlSchemes[m_DefaultSchemeIndex];
             }
         }
+        private int m_KeyboardMouseSchemeIndex = -1;
+        public InputControlScheme KeyboardMouseScheme
+        {
+            get
+            {
+                if (m_KeyboardMouseSchemeIndex == -1) m_KeyboardMouseSchemeIndex = asset.FindControlSchemeIndex("Keyboard&Mouse");
+                return asset.controlSchemes[m_KeyboardMouseSchemeIndex];
+            }
+        }
+        private int m_GamepadSchemeIndex = -1;
+        public InputControlScheme GamepadScheme
+        {
+            get
+            {
+                if (m_GamepadSchemeIndex == -1) m_GamepadSchemeIndex = asset.FindControlSchemeIndex("Gamepad");
+                return asset.controlSchemes[m_GamepadSchemeIndex];
+            }
+        }
+        private int m_JoystickSchemeIndex = -1;
+        public InputControlScheme JoystickScheme
+        {
+            get
+            {
+                if (m_JoystickSchemeIndex == -1) m_JoystickSchemeIndex = asset.FindControlSchemeIndex("Joystick");
+                return asset.controlSchemes[m_JoystickSchemeIndex];
+            }
+        }
+        private int m_AccelerometerSchemeIndex = -1;
+        public InputControlScheme AccelerometerScheme
+        {
+            get
+            {
+                if (m_AccelerometerSchemeIndex == -1) m_AccelerometerSchemeIndex = asset.FindControlSchemeIndex("Accelerometer");
+                return asset.controlSchemes[m_AccelerometerSchemeIndex];
+            }
+        }
         public interface IPlayerActions
         {
             void OnMove(InputAction.CallbackContext context);
-            void OnFire(InputAction.CallbackContext context);
             void OnMoveAcceleration(InputAction.CallbackContext context);
         }
     }
