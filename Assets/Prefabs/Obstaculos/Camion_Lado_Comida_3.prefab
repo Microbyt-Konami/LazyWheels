@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7971753297468910491}
   - component: {fileID: 7971753297468910468}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Camion_Lado_Comida_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

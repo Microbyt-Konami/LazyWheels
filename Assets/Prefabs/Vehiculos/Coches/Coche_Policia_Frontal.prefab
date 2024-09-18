@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &425319154251624203
+--- !u!1 &6560324343695113057
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,37 +8,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 425319154251624205}
+  - component: {fileID: 6560324343695113059}
   m_Layer: 7
-  m_Name: CarIA5
-  m_TagString: CarIA
+  m_Name: Coche_Policia_Frontal
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &425319154251624205
+--- !u!4 &6560324343695113059
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 425319154251624203}
+  m_GameObject: {fileID: 6560324343695113057}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4102659942242303615}
+  - {fileID: 2199227294605839268}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &4111288499481394945
+--- !u!1001 &2262093381758618330
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 425319154251624205}
+    m_TransformParent: {fileID: 6560324343695113059}
     m_Modifications:
     - target: {fileID: 135574596738810232, guid: 7dca9a408717cc94ab2b71cc8af618f9, type: 3}
       propertyPath: m_Name
@@ -50,6 +50,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 135574596738810238, guid: 7dca9a408717cc94ab2b71cc8af618f9, type: 3}
       propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 135574596738810238, guid: 7dca9a408717cc94ab2b71cc8af618f9, type: 3}
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 135574596738810238, guid: 7dca9a408717cc94ab2b71cc8af618f9, type: 3}
@@ -81,72 +85,36 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 869643566713095039, guid: 7dca9a408717cc94ab2b71cc8af618f9, type: 3}
-      propertyPath: m_Size.x
-      value: 0.96
-      objectReference: {fileID: 0}
-    - target: {fileID: 869643566713095039, guid: 7dca9a408717cc94ab2b71cc8af618f9, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1320848444, guid: 213bd33df7f68837780ea811b8af3517, type: 3}
+      objectReference: {fileID: -1852278943, guid: 213bd33df7f68837780ea811b8af3517, type: 3}
     - target: {fileID: 869643566713095039, guid: 7dca9a408717cc94ab2b71cc8af618f9, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1218824864295836879, guid: 7dca9a408717cc94ab2b71cc8af618f9, type: 3}
       propertyPath: m_Size.x
-      value: 0.96
+      value: 1.17
       objectReference: {fileID: 0}
     - target: {fileID: 1218824864295836879, guid: 7dca9a408717cc94ab2b71cc8af618f9, type: 3}
-      propertyPath: m_ExcludeLayers.m_Bits
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1218824864295836879, guid: 7dca9a408717cc94ab2b71cc8af618f9, type: 3}
-      propertyPath: m_CallbackLayers.m_Bits
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 1218824864295836879, guid: 7dca9a408717cc94ab2b71cc8af618f9, type: 3}
-      propertyPath: m_ForceSendLayers.m_Bits
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 1218824864295836879, guid: 7dca9a408717cc94ab2b71cc8af618f9, type: 3}
-      propertyPath: m_ForceReceiveLayers.m_Bits
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 1218824864295836879, guid: 7dca9a408717cc94ab2b71cc8af618f9, type: 3}
-      propertyPath: m_ContactCaptureLayers.m_Bits
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 1218824864295836879, guid: 7dca9a408717cc94ab2b71cc8af618f9, type: 3}
-      propertyPath: m_SpriteTilingProperty.newSize.x
-      value: 0.96
+      propertyPath: m_Size.y
+      value: 2.69
       objectReference: {fileID: 0}
     - target: {fileID: 1218824864295836879, guid: 7dca9a408717cc94ab2b71cc8af618f9, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.96
+      value: 1.17
       objectReference: {fileID: 0}
-    - target: {fileID: 2245601523815987475, guid: 7dca9a408717cc94ab2b71cc8af618f9, type: 3}
-      propertyPath: direction.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4235332618659431225, guid: 7dca9a408717cc94ab2b71cc8af618f9, type: 3}
-      propertyPath: direction.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4760936510328181285, guid: 7dca9a408717cc94ab2b71cc8af618f9, type: 3}
-      propertyPath: direction.x
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7914425210166369159, guid: 7dca9a408717cc94ab2b71cc8af618f9, type: 3}
-      propertyPath: direction.y
-      value: -1
+    - target: {fileID: 1218824864295836879, guid: 7dca9a408717cc94ab2b71cc8af618f9, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 2.69
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7dca9a408717cc94ab2b71cc8af618f9, type: 3}
---- !u!4 &4102659942242303615 stripped
+--- !u!4 &2199227294605839268 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 135574596738810238, guid: 7dca9a408717cc94ab2b71cc8af618f9, type: 3}
-  m_PrefabInstance: {fileID: 4111288499481394945}
+  m_PrefabInstance: {fileID: 2262093381758618330}
   m_PrefabAsset: {fileID: 0}
