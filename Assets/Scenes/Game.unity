@@ -214,6 +214,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5342709219339744039, guid: 68b24f66146cdd44596a101142cbc57c, type: 3}
+      propertyPath: fuelPowerUp
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7630652376604778688, guid: 68b24f66146cdd44596a101142cbc57c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

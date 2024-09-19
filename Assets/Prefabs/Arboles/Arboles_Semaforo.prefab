@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 808408557762588898}
   - component: {fileID: 5467032474285549438}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Arboles_Semaforo
   m_TagString: Untagged
   m_Icon: {fileID: 0}

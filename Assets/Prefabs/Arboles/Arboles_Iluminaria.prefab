@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7644855269217759553}
   - component: {fileID: 8425940821754803170}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Arboles_Iluminaria
   m_TagString: Untagged
   m_Icon: {fileID: 0}

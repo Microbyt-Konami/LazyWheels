@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4019567286817587573}
   - component: {fileID: 2518878011592148261}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Arboles_Buzon_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
