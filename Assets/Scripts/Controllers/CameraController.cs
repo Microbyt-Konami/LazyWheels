@@ -14,6 +14,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
         private Camera theCamera;
         private Transform transformCamera;
         private BoxCollider2D boxCollider2D;
+        private PlayerController player;
 
         // Variables
         private float width, height;
@@ -25,6 +26,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
             theCamera = GetComponent<Camera>();
             transformCamera = GetComponent<Transform>();
             boxCollider2D = GetComponent<BoxCollider2D>();
+            player = target.GetComponent<PlayerController>();
             height = theCamera.orthographicSize;
             width = height * theCamera.aspect;
             boxCollider2D.size = new Vector2(width * 2, height * 2);
@@ -51,7 +53,8 @@ namespace MicrobytKonami.LazyWheels.Controllers
             if (other.gameObject.CompareTag("CarIA") && other.gameObject.transform.parent.TryGetComponent<CarIAController>(out var carIAController) && !carIAController.IsMoving)
             {
                 //carIAController.IsMoving = true;
-                StartCoroutine(SetCarAIMoving(carIAController));
+                if (player == null || (player.CarController != null && player.CarController.IsMoving))
+                    StartCoroutine(SetCarAIMoving(carIAController));
             }
         }
 
