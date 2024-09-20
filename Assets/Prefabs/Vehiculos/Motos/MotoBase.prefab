@@ -116,50 +116,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
-    - target: {fileID: 6907739478566971432, guid: 4743ce40622546545aad71f66fd24cb2, type: 3}
-      propertyPath: m_Size.x
-      value: 1.33
-      objectReference: {fileID: 0}
-    - target: {fileID: 6907739478566971432, guid: 4743ce40622546545aad71f66fd24cb2, type: 3}
-      propertyPath: m_Size.y
-      value: 0.78
-      objectReference: {fileID: 0}
-    - target: {fileID: 6907739478566971432, guid: 4743ce40622546545aad71f66fd24cb2, type: 3}
-      propertyPath: m_ExcludeLayers.m_Bits
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6907739478566971432, guid: 4743ce40622546545aad71f66fd24cb2, type: 3}
-      propertyPath: m_CallbackLayers.m_Bits
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 6907739478566971432, guid: 4743ce40622546545aad71f66fd24cb2, type: 3}
-      propertyPath: m_ForceSendLayers.m_Bits
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 6907739478566971432, guid: 4743ce40622546545aad71f66fd24cb2, type: 3}
-      propertyPath: m_ForceReceiveLayers.m_Bits
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 6907739478566971432, guid: 4743ce40622546545aad71f66fd24cb2, type: 3}
-      propertyPath: m_ContactCaptureLayers.m_Bits
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 6907739478566971432, guid: 4743ce40622546545aad71f66fd24cb2, type: 3}
-      propertyPath: m_SpriteTilingProperty.newSize.x
-      value: 1.33
-      objectReference: {fileID: 0}
-    - target: {fileID: 6907739478566971432, guid: 4743ce40622546545aad71f66fd24cb2, type: 3}
-      propertyPath: m_SpriteTilingProperty.newSize.y
-      value: 0.78
-      objectReference: {fileID: 0}
-    - target: {fileID: 6907739478566971432, guid: 4743ce40622546545aad71f66fd24cb2, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1.33
-      objectReference: {fileID: 0}
-    - target: {fileID: 6907739478566971432, guid: 4743ce40622546545aad71f66fd24cb2, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.78
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

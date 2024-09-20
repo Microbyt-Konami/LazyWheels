@@ -118,11 +118,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8623314687055370979, guid: 11e43cc4d3d4da145841133f33b6ff97, type: 3}
       propertyPath: m_Size.x
-      value: 0.67
+      value: 0.44666666
       objectReference: {fileID: 0}
     - target: {fileID: 8623314687055370979, guid: 11e43cc4d3d4da145841133f33b6ff97, type: 3}
       propertyPath: m_Size.y
-      value: 1.45
+      value: 0.96666664
       objectReference: {fileID: 0}
     - target: {fileID: 8623314687055370979, guid: 11e43cc4d3d4da145841133f33b6ff97, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
@@ -145,6 +145,14 @@ PrefabInstance:
       value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 8623314687055370979, guid: 11e43cc4d3d4da145841133f33b6ff97, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8623314687055370979, guid: 11e43cc4d3d4da145841133f33b6ff97, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8623314687055370979, guid: 11e43cc4d3d4da145841133f33b6ff97, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.x
       value: 0.67
       objectReference: {fileID: 0}
@@ -154,11 +162,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8623314687055370979, guid: 11e43cc4d3d4da145841133f33b6ff97, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.67
+      value: 0.44666666
       objectReference: {fileID: 0}
     - target: {fileID: 8623314687055370979, guid: 11e43cc4d3d4da145841133f33b6ff97, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1.45
+      value: 0.96666664
+      objectReference: {fileID: 0}
+    - target: {fileID: 8623314687055370979, guid: 11e43cc4d3d4da145841133f33b6ff97, type: 3}
+      propertyPath: m_SpriteTilingProperty.adaptiveTilingThreshold
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8919242329251107444, guid: 11e43cc4d3d4da145841133f33b6ff97, type: 3}
       propertyPath: m_LocalRotation.w

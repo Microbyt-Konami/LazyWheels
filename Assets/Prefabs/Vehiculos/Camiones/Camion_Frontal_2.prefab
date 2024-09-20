@@ -100,6 +100,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: BusBase
       objectReference: {fileID: 0}
+    - target: {fileID: 4144817133249250953, guid: de3c493b5a7ba614ea381ec877f12968, type: 3}
+      propertyPath: m_Size.x
+      value: 0.7866667
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144817133249250953, guid: de3c493b5a7ba614ea381ec877f12968, type: 3}
+      propertyPath: m_Size.y
+      value: 2.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144817133249250953, guid: de3c493b5a7ba614ea381ec877f12968, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144817133249250953, guid: de3c493b5a7ba614ea381ec877f12968, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144817133249250953, guid: de3c493b5a7ba614ea381ec877f12968, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 1.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144817133249250953, guid: de3c493b5a7ba614ea381ec877f12968, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 4.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144817133249250953, guid: de3c493b5a7ba614ea381ec877f12968, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.7866667
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144817133249250953, guid: de3c493b5a7ba614ea381ec877f12968, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 2.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144817133249250953, guid: de3c493b5a7ba614ea381ec877f12968, type: 3}
+      propertyPath: m_SpriteTilingProperty.adaptiveTilingThreshold
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -121,14 +121,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.98, y: 1.53}
+    oldSize: {x: 0.6533333, y: 1.02}
     newSize: {x: 0.98, y: 1.53}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.98, y: 1.53}
+  m_Size: {x: 0.6533333, y: 1.02}
   m_EdgeRadius: 0
 --- !u!1 &6386630672996477060
 GameObject:
@@ -248,6 +248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <EnergyStart>k__BackingField: 10
   energyWhenExplode: 1
+  energyWhenNoExplodeIfCarBigger: 0.5
   enemySoundFX: {fileID: 8564848654499092332}
   powerUpSoundFX: {fileID: 1838900945405101692}
   <Energy>k__BackingField: 0
