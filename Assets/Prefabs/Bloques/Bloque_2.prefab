@@ -1,5 +1,40 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &192909887558708838
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6490703197433233388}
+  m_Layer: 0
+  m_Name: PowerUps
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6490703197433233388
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 192909887558708838}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7837264769589063028}
+  - {fileID: 5013656608716617201}
+  - {fileID: 3543828622453615807}
+  - {fileID: 4836048565097437567}
+  m_Father: {fileID: 5913260958651320481}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5096294169468485300
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,11 +167,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 7837264769589063028}
-  - {fileID: 5013656608716617201}
-  - {fileID: 3543828622453615807}
-  - {fileID: 4836048565097437567}
+  m_Children: []
   m_Father: {fileID: 5913260958651320481}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6242138534428523000
@@ -262,6 +293,7 @@ Transform:
   - {fileID: 6242138534428523001}
   - {fileID: 6242138533838070959}
   - {fileID: 2580758107360240772}
+  - {fileID: 6490703197433233388}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4907759378255923174
@@ -683,7 +715,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 6242138533838070959}
+    m_TransformParent: {fileID: 6490703197433233388}
     m_Modifications:
     - target: {fileID: 7462098134542054749, guid: 3ec1202f604e91042a6236244489ecff, type: 3}
       propertyPath: m_RootOrder
@@ -2217,7 +2249,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 6242138533838070959}
+    m_TransformParent: {fileID: 6490703197433233388}
     m_Modifications:
     - target: {fileID: 1383891462192456843, guid: 5687a939c154979429d68865e43fe888, type: 3}
       propertyPath: m_Name
@@ -2415,7 +2447,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 6242138533838070959}
+    m_TransformParent: {fileID: 6490703197433233388}
     m_Modifications:
     - target: {fileID: 1566583482426572528, guid: 61c91467c72061b41916ef7a836b0ca8, type: 3}
       propertyPath: m_Name
@@ -2443,15 +2475,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1566583482426572534, guid: 61c91467c72061b41916ef7a836b0ca8, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1566583482426572534, guid: 61c91467c72061b41916ef7a836b0ca8, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1566583482426572534, guid: 61c91467c72061b41916ef7a836b0ca8, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1566583482426572534, guid: 61c91467c72061b41916ef7a836b0ca8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2679,7 +2711,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 6242138533838070959}
+    m_TransformParent: {fileID: 6490703197433233388}
     m_Modifications:
     - target: {fileID: 4207216529221315938, guid: 1d96b7e435d42de4da22684cd298b4a6, type: 3}
       propertyPath: m_RootOrder
