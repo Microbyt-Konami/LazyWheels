@@ -77,6 +77,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -89,6 +90,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -101,6 +103,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -113,6 +116,20 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -382,18 +399,18 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       EdificiosL_0: 627093495
-      EdificiosL_10: -1117702376
       EdificiosL_1: -33834824
-      EdificiosL_7: -407048065
-      EdificiosL_4: -1891302051
-      EdificiosL_3: 1261061547
+      EdificiosL_10: -1117702376
       EdificiosL_11: -60197243
+      EdificiosL_12: -815688966
       EdificiosL_2: -568034735
+      EdificiosL_3: 1261061547
+      EdificiosL_4: -1891302051
       EdificiosL_5: 276732622
       EdificiosL_6: -1475704225
+      EdificiosL_7: -407048065
       EdificiosL_8: -207821912
       EdificiosL_9: 704540518
-      EdificiosL_12: -815688966
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -18,6 +18,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
     {
         [field: SerializeField, Header("Player")] public float EnergyStart { get; private set; }
         [SerializeField] private float energyWhenExplode;
+        [SerializeField] private float energyWhenNoExplodeIfCarBigger = 0.5f;
         [SerializeField] private AudioSource enemySoundFX;
         [SerializeField] private AudioSource powerUpSoundFX;
 
@@ -60,6 +61,8 @@ namespace MicrobytKonami.LazyWheels.Controllers
             }
             OnEnergyChange();
         }
+
+        public void ConsumEnergyWhenNoExplodeIfCarBigger() => ConsumEnergy(energyWhenNoExplodeIfCarBigger);
 
         public void PowerUpEnery(float energy)
         {

@@ -9,7 +9,6 @@ namespace MicrobytKonami.LazyWheels.Controllers
         // Fields
         [SerializeField] private BlockController[] blocks;
         [SerializeField] private Transform transformBlocks;
-        [SerializeField] private BlockController block0;
         [SerializeField] private BlockController block1;
 
         // Components
@@ -36,8 +35,6 @@ namespace MicrobytKonami.LazyWheels.Controllers
 
         private void Awake()
         {
-            if (block0 != null)
-                block0.StartMoveAllCarsIA = true;
             myTransform = GetComponent<Transform>();
             countRoad = 1;
         }
@@ -59,20 +56,10 @@ namespace MicrobytKonami.LazyWheels.Controllers
 
             //var block = transformBlocks.GetChild(0).GetComponent<BlockController>();
             var block = block1;
-            
+
             block.SetUp();
             SetYToCreateBlock(block);
             SetCurrentBlock(block);
-
-            block = block0;
-
-            if (block is not null)
-            {
-                block.SetUp();
-                SetOldBlock(block);
-            }
-            if (block0 != null)
-                blocksRunning.Add(block0);
             if (block1 != null)
                 blocksRunning.Add(block1);
             //block.ShowAndMoveAllCarsIAs();
