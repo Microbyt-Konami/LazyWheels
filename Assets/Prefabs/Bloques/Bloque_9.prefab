@@ -74,9 +74,7 @@ Transform:
   - {fileID: 6322808212324264546}
   - {fileID: 976328550772213440}
   - {fileID: 682732358224986367}
-  - {fileID: 3258723492042394276}
   - {fileID: 6191892018620240608}
-  - {fileID: 1189350049329500029}
   - {fileID: 6373034054078762174}
   - {fileID: 1387156949888883604}
   - {fileID: 8508281606113965968}
@@ -287,7 +285,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3258723492042394276}
+  - {fileID: 1189350049329500029}
   m_Father: {fileID: 6252088245954073359}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7457661475407934347
@@ -1275,7 +1275,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 8321950710185306352}
+    m_TransformParent: {fileID: 5941225709226163969}
     m_Modifications:
     - target: {fileID: 443122912060759000, guid: 136c574c8216da64c9d0c05d11ffb2e8, type: 3}
       propertyPath: m_RootOrder
@@ -1283,7 +1283,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 443122912060759000, guid: 136c574c8216da64c9d0c05d11ffb2e8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 235.6776
+      value: 1.4776001
       objectReference: {fileID: 0}
     - target: {fileID: 443122912060759000, guid: 136c574c8216da64c9d0c05d11ffb2e8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4839,7 +4839,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 8321950710185306352}
+    m_TransformParent: {fileID: 5941225709226163969}
     m_Modifications:
     - target: {fileID: 9172203574349243082, guid: 5a3f343adb9954043b359c657818235f, type: 3}
       propertyPath: m_RootOrder
@@ -4847,7 +4847,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9172203574349243082, guid: 5a3f343adb9954043b359c657818235f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 235.48
+      value: 1.2799988
       objectReference: {fileID: 0}
     - target: {fileID: 9172203574349243082, guid: 5a3f343adb9954043b359c657818235f, type: 3}
       propertyPath: m_LocalPosition.y
