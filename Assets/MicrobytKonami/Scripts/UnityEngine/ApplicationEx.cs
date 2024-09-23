@@ -22,5 +22,21 @@ namespace UnityEngine
 #endif
             }
         }
+
+        public static bool isMobilePlatform
+        {
+            get
+            {
+#if UNITY_EDITOR
+#if UNITY_ANDROID || UNITY_IOS
+                return true;
+#else
+                return false;
+#endif
+#else
+                return Application.isMobilePlatform;
+#endif
+            }
+        }
     }
 }

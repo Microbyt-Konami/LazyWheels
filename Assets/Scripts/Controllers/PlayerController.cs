@@ -134,9 +134,9 @@ namespace MicrobytKonami.LazyWheels.Controllers
 #endif
             float inputX = inputActions.Player.Move.ReadValue<float>();
 
-            if (Gamepad.current == null)
-                if (inputX == 0 /*&& ApplicationEx.supportsAccelerometer*/)
-                    inputX = inputActions.Player.MoveAcceleration.ReadValue<Vector3>().x;
+            //if (Gamepad.current == null)
+            //    if (inputX == 0 /*&& ApplicationEx.supportsAccelerometer*/)
+            //        inputX = inputActions.Player.MoveAcceleration.ReadValue<Vector3>().x;
             CarController.Mover(inputX);
         }
 

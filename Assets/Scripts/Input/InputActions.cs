@@ -165,7 +165,7 @@ namespace MicrobytKonami.LazyWheels.Input
                     ""path"": ""<Accelerometer>/acceleration"",
                     ""interactions"": """",
                     ""processors"": ""NormalizeVector3"",
-                    ""groups"": ""Accelerometer"",
+                    ""groups"": """",
                     ""action"": ""MoveAcceleration"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false

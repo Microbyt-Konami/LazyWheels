@@ -11,7 +11,7 @@ using MicrobytKonami.LazyWheels.Controllers;
 
 namespace MicrobytKonami.LazyWheels.UI
 {
-    public class UIController : MonoBehaviourSingletonScene<UIController>
+    public class UIController : MonoBehaviour
     {
         [Header("References")]
         [SerializeField] private PlayerController player;
@@ -19,15 +19,15 @@ namespace MicrobytKonami.LazyWheels.UI
         [field: SerializeField] public UICounterInitial CounterInitial { get; private set; }
 
         [Header("UI")]
+        [SerializeField] private GameObject panelVirtualJoysticks;
         [SerializeField] private GameObject panelGameOver;
         [SerializeField] private TextMeshProUGUI distanceText;
 
         // Components
 
-        public void ShowGameOver()
-        {
-            panelGameOver.SetActive(true);
-        }
+        public void ShowGameOver() => panelGameOver.SetActive(true);
+
+        public void ShowPanelVirtualJoysticks(bool show = true) => panelVirtualJoysticks.SetActive(show);
 
         public void PlayAgain()
         {
@@ -38,6 +38,7 @@ namespace MicrobytKonami.LazyWheels.UI
         void Start()
         {
             panelGameOver.SetActive(false);
+            panelVirtualJoysticks.SetActive(false);
         }
 
         void Update()
