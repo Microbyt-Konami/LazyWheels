@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace MicrobytKonami.LazyWheels
+namespace MicrobytKonami.LazyWheels.UI
 {
     public class MainMenui : MonoBehaviour
     {
