@@ -72,12 +72,14 @@ namespace MicrobytKonami.LazyWheels.Managers
         IEnumerator Start()
         {
             var counter = uiController.CounterInitial;
+            
+            // Para garantizar un fps constante
+            Application.targetFrameRate = 60;
 
             counter.gameObject.SetActive(true);
             player.CarController.IsMoving = false;
             player.CarController.PlayStartMotorSound();
             yield return new WaitForSeconds(2);
-
 
             //yield return counter.StartCounter();
             yield return StartCoroutine(counter.StartCounterCoroutine());
