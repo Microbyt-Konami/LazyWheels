@@ -107,7 +107,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
             IsExploding = true;
             print($"Explode {name}");
             SetModoGhost();
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
 
             //CarFade(0);
 
@@ -228,7 +228,7 @@ namespace MicrobytKonami.LazyWheels.Controllers
                     _speedRotation = speedRotation;
                 }
 
-                rb.velocity = new Vector2(inputX * _speedRotation, _speedUp);
+                rb.linearVelocity = new Vector2(inputX * _speedRotation, _speedUp);
             }
         }
 
@@ -283,10 +283,10 @@ namespace MicrobytKonami.LazyWheels.Controllers
 
         private void BurnFuel()
         {
-            Fuel -= FuelMeterSecond * rb.velocity.y * Time.deltaTime;
+            Fuel -= FuelMeterSecond * rb.linearVelocity.y * Time.deltaTime;
             if (Fuel <= 0)
             {
-                rb.velocity = Vector2.zero;
+                rb.linearVelocity = Vector2.zero;
                 IsMoving = false;
                 Fuel = 0;
                 onCarNoFuel.Invoke();
